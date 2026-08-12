@@ -1,0 +1,29 @@
+name: mirror-claude-changelog
+
+on:
+  schedule: [{ cron: "0 * * * *" }]   # 매시간
+  workflow_dispatch:                  # 수동 실행
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+
+      # lastBuildDate는 매 요청마다 갱신되므로 제거한다.
+      # 그대로 두면 내용이 그대로인데도 매시간 diff가 생겨 커밋이 쌓인다.
+      - name: 피드 미러
+        run: |
+          curl -sSf --max-time 30 https://claude.com/docs/cowork/changelog/rss.xml \
+            | sed '/<lastBuildDate>/d' > feed.xml
+          grep -q '<item>' feed.xml   # 빈 응답/에러 페이지를 커밋하지 않도록 검증
+
+      - name: 변경 있을 때만 커밋
+        run: |
+          git config user.name  github-actions
+          git config user.email github-actions@github.com
+          git add feed.xml
+          git diff --cached --quiet && { echo "변화 없음"; exit 0; }
+          git commit -m "mirror: $(date -u +%FT%TZ)"
+          git push

@@ -1,7 +1,7 @@
 name: mirror-claude-changelog
 
 on:
-  schedule: [{ cron: "0 * * * *" }]   # 매시간
+  schedule: [{ cron: "0 */6 * * *" }]   # 6시간마다 (routine이 하루 1회만 읽으므로 충분)
   workflow_dispatch:                  # 수동 실행
 
 jobs:

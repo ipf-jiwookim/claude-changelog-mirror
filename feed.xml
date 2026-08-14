@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.30096.5]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-30096-5</link>
+            <guid isPermaLink="false">53721a2d995c58c3</guid>
+            <pubDate>Fri, 14 Aug 2026 23:42:58 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.30096.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-30096-1</link>
             <guid isPermaLink="false">1b3fd5d5c73e63a1</guid>
@@ -508,28 +530,6 @@
 <li>Fixed managed MCP connectors failing with a credential-storage error when the server allows anonymous access.</li>
 <li>Fixed the Microsoft 365 connector failing to sign in on Macs enrolled with Microsoft Company Portal.</li>
 <li>Fixed the setup form incorrectly showing "Blocked address" for internal MCP or OAuth servers on IPv6 enterprise networks.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.18286.2]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-18286-2</link>
-            <guid isPermaLink="false">f298efa008fb6c49</guid>
-            <pubDate>Tue, 07 Jul 2026 04:59:25 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Updated the embedded Claude Code engine to the latest version.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

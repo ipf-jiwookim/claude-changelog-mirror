@@ -4,7 +4,7 @@ Claude 데스크톱 앱 changelog를 한글로 정리해 Slack `#claude-updates`
 이 저장소는 그 파이프라인의 **두 조각**을 담는다.
 
 ```
-Actions (매시간)                       routine (매일 10:04 KST)
+Actions (매시간)                       routine (매일 08:00·09:00·10:00 KST)
 claude.com/…/rss.xml ──▶ feed.xml ──▶ 한글 정리 ──▶ Slack (MCP)
                           (여기 커밋)   (raw.githubusercontent.com 으로 읽음)
 ```
@@ -14,11 +14,12 @@ claude.com/…/rss.xml ──▶ feed.xml ──▶ 한글 정리 ──▶ Slac
 | [`.github/workflows/mirror.yml`](.github/workflows/mirror.yml) | 원본 피드를 `feed.xml`로 미러 | GitHub Actions — **이 파일이 곧 실행본** |
 | [`feed.xml`](feed.xml) | 미러된 RSS (내용이 바뀔 때만 커밋됨) | Actions가 갱신 |
 | [`routine/prompt.md`](routine/prompt.md) | routine에 넣는 프롬프트 | Claude routine — **사본. 아래 경고 참고** |
+| [`routine/config.md`](routine/config.md) | cron·모델·커넥터 등 routine 설정 | 위와 같음 — **사본** |
 
-## ⚠️ `routine/prompt.md` 는 사본이다
+## ⚠️ `routine/` 아래는 전부 사본이다
 
-routine은 **자체 저장된 설정으로 실행된다.** 이 파일을 고쳐서 커밋해도 routine 동작은 바뀌지 않는다.
-반영하려면 [routine 편집 화면](https://claude.ai/code/routines)에서 프롬프트를 직접 교체해야 한다.
+routine은 **자체 저장된 설정으로 실행된다.** 이 파일들을 고쳐서 커밋해도 routine 동작은 바뀌지 않는다.
+반영하려면 [routine 편집 화면](https://claude.ai/code/routines)에서 프롬프트와 스케줄을 직접 바꿔야 한다.
 
 그럼 왜 두는가 — 변경 이력과 그 **이유**를 남기기 위해서다. 프롬프트의 규칙 대부분은
 시행착오의 결과이고(아래), 커밋 메시지가 없으면 몇 달 뒤 "이 규칙 왜 있지?"에 답할 수 없다.

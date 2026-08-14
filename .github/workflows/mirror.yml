@@ -1,7 +1,10 @@
 name: mirror-claude-changelog
 
 on:
-  schedule: [{ cron: "0 * * * *" }]   # 매시간
+  # 15분 간격. 정시(:00)는 전 세계 워크플로가 몰려 큐 지연이 커지므로 피한다.
+  # GitHub 스케줄은 정시 보장이 없다 — 실측 결과 "매시간" 설정이 평균 1.6시간,
+  # 최대 2.75시간으로 벌어졌고 그 구멍에 릴리스 하나를 놓쳤다.
+  schedule: [{ cron: "7,22,37,52 * * * *" }]
   workflow_dispatch:                  # 수동 실행
 
 jobs:

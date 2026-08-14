@@ -4,7 +4,7 @@ Claude 데스크톱 앱 changelog를 한글로 정리해 Slack `#claude-updates`
 이 저장소는 그 파이프라인의 **두 조각**을 담는다.
 
 ```
-Actions (매시간)                       routine (매일 08:00·09:00·10:00 KST)
+Actions (15분마다)                     routine (매일 08·10·14·16시 KST)
 claude.com/…/rss.xml ──▶ feed.xml ──▶ 한글 정리 ──▶ Slack (MCP)
                           (여기 커밋)   (raw.githubusercontent.com 으로 읽음)
 ```
@@ -60,6 +60,8 @@ grep -q '<item>' feed.xml
   무의미한 커밋이 쌓인다.
 - `grep -q '<item>'` — 에러 페이지나 빈 응답을 커밋하는 것을 막는다. 없으면 피드가 깨진 날
   routine이 빈 파일을 읽는다.
+- **정시(`:00`)를 피한 것도 의도다.** GitHub 스케줄은 정시에 큐가 몰려 지연·유실이 잦다.
+  실측상 `0 * * * *`은 평균 1.6시간·최대 2.75시간으로 벌어졌고, 그 구멍에서 릴리스를 놓친 적이 있다.
 
 ## 참고
 

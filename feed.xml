@@ -8,6 +8,46 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.30096.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-30096-1</link>
+            <guid isPermaLink="false">1b3fd5d5c73e63a1</guid>
+            <pubDate>Fri, 14 Aug 2026 00:12:26 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Fixed Find (Cmd+F) doing nothing the first time it was pressed after launch.</li>
+<li>Fixed right-to-left text in the composer scrambling around embedded left-to-right words; code blocks stay left-to-right.</li>
+<li>Fixed the Artifacts entry missing from the sidebar on Windows machines that can't run local Cowork; it now opens the Artifacts gallery.</li>
+<li>Fixed macOS asking for notification permission as soon as the app launched, instead of when the first notification is about to appear.</li>
+<li>Fixed the app crashing at launch, or on a system theme change, on some Linux installs (most often repackaged builds); it now falls back to a default tray icon.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added Rewind to cloud sessions (message menu, Esc Esc, or <code>/rewind</code>), and fixed rewound-away messages reappearing when a rewound cloud or Remote Control session was reopened.</li>
+<li>Fixed an interrupted Claude Code download (for example, after a crash or power loss mid-install) leaving Code sessions on that computer unable to start, most often on Windows.</li>
+<li>Fixed an unanswered permission or plan-approval prompt in a cloud session sometimes being treated as approved after the session's environment disconnected.</li>
+<li>Fixed cloud sessions marked as needing input sometimes opening without the question or approval prompt.</li>
+<li>Fixed Remote Control sessions sometimes never connecting when opened while idle, staying off your other devices after a stop or interruption until turned back on by hand, and looking idle instead of reporting that the host computer is offline.</li>
+<li>Fixed copy and paste problems: transcript text pasted into rich-text apps lost the spaces around inline code, bold, and italics and mangled code blocks, and Cmd+C after selecting text in the Plan view copied nothing.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed the earlier conversation being discarded when you chose Go back after a failed task resume, or edited a message right after the app restarted.</li>
+<li>Fixed memory saves failing when the Claude Code <code>managed-settings.json</code> policy sets <code>allowManagedPermissionRulesOnly</code>.</li>
+<li>Fixed Cowork on Windows failing on every launch with "VM service not running" after its background service had stopped; the service is now restarted automatically, and otherwise the error explains that restarting the computer restores it.</li>
+<li>Fixed Cowork sometimes pulling you back to the bottom of a task after you had scrolled up, for example when a sub-agent step finished.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>otlpAuthMode</code> and <code>otlpHeadersHelper</code>, two ways to authenticate telemetry exports without static <code>otlpHeaders</code>: set <code>otlpAuthMode</code> to <code>inference-credential</code> to reuse the signed-in user's inference token, or point <code>otlpHeadersHelper</code> at an executable that prints the collector headers as JSON.</li>
+<li>Added an optional <code>inferenceGatewayOidc.resource</code> subfield that sends an RFC 8707 resource indicator on gateway sign-in and token refresh, for identity providers that audience-restrict access tokens.</li>
+<li>Changed <code>inferenceBedrockBaseUrl</code> and <code>inferenceVertexBaseUrl</code>: only affects users who entered the bootstrap server URL themselves (in Settings or a local config file). Those users are now asked once to allow a Bedrock or Vertex endpoint that server delivers before it takes effect, the same prompt <code>inferenceGatewayBaseUrl</code> already shows. Managed deployments (bootstrap URL set by device management, or <code>trustBootstrapDelivery: true</code>) see no change.</li>
+<li>Changed <code>claudeAiImport</code>: an imported session now asks the user to confirm once (Trust and resume) before Claude continues it for the first time; this also applies to sessions imported before this update.</li>
+<li>Fixed a single malformed <code>allowedPluginMarketplaces</code> (beta) entry disabling every configured marketplace; the entry is now skipped and reported.</li>
+<li>Fixed sending messages failing when a bootstrap server turned Cowork off (<code>coworkTabEnabled</code> set to <code>false</code>); the home screen now opens directly into Chat.</li>
+<li>Fixed OpenTelemetry exports being rejected when the configured gateway also serves as the telemetry collector endpoint.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.28929.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-28929-0</link>
             <guid isPermaLink="false">3bb34cb7de63b742</guid>
@@ -490,44 +530,6 @@
 <p><strong>3P</strong></p>
 <ul>
 <li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.18286.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-18286-0</link>
-            <guid isPermaLink="false">0d1e239d981a0d6e</guid>
-            <pubDate>Fri, 03 Jul 2026 03:18:41 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed <code>apt update</code> failing on Linux after uninstalling a Claude that was installed from the apt repository.</li>
-<li>Fixed being asked to sign in repeatedly after a session expired while you were using the app; your in-progress message draft now returns when you sign back in within 10 minutes, and signing out still clears it.</li>
-<li>Fixed being unable to disable, delete, or uninstall plugins from GitHub-connected marketplaces, or to remove those marketplaces.</li>
-<li>Fixed pressing Enter not sending your message when an @mention had no matching results.</li>
-<li>Fixed remote SSH sessions getting stuck in a reconnect loop on very large messages, being lost when the computer woke from sleep mid-reconnect, and occasionally sending the same input twice after reconnecting.</li>
-<li>Fixed setup on Windows getting stuck retrying a download when the download folder was locked or inaccessible.</li>
-<li>Fixed the file-open spinner on Linux staying up after the download completed.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added a "Choose folder" option to recover a session whose working folder is missing: the conversation forks into the folder you pick and the stuck session is archived.</li>
-<li>Added a "Switch organization" option on the "session not found" page so you can reopen a session link under the right organization.</li>
-<li>Added drag-to-reorder for queued messages, and Steer now works for messages that include images.</li>
-<li>Improved the Code tab's live preview: it now reports honest connection and loading status (including when a page arrives but never finishes loading, or a server overloads itself with requests), adds browser-style Back, Forward, and Reload/Stop controls, and lets you close other preview tabs.</li>
-<li>Fixed background tasks and workflows continuing to show as running after they finished, the session restarted, or the session was stopped.</li>
-<li>Fixed Remote Control sessions spinning forever with no error after you sent a message when the hosting computer was no longer connected.</li>
-<li>Fixed the sidebar project + button opening an empty prompt (or pointing at github.com) for GitHub Enterprise repositories.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added click-to-zoom and drag-to-pan to the fullscreen image viewer.</li>
-<li>Fixed Computer Use teach mode where the Next and Exit buttons sometimes stopped responding until you switched apps and back, and cleared up teach-mode visuals so the screen-edge glow no longer flickers and the status indicator no longer sticks after you exit a guide.</li>
-<li>Fixed dictation dropping back to the text box when started from the mic button in existing sessions.</li>
-<li>Fixed document tools in cloud sessions acting on your local files instead of the session's files.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added a usage breakdown by model family, source attribution, and usage tips to the <code>/usage</code> card.</li>
-<li>Removed automatic addition of Anthropic's default plugin marketplace on third-party deployments, and removed the <code>disableDefaultPlugins</code> managed configuration key (which had no effect there). Provision marketplaces via <code>allowedPluginMarketplaces</code> (beta).</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

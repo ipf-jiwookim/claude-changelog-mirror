@@ -8,6 +8,53 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.32352.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-32352-0</link>
+            <guid isPermaLink="false">1ad526609eb3d2da</guid>
+            <pubDate>Mon, 17 Aug 2026 20:27:43 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Fixed Windows updates sometimes leaving the app half installed, with later updates failing too.</li>
+<li>Fixed the app staying on "Couldn't connect to Claude" when a network proxy blocked its first connection; it now keeps retrying for a few minutes and again when you return to the window.</li>
+<li>Fixed the composer staying disabled after a usage-limit notice when your organization has extra usage turned off or not set up; sending works again once your admin turns it on.</li>
+<li>Fixed settings and connector links in chat doing nothing, or opening your web browser, when clicked in the app; they now open the app's own settings.</li>
+<li>Fixed text typed on the new chat page sometimes disappearing when turning on incognito.</li>
+<li>Fixed the chat showing an error screen instead of the conversation when Claude created or linked a file whose name contains a percent sign.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed auto-continue after the 5-hour usage limit to be on by default: sessions left open resume when the limit resets. Uncheck "Auto-continue when limits reset" in the limit banner to turn it off for your account.</li>
+<li>Fixed sessions sometimes hanging after resume, either showing "The session stopped responding" after the first message or never starting when a file system or MCP server stalled.</li>
+<li>Fixed undo (Cmd+Z, or Ctrl+Z on Windows and Linux) in the message composer sometimes failing with an error and then no longer working.</li>
+<li>Fixed a brand-new cloud session losing its first message when you navigated away within a few seconds of sending it.</li>
+<li>Fixed sessions started right after the app opened sometimes running in a more permissive mode than your saved permission mode.</li>
+<li>Fixed Remote Control sessions staying stuck at "connecting" after you completed the sign-in or device-check prompt, and file links not opening when the session was viewed from another computer.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Removed the "Allow all browser actions" option from Claude in Chrome permission cards; allow each website instead. The switch in Settings is unchanged.</li>
+<li>Fixed the workspace startup error suggesting a restart or reinstall when the computer was low on disk space; it now asks you to free up space and retry.</li>
+<li>Fixed a tool call hanging for a full minute when its local MCP server crashed mid-call; it now fails right away.</li>
+<li>Fixed computer use on macOS refusing every click after you had taken a screenshot or while a screen recording was running.</li>
+<li>Fixed the approval mode still showing "Skip all approvals" when your organization's policy had blocked it; switching back to "Manually approve" now asks again before Claude fetches web pages it visited while approvals were off.</li>
+<li>Fixed the activity panel button doing nothing while a file was open beside the chat; it now closes the file and shows the panel.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>claudeAiImport.exportEnabled</code>. With it and <code>claudeAiImport.enabled</code> both <code>true</code>, users can export this computer's chats, Cowork tasks, and Code sessions from Settings > Import &#x26; export as a zip that another install can import. Off by default.</li>
+<li>Added a <code>url</code> source for <code>allowedPluginMarketplaces</code> (beta): a hosted <code>marketplace.json</code> that delivers plugins as zip archives over HTTPS, with no git on the device. Set <code>manifestSha256</code> to pin the exact manifest; it is required for automatically installed plugins.</li>
+<li>Added <code>inferenceCredential</code> as a <code>credentialKind</code> for <code>allowedPluginMarketplaces</code> (beta): a <code>url</code> marketplace hosted on your inference gateway is fetched with the same credential the app already uses for inference.</li>
+<li>Changed <code>coworkEgressAllowedHosts</code>: a <code>:port</code> suffix now also applies to shell commands and package installs in Cowork sessions, which previously could not reach a port-scoped host at all.</li>
+<li>Changed settings from a locally configured (not device-managed) bootstrap URL that need user approval to apply all or nothing: nothing takes effect until the user chooses Allow; Quit closes the app and asks again next launch.</li>
+<li>Changed a served configuration with an invalid connection value to report that field by name and keep the organization's other settings in force; a non-Anthropic model entry is now skipped with a warning instead of invalidating the whole configuration.</li>
+<li>Changed admin-configured plugin marketplaces (<code>allowedPluginMarketplaces</code>, beta), including automatically installed and required plugins, to apply to Code sessions as well as Cowork.</li>
+<li>Changed new Cowork sessions to use much shorter folder names on disk so file paths are less likely to exceed Windows path-length limits; existing sessions keep their folders, and tooling that matches the <code>local_</code> prefix should also match the new names.</li>
+<li>Fixed Settings > Import &#x26; export saying import isn't enabled on deployments that provision the sign-in import without setting <code>claudeAiImport.enabled</code>; that key now governs only file and earlier-session import, the import prompt, and session export.</li>
+<li>Fixed the Setup window accepting a mis-typed inference region, Azure AI Foundry resource name, blank Vertex AI project ID, or non-Anthropic model ID that was only rejected later on the device; these are now flagged before saving.</li>
+<li>Fixed imported project instructions arriving as a loose file instead of the project's editable Instructions; they are now shown for review on the project page and apply once you accept them.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.30096.5]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-30096-5</link>
             <guid isPermaLink="false">53721a2d995c58c3</guid>
@@ -482,54 +529,6 @@
 <li>Fixed MCP connectors failing to connect through gateways that optionally request a TLS client certificate, even though the connection test passed.</li>
 <li>Fixed sign-in timing out with identity providers (such as PingFederate) that redirect via a rendered page after authentication.</li>
 <li>Fixed third-party settings ignoring managed configuration: the Claude Code pane now follows <code>isClaudeCodeForDesktopEnabled</code>, the Developer tab hides when <code>isLocalDevMcpEnabled</code> is off, and the Capabilities and Voice settings no longer appear.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.19367.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-19367-0</link>
-            <guid isPermaLink="false">0ab3d43c4fb10af8</guid>
-            <pubDate>Tue, 07 Jul 2026 18:15:40 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Added automatic updates on Linux through the Anthropic apt repository, so new versions arrive with <code>apt upgrade</code> (and unattended upgrades where enabled).</li>
-<li>Added the ability to archive or delete the current chat, project, task, or coding session directly from the command palette (<code>⌘K</code>, or <code>Ctrl+K</code> on Windows and Linux).</li>
-<li>Fixed bank payment-verification (3DS) pages not loading during checkout.</li>
-<li>Fixed MCP connectors in artifacts being silently dropped; approving a connector now reliably grants its tools to the artifact, and a previously stuck approval heals itself the next time you approve.</li>
-<li>Fixed repeated crashes on Linux caused by unstable graphics acceleration; the app now turns acceleration off automatically and tells you.</li>
-<li>Fixed the app becoming unresponsive when a session folder is on a slow or disconnected network drive.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added descriptive branch names for local Code sessions, derived from your first message, in place of the random adjective-noun names.</li>
-<li>Changed the default transcript and composer width to a narrower, more readable column; a width you already chose in Settings → Appearance is preserved.</li>
-<li>Fixed "Open in Finder", "Open in editor", and "Attach to chat" doing nothing, or using the wrong path, for files in the diff panel when the session folder differs from the repo folder.</li>
-<li>Fixed freezes and stalls: while restoring a large number of sessions at startup, while builds or file syncs churned files inside a watched folder, and while the diff panel refreshed during a response.</li>
-<li>Fixed newly trusted folders sometimes failing to start a session with a "workspace is not trusted" error.</li>
-<li>Fixed security-key and phone sign-ins not completing in preview tabs.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added a copyright-access notice in the session timeline when Claude in Chrome first operates on certain news publisher sites.</li>
-<li>Added keyboard access to the preview pane: Tab reaches a "Preview page" control, Enter moves focus into the loaded page, and <code>F6</code> (or <code>Ctrl+F6</code>) moves it back out.</li>
-<li>Fixed Cowork offering terminal access, and showing an impossible fix suggestion, on devices whose operating system cannot provide the virtualization its isolated environment needs (such as ChromeOS), where every command immediately failed.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>inferenceFoundryAuthFlow</code> to choose how interactive Microsoft Entra ID sign-in for Azure AI Foundry runs: <code>device-code</code> (the default, which shows a code to enter at <code>microsoft.com/devicelogin</code>) or <code>browser</code>, which opens the system browser for an authorization-code (PKCE) sign-in.</li>
-<li>Added <code>microsoftAuthBroker</code>; set it to <code>disabled</code> to force browser-based Microsoft 365 sign-in instead of the native Company Portal or Windows account broker.</li>
-<li>Added a "session expires soon" warning for Bedrock SSO and AWS-profile sign-in so you can re-authenticate before hitting an error.</li>
-<li>Added a <code>startupTimeoutSec</code> option for managed local (stdio) MCP servers and raised the default startup timeout from 10 to 120 seconds, fixing connection failures when a server command downloads packages on first run (for example <code>uvx</code> or <code>npx</code>).</li>
-<li>Added support for background agents: long-running tasks now stay signed in after your identity provider's access token expires.</li>
-<li>Added the ability for administrators to grant Microsoft 365 write scopes (send mail; edit calendars and files; send Teams chat; mailbox settings) through managed configuration.</li>
-<li>(breaking) Changed the default for Desktop Extensions (<code>.dxt</code> and <code>.mcpb</code>): they no longer load unless you set <code>isDesktopExtensionEnabled</code> to <code>true</code> in managed configuration. Previously they loaded by default and only the install UI was blocked.</li>
-<li>Updated <code>allowedPluginMarketplaces</code> (beta) so it can be delivered per-user through the bootstrap server; a response that omits the key leaves MDM-provisioned marketplaces in place.</li>
-<li>Fixed a one-time loss of sign-ins on some managed Windows machines after app data moved to a new location.</li>
-<li>Fixed AWS credentials not reaching the Code tab's terminal for Amazon Bedrock configurations that use IAM Identity Center.</li>
-<li>Fixed bundled Microsoft 365 and other MCP connectors failing to connect on networks with corporate TLS inspection (custom root CA).</li>
-<li>Fixed connection tests reporting false failures: the test now runs MCP helper scripts and checks managed configurations exactly as saved, and uses the same Azure AI Foundry endpoint that sessions use.</li>
-<li>Fixed managed MCP connectors failing with a credential-storage error when the server allows anonymous access.</li>
-<li>Fixed the Microsoft 365 connector failing to sign in on Macs enrolled with Microsoft Company Portal.</li>
-<li>Fixed the setup form incorrectly showing "Blocked address" for internal MCP or OAuth servers on IPv6 enterprise networks.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

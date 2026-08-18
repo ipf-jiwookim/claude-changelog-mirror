@@ -8,9 +8,31 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.32352.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-32352-1</link>
+            <guid isPermaLink="false">c3abd25f5b60bff0</guid>
+            <pubDate>Tue, 18 Aug 2026 05:00:22 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Fixed a rare Windows startup failure where the first window could fail to initialize on a fresh install.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.32352.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-32352-0</link>
-            <guid isPermaLink="false">1ad526609eb3d2da</guid>
+            <guid isPermaLink="false">8df68bc9129b1c58</guid>
             <pubDate>Mon, 17 Aug 2026 20:27:43 GMT</pubDate>
             <content:encoded><![CDATA[<p><strong>General</strong></p>
 <ul>
@@ -41,6 +63,7 @@
 </ul>
 <p><strong>3P</strong></p>
 <ul>
+<li><strong>Breaking:</strong> Managed-config URL settings now reject values that embed credentials (<code>https://user:password@host…</code>). Configurations that relied on this fail to load until the credentials are removed; use <code>bootstrapHeaders</code> / <code>bootstrapHeadersHelper</code> (arriving in an upcoming release) to send authentication instead.</li>
 <li>Added <code>claudeAiImport.exportEnabled</code>. With it and <code>claudeAiImport.enabled</code> both <code>true</code>, users can export this computer's chats, Cowork tasks, and Code sessions from Settings > Import &#x26; export as a zip that another install can import. Off by default.</li>
 <li>Added a <code>url</code> source for <code>allowedPluginMarketplaces</code> (beta): a hosted <code>marketplace.json</code> that delivers plugins as zip archives over HTTPS, with no git on the device. Set <code>manifestSha256</code> to pin the exact manifest; it is required for automatically installed plugins.</li>
 <li>Added <code>inferenceCredential</code> as a <code>credentialKind</code> for <code>allowedPluginMarketplaces</code> (beta): a <code>url</code> marketplace hosted on your inference gateway is fetched with the same credential the app already uses for inference.</li>
@@ -489,46 +512,6 @@
             <content:encoded><![CDATA[<p><strong>General</strong></p>
 <ul>
 <li>Fixed an issue where permission prompts and in-session questions could silently stop appearing after an input-handling error — if Claude asked a question or requested permission and the prompt never showed up, this release fixes that. (Updates the bundled Claude Code CLI to 2.1.209.)</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.20186.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-20186-0</link>
-            <guid isPermaLink="false">5029ac37d064172d</guid>
-            <pubDate>Thu, 09 Jul 2026 17:54:47 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed <code>claude://</code> deep links being ignored when opening one launched the app from a closed state, including on Windows and Linux.</li>
-<li>Fixed device attestation failing on Windows when sending several messages at once.</li>
-<li>Fixed garbled tool summaries in the transcript: descriptions that don't start with a recognized verb (for example "Final verification") now appear as written instead of being mis-conjugated.</li>
-<li>Fixed skill proposal and skill-file cards failing to save with "Couldn't save this skill" when a skill of that name already exists; they now offer "Update skill" and a replace confirmation.</li>
-<li>Fixed the app forgetting your last-used tab (for example Code) after an update or re-login.</li>
-<li>Fixed the menu bar usage menu showing an empty progress bar for extra usage when the spend cap is unlimited.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added a Troubleshooting option to import Claude Code CLI sessions found on this computer into the session list.</li>
-<li>Fixed a typed <code>&#x3C;channel-message></code> turn rendering as a spoofable "Message from <code>{server}</code>" card instead of as your own text.</li>
-<li>Fixed cross-session messages going missing in the transcript: messages from another session no longer disappear when they arrive in the same turn as other content or when their envelope can't be fully parsed.</li>
-<li>Fixed file links to files outside the working directory, including reports Claude writes to its scratchpad, showing "This file is outside the working directory" instead of opening.</li>
-<li>Fixed the context window indicator and token count staying at the pre-compaction value after compacting a conversation.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed admin-configured plugin marketplace sync failing behind corporate proxies on macOS.</li>
-<li>Fixed plugin connectors sometimes missing from the Connectors list and tool permission prompts when they were slow to start.</li>
-<li>Fixed skills saved in a remote session sometimes still returning "Unknown command" right after saving.</li>
-<li>Fixed the "Run this task while your Mac sleeps" setting turning itself off after an app update.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>*</code> wildcard matching for managed MCP <code>toolPolicy</code> keys; partial wildcard keys such as <code>"outlook_*"</code> in existing configurations now take effect, including any <code>allow</code> wildcards, which pre-approve the tools they match. Exact keys and the standalone <code>"*"</code> key behave as before.</li>
-<li>Added support for exporting Cowork task telemetry over <code>otlpProtocol: grpc</code> on macOS and Linux when no network proxy is configured.</li>
-<li>Fixed Azure AI Foundry sessions failing with an authentication error on every message after interactive Microsoft Entra ID sign-in.</li>
-<li>Fixed gateway-SSO bootstrap dropping cross-origin <code>managedMcpServers</code> entries, so admin-provisioned third-party connectors reach the app under device-code sign-in.</li>
-<li>Fixed MCP connectors failing to connect through gateways that optionally request a TLS client certificate, even though the connection test passed.</li>
-<li>Fixed sign-in timing out with identity providers (such as PingFederate) that redirect via a rendered page after authentication.</li>
-<li>Fixed third-party settings ignoring managed configuration: the Claude Code pane now follows <code>isClaudeCodeForDesktopEnabled</code>, the Developer tab hides when <code>isLocalDevMcpEnabled</code> is off, and the Capabilities and Voice settings no longer appear.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

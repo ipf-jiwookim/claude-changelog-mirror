@@ -8,6 +8,40 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.34493.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-34493-0</link>
+            <guid isPermaLink="false">9a740191785a7bf5</guid>
+            <pubDate>Thu, 20 Aug 2026 23:20:07 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Fixed a startup freeze on Macs that keep applications in iCloud Drive with Optimize Mac Storage turned on.</li>
+<li>Fixed scheduled task problems: "every N days/months" schedules ran on the wrong days (existing tasks move to the correct days on their next run), re-enabling a task or editing its schedule immediately started a catch-up run for a time slot that passed while it was off, and manually run tasks sometimes did not record when they last ran.</li>
+<li>Fixed the app crashing when signing in with Touch ID on macOS; Touch ID passkey sign-in is temporarily unavailable.</li>
+<li>Fixed the app quitting on macOS when the disk was full or when stopping dictation.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed archiving an SSH session discarding uncommitted or unmerged work in its remote worktree; the worktree is now kept, and unarchiving recreates it if it is missing so the session can pick up where it left off.</li>
+<li>Fixed session history no longer updating or appearing lost on macOS for sessions in folders whose names contain accented, Korean, or Japanese characters.</li>
+<li>Fixed sessions you hadn't opened for 30 days or more losing their conversation history even though the app was in regular use.</li>
+<li>Fixed SSH connections on slow or unstable networks failing on the first attempt and needing a manual retry.</li>
+<li>Fixed SSH sessions losing a task that was still running when the app reconnected after an app update.</li>
+<li>Fixed the side chat answering once and then failing with an authentication error for the rest of a long session.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed conversations failing to open when a message contained a very long run of bracketed text, a very long line starting with an unclosed <code>[</code>, or a very long run of <code>></code> characters.</li>
+<li>Fixed message ratings and "Send feedback" links sometimes appearing when your organization has product feedback turned off.</li>
+<li>Fixed sessions failing to start on managed Macs where the app's temporary directory is not writable.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Changed gateway device-code sign-in to refresh silently when the gateway also issues a refresh token, instead of prompting you to sign in again each time the access token expires.</li>
+<li>Fixed an ended gateway device-code sign-in going unnoticed while the app was idle; the app now notices at its next periodic configuration check or shortly after the computer wakes from sleep and asks you to sign in again, and the Setup window says "Session expired" instead of "Denied".</li>
+<li>Fixed Cowork file previews showing "Preview unavailable" until the app was restarted once a preview pane had been closed for a few minutes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.32885.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-32885-1</link>
             <guid isPermaLink="false">89f0e0f05b8660c5</guid>
@@ -492,54 +526,6 @@
 <p><strong>3P</strong></p>
 <ul>
 <li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.21459.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-21459-0</link>
-            <guid isPermaLink="false">09ce1f855d7027fc</guid>
-            <pubDate>Wed, 15 Jul 2026 01:21:11 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Changed the web-fetch permission prompt to default to "Allow all for this website" when that grant is available; "Allow once" stays the default otherwise, and pressing Enter always answers "Allow once".</li>
-<li>Updated the embedded Claude Code engine to the latest version.</li>
-<li>Fixed a crash on launch when Claude's worktree bookkeeping file couldn't be read or written.</li>
-<li>Fixed brief app freezes when opening terminals or switching sessions on Windows, and when the @ mention menu refreshed the list of open windows.</li>
-<li>Fixed scheduled tasks and routines: editing a routine no longer deletes its one-time schedule, "Run now" no longer silently does nothing until the app restarts, and you can now rename routines and scheduled tasks from the edit dialog.</li>
-<li>Fixed session exports that could produce an archive without the transcript; the transcript is now always included as <code>transcript.jsonl</code>, and the export shows a clear error when it can't be included.</li>
-<li>Fixed the "Sign in again" prompt not appearing when a background session was blocked for session freshness, including while the desktop was idle.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added a browser-style address bar to the preview pane, and a clear message, with the option to open the site in your browser, when a page can't be displayed instead of showing a blank page.</li>
-<li>Added the ability to pin artifacts from the gallery or the artifact viewer, and to filter the gallery to your pinned artifacts.</li>
-<li>Improved SSH session connection handling: messages no longer hang after the computer wakes from sleep, sessions recover from repeated disconnects, and a reconnecting indicator appears while the connection is restored.</li>
-<li>Fixed <code>permissions.defaultMode</code> in Claude Code settings being ignored for new sessions after a per-folder permission mode had been chosen.</li>
-<li>Fixed branch switches on large repositories failing after an uncommitted-changes stash timed out, and restored your stashed changes when a switch fails.</li>
-<li>Fixed several session reliability problems: a session could get stuck showing "running" and queue new messages forever, a just-started session could disappear from the sidebar or show "session could not be found" during startup, and streamed responses could break or show a literal "undefined".</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added a live word count and a copy button to each document bar above the composer.</li>
-<li>Changed Markdown files Claude delivers to open in the document editor instead of a plain-text preview, without flashing the old viewer first.</li>
-<li>Changed the composer to keep the standard Send button while a response is running: it appears when you type, and sending mid-response queues your message instead of showing a separate Queue button.</li>
-<li>Fixed Claude's mid-task replies not appearing in the conversation; they now show under a collapsed "Working notes" row.</li>
-<li>Fixed screenshots from connected browsers and computer use not being saved to the task folder.</li>
-<li>Fixed text typed in one conversation appearing in other conversations' composers when switching between sessions.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>envHelper</code> and <code>envHelperTtlSec</code> subfields to <code>managedMcpServers</code>, letting a managed stdio server load environment variables from an admin-provided helper executable.</li>
-<li>Added an All tab to organization plugins that browses and searches every configured marketplace at once, and labeled plugins with their source marketplace so they can be filtered when more than one is configured.</li>
-<li>Added support for the <code>eu</code> and <code>us</code> multi-region Vertex AI endpoints, required for the newest models with EU and US data residency.</li>
-<li>Added the <code>disableFeatureDiscovery</code> key, which hides unprompted feature announcements such as the post-update "What's new" nudge and new-feature tips. Release notes remain available from the menu.</li>
-<li>Fixed remote MCP connectors whose <code>headersHelper</code> mints short-lived credentials failing one token-lifetime after connecting: the helper now re-runs before expiry and the refreshed headers are applied to the live connection. The new <code>headersHelperRefreshBufferSec</code> subfield of <code>managedMcpServers</code> tunes how far ahead of expiry the refresh runs.</li>
-<li>Added the <code>prefer1m</code> subfield to <code>inferenceModels</code>, which makes a model's 1M-context variant the default picker selection when paired with <code>supports1m</code>.</li>
-<li>Added the <code>toolSearchEnabled</code> key. When enabled, Code and Cowork sessions load MCP tool schemas on demand instead of placing every schema in context up front, which helps when many configured tools would otherwise crowd the context window. Requires an inference endpoint that forwards <code>anthropic-beta</code> request headers.</li>
-<li>Bootstrap-delivered model configuration is now forwarded to Claude Code sessions in third-party deployments.</li>
-<li>Changed the projects environment picker to respect an organization policy that hides Anthropic-managed environments.</li>
-<li>Removed the Beta designation from the <code>chatTabEnabled</code> and <code>chatAdvancedFileAnalysisEnabled</code> keys; the Chat tab and advanced file analysis are now generally available. Availability is unchanged, and both remain opt-in.</li>
-<li>Fixed a bug affecting third-party plugins installed from external sources (GitHub, URL, or npm).</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.34493.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-34493-1</link>
+            <guid isPermaLink="false">cc63ce94dd8bff3c</guid>
+            <pubDate>Fri, 21 Aug 2026 04:29:13 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Fixed prompt caching not being applied in sessions that use an inference gateway or custom endpoint.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.34493.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-34493-0</link>
             <guid isPermaLink="false">9a740191785a7bf5</guid>
@@ -504,28 +526,6 @@
 <li>Fixed plugins being treated as required by your organization when their marketplace name merely resolved under a required marketplace entry; only the exact entry a name resolves to now applies, so affected plugins can be uninstalled again.</li>
 <li>Fixed saving a skill created in chat failing; skills now save to the app's local skill storage.</li>
 <li>Fixed tools without a configured <code>toolPolicy</code> offering only Allow once and Deny; they now show the full set of approval options (Allow for this task, Allow for all tasks) and the prompt-injection warning. Explicit <code>ask</code> policies still prompt on every call.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.21459.3]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-21459-3</link>
-            <guid isPermaLink="false">ec63867641117072</guid>
-            <pubDate>Thu, 16 Jul 2026 11:20:30 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed installed extensions failing to load and showing an endless loading state.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed a status indicator that stayed on after a conversation finished.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

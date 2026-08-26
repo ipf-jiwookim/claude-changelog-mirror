@@ -8,6 +8,29 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.37937.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-37937-1</link>
+            <guid isPermaLink="false">2e0722aa45f07ee4</guid>
+            <pubDate>Wed, 26 Aug 2026 01:16:31 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Updated the bundled Claude Code CLI to version 2.1.246.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed remote MCP servers never recovering after a dropped connection; they now reconnect automatically or report as failed.</li>
+<li>Fixed signing in to some MCP servers, such as Linear, failing with an "Invalid redirect URI" error.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.37937.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-0</link>
             <guid isPermaLink="false">3c9eea94f8635f19</guid>
@@ -517,28 +540,6 @@
 <li>Fixed the Claude.ai sign-in option being hidden on deployments configured with a bootstrap URL; it is now hidden only when the administrator explicitly disables the deployment mode chooser.</li>
 <li>Fixed the bundled Microsoft 365 connector showing only an opaque tool error when its sign-in expired; it now shows an inline Reconnect card.</li>
 <li>Fixed the token-cap setup fields so the maximum tokens per window and the token cap window hours are required together; setting only one previously produced a cap that enforced nothing.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.22209.3]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-22209-3</link>
-            <guid isPermaLink="false">e8662f4f00a66ac4</guid>
-            <pubDate>Mon, 20 Jul 2026 14:50:28 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed sessions on Windows failing on every turn with a "Socket is closed" error when traffic passed through a corporate proxy that inspects encrypted connections, by updating the bundled Claude Code CLI to 2.1.215. Interrupted responses now retry on a fresh connection instead of ending the turn.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

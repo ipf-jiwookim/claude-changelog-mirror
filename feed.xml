@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.37937.2]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-37937-2</link>
+            <guid isPermaLink="false">ff554a0583b345c8</guid>
+            <pubDate>Wed, 26 Aug 2026 18:11:49 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.37937.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-1</link>
             <guid isPermaLink="false">2e0722aa45f07ee4</guid>
@@ -487,59 +509,6 @@
 <ul>
 <li>Added the <code>mcpPersistentAlwaysAllowEnabled</code> managed configuration key, letting admins disable the persistent "Always allow" approvals for MCP tools while keeping session-scoped approvals available.</li>
 <li>Added the five-level effort selector for Claude Opus 5 in the model picker. Extended thinking is always on for Opus 5.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.24012.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-24012-0</link>
-            <guid isPermaLink="false">32cb977587462d11</guid>
-            <pubDate>Tue, 21 Jul 2026 21:45:46 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Added an option to keep custom plugin marketplaces up to date automatically, and fixed a marketplace refresh reporting success before the sync ran and re-adding an existing marketplace not refreshing its contents.</li>
-<li>Improved keyboard and screen reader support across the app: settings tabs and share-visibility choices respond to arrow keys, dialogs announce meaningful titles, decorative graphics no longer clutter screen reader output, and the find bar, search fields, and pane resize handles show a visible focus outline and announce their size.</li>
-<li>Fixed failed uploads being reported as corrupted or unsupported files, and retries showing a "Server is busy" message for unrelated errors.</li>
-<li>Fixed safety-block notices suggesting you switch models when no alternative model was available for that topic.</li>
-<li>Fixed the app failing to launch when its settings file or logs folder was corrupted, and saved sessions disappearing after a relaunch when one session's stored data was invalid.</li>
-<li>Fixed the app window resizing abruptly and losing its saved size and position when signing in or out; it now animates smoothly in place.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added iOS Simulator support: Claude Code can build your iOS app, launch the simulator, and verify the result without leaving the session.</li>
-<li>Added iOS Simulator and Android Emulator buttons to the session titlebar when the agent launches an app on a device, so the pane is one click to reopen.</li>
-<li>Added Pause Project, which pauses a project's coordinator and new session spawning from settings and shows a Resume banner above the composer.</li>
-<li>Added screenshot annotation in the composer: click a staged image, open the pencil, and draw with pen, shapes, text, and colors before sending.</li>
-<li>Improved how large sessions open: the newest messages paint first while older history loads in the background.</li>
-<li>Fixed Code sessions affecting the wrong files: background worktree cleanup could switch or reset the main repository checkout when a worktree folder was only partially removed, and new sessions could copy uncommitted files from the original folder.</li>
-<li>Fixed session list problems: finished sessions still showing as running, deleted sessions reappearing as empty "Session not found on disk" entries after an update, archived sessions still appearing active on claude.ai and other devices, and sessions started from claude.ai missing Rename, Archive, and Delete in the sidebar menu.</li>
-<li>Fixed the app freezing when Claude Code updated its configuration file during concurrent use, and web pages in the Browser pane freezing the app with alert and confirm dialogs.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added /usage and /cost to Cowork tasks: an inline card shows your plan limits and the session's usage without sending anything to the model.</li>
-<li>Improved background computer use so it types faster and no longer leaves menus stuck open on screen.</li>
-<li>Updated folder access prompts for cloud Cowork tasks to note that files Claude uses leave your device and are processed on Anthropic's servers.</li>
-<li>Fixed changes to Instructions for Claude sometimes not applying to new sessions, and edits reverting to an earlier version while a session was running, including after an app restart.</li>
-<li>Fixed Cowork workspace problems: the Windows workspace failing to start when its virtual disk files were compressed, a backgrounded shell command leaving a session stuck reporting "already running", and bash commands failing when several subtasks ran them at once.</li>
-<li>Fixed the message input staying stuck in a sending state when a folder access dialog went unanswered.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>deploymentDisplayName</code> and <code>deploymentDisplaySubtitle</code> to customize the deployment name and an optional subtitle shown in the account menu and sidebar.</li>
-<li>Added <code>enduserAttribution</code>, which shows the signed-in user's identity in the sidebar, account menu, and Code tab, and includes it as the OpenTelemetry <code>enduser.id</code> attribute on telemetry sent to your configured collector. Administrators can turn it off, and an existing static <code>enduser.id</code> is kept.</li>
-<li>Added <code>oauth.authorizationUrl</code> and <code>oauth.tokenUrl</code> to managed MCP servers for identity providers that do not serve a discovery document, and <code>oauth.additionalRedirectReferrerHosts</code> to allow sign-in callbacks from hosts other than the authorization URL's.</li>
-<li>Added <code>userContentRendererUrl</code>, which sets the HTTPS origin that renders artifact and file previews; leave it unset to use the default Anthropic-hosted renderer.</li>
-<li>Added a <code>broker</code> option to <code>inferenceFoundryAuthFlow</code> that signs in to Azure AI Foundry through the operating system's native account broker on Windows or Company Portal on macOS, so sign-in can satisfy Conditional Access policies that require a compliant device. Windows and macOS only.</li>
-<li>Added a Usage page in Settings for custom deployments, showing token usage across Chat, Cowork, and Code.</li>
-<li>Added Microsoft 365 Teams tools (send to a chat, channel, or thread; create a chat; @mention people) and formatted-body support for Outlook reply drafts.</li>
-<li>Added the 1M context option in the model picker for gateway-discovered models that report the capability in <code>/v1/models</code>, without requiring an <code>inferenceModels</code> entry.</li>
-<li>Changed telemetry on bootstrap-server deployments to default to disabled until the server explicitly enables it (previously only FedRAMP hosts), and added the ability to disable error and usage reporting through bootstrap configuration.</li>
-<li>Fixed managed MCP connectors: a server that requires authentication now opens a sign-in window even when its configuration does not explicitly enable OAuth, and an <code>oauth</code> entry with sign-in fields but a missing or empty <code>clientId</code> is now rejected at load with a clear error instead of silently attempting automatic registration.</li>
-<li>Fixed managed MCP tool policies that block all tools by default with per-tool exceptions denying the excepted tools in Claude Code sessions.</li>
-<li>Fixed sessions, skills, and plugins intermittently disappearing after sign-in or configuration changes.</li>
-<li>Fixed the Claude.ai sign-in option being hidden on deployments configured with a bootstrap URL; it is now hidden only when the administrator explicitly disables the deployment mode chooser.</li>
-<li>Fixed the bundled Microsoft 365 connector showing only an opaque tool error when its sign-in expired; it now shows an inline Reconnect card.</li>
-<li>Fixed the token-cap setup fields so the maximum tokens per window and the token cap window hours are required together; setting only one previously produced a cap that enforced nothing.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

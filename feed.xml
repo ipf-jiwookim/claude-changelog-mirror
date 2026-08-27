@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.37937.3]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-37937-3</link>
+            <guid isPermaLink="false">eaf003c031c30830</guid>
+            <pubDate>Wed, 26 Aug 2026 22:53:20 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.37937.2]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-2</link>
             <guid isPermaLink="false">ff554a0583b345c8</guid>
@@ -32,7 +54,7 @@
         <item>
             <title><![CDATA[v1.37937.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-1</link>
-            <guid isPermaLink="false">2e0722aa45f07ee4</guid>
+            <guid isPermaLink="false">8d685c356d9653bb</guid>
             <pubDate>Wed, 26 Aug 2026 01:16:31 GMT</pubDate>
             <content:encoded><![CDATA[<p><strong>General</strong></p>
 <ul>
@@ -49,13 +71,13 @@
 </ul>
 <p><strong>3P</strong></p>
 <ul>
-<li>No user-facing changes.</li>
+<li>Added support for the <code>inferenceModelPricing</code> rates and the <code>inferenceModelPricingMultiplier</code> discount in the Usage page's cost estimate; in 1.37937.0 the estimate always used Anthropic list price.</li>
 </ul>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[v1.37937.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-0</link>
-            <guid isPermaLink="false">3c9eea94f8635f19</guid>
+            <guid isPermaLink="false">ca6878ed37090a18</guid>
             <pubDate>Tue, 25 Aug 2026 17:52:30 GMT</pubDate>
             <content:encoded><![CDATA[<p><strong>General</strong></p>
 <ul>
@@ -91,7 +113,7 @@
 <li>Added <code>skipWebFetchPreflight</code>. When enabled, Code sessions no longer contact api.anthropic.com before fetching a web page, which fixes page fetches failing on networks that block that host. Off by default.</li>
 <li>Added <code>userPluginMarketplacesEnabled</code> and <code>userPluginUploadsEnabled</code>, which control whether members can add their own plugin marketplaces and upload their own plugins; when off, the add options are hidden and adds are refused. Unset keys change nothing.</li>
 <li>Added Code tab features already available in the standard app: the Files panel with Show in Files, emoji autocomplete and inline prompt suggestions in the composer, interactive MCP app widgets in the conversation, and letting Claude read output from the integrated terminal panel.</li>
-<li>Added cost estimates to the Usage page: <code>inferenceModelPricingEnabled</code> shows an estimated cost alongside token counts, priced at Anthropic list price; <code>inferenceModelPricing</code> supplies per-model rates and <code>inferenceModelPricingMultiplier</code> scales every estimate (a number between 0 and 1). The two rate keys take effect in a future release; until then estimates use list price. Off by default.</li>
+<li>Added cost estimates to the Usage page: <code>inferenceModelPricingEnabled</code> shows an estimated cost alongside token counts, priced at Anthropic list price; <code>inferenceModelPricing</code> supplies per-model rates and <code>inferenceModelPricingMultiplier</code> scales every estimate (a number between 0 and 1). The two rate keys take effect from 1.37937.1; in 1.37937.0 estimates use list price. Off by default.</li>
 <li>Added suggestions for plugins and skills from your organization's own library in chat.</li>
 <li>Added support for plugin marketplace credential helpers that return a username or <code>authtype=Bearer</code>, so marketplaces hosted on Bitbucket Data Center or behind GitLab deploy tokens can authenticate.</li>
 <li>Added the <code>disableDesktopLocalSessions</code> setting to Claude Code's <code>managed-settings.json</code>, which turns off Code sessions that run on the device itself so the Code tab offers only remote environments such as SSH; the environment menu shows Local greyed out with a "Disabled by your organization" explanation.</li>
@@ -486,29 +508,6 @@
 <ul>
 <li>Fixed sessions started while configured MCP servers were still connecting having no connector tools until a new conversation was started.</li>
 <li>Fixed the Microsoft 365 connector not appearing after first-time sign-in until the app was restarted.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.24012.9]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-24012-9</link>
-            <guid isPermaLink="false">d9e647b902d79f6c</guid>
-            <pubDate>Fri, 24 Jul 2026 20:18:02 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed plugin hooks silently doing nothing on Windows.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added the <code>mcpPersistentAlwaysAllowEnabled</code> managed configuration key, letting admins disable the persistent "Always allow" approvals for MCP tools while keeping session-scoped approvals available.</li>
-<li>Added the five-level effort selector for Claude Opus 5 in the model picker. Extended thinking is always on for Opus 5.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

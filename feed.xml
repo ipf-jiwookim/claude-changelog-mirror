@@ -8,6 +8,56 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.40609.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-40609-0</link>
+            <guid isPermaLink="false">e5a740461ea9afb3</guid>
+            <pubDate>Fri, 28 Aug 2026 14:46:30 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Fixed Claude sometimes being unable to read or search a page in the built-in browser just after opening it or while it was still loading, and browser screenshots and interactions timing out or stalling on Windows and Linux while the browser pane was closed or another page was selected.</li>
+<li>Fixed the app failing to launch when one of its settings files had become corrupted, and settings files sometimes being left corrupt after an unexpected shutdown or power loss on Windows.</li>
+<li>Fixed the Share dialog: "Keep private" now takes effect immediately, and sharing a chat while offline shows an error instead of waiting indefinitely.</li>
+<li>Fixed typing with an IME (Japanese, Chinese, or Korean): confirming or cancelling a conversion with Enter, Escape, or a digit key no longer sends half-composed text, discards typed drafts, denies tool approvals, rejects plans, or stops Claude's response in Code sessions, and no longer commits or discards text in the browser pane's address field.</li>
+<li>Fixed scheduled tasks that run on this computer occasionally being marked as skipped without running; a run the app fails to pick up is now retried a few minutes later.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added side-task suggestions in cloud sessions: Claude can suggest follow-up tasks that you start on your machine, in the cloud, or in the same session with one click.</li>
+<li>Added <code>/resume</code>: search the Claude Code sessions started from your terminal on this computer and continue one in the app on the same transcript.</li>
+<li>Added a view of the session's MCP servers: type <code>/mcp</code> in a local session to see the servers from <code>.mcp.json</code>, <code>~/.claude.json</code>, plugins, and your claude.ai connectors, with live status and Connect, Reconnect, and Re-authenticate actions.</li>
+<li>Fixed "Import Claude Code CLI sessions" (Help > Troubleshooting): it again finds Code sessions whose sidebar entries were lost after a reinstall or repair, no longer rewrites a session file that a running Claude Code process is still using, and saves a backup of the original transcript when importing removes its thinking blocks.</li>
+<li>Fixed inline plan comments being silently lost when left after a plan was approved; the Plan pane now accepts comments in Plan mode or while Claude is asking you to approve the plan, and says when commenting opens otherwise.</li>
+<li>Fixed SSH sessions losing messages that were waiting to be sent when the remote host became unreachable or the app was quit, updated, or restarted; they are now kept and delivered automatically at the next connection, and Claude Code is restarted on the host when needed.</li>
+<li>Improved SSH session reconnects: high-latency links no longer drop their own connection, a network change mid-stream is noticed within seconds, an unreachable host is no longer re-dialed every few seconds in the background, and the session shows the specific connection error with a Try again button instead of a generic message or an indefinite "Reconnecting…".</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed files dropped onto the composer together with a folder being discarded; they now attach alongside the folder.</li>
+<li>Fixed shell commands that use plugin or skill file paths failing with "No such file or directory".</li>
+<li>Fixed the app running out of memory after many scheduled task runs.</li>
+<li>Fixed the Cowork readiness check appearing to hang for minutes when a network-redirected profile folder is unreachable, and reporting a computer as unsupported because of an encrypted leftover folder from an uninstalled Claude version.</li>
+<li>Fixed organization plugins failing to install or update on some Windows Store installs.</li>
+<li>Fixed a message that starts with a typed, pasted, or app-filled slash command for one of your enabled skills failing with "Unknown skill" in an existing task; it now sends.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>relaunchEnforcementHours</code> (served configuration only): when a served configuration change needs a restart, it sets how many hours (0 to 336) users may keep running on the previous configuration; at the deadline Claude shows a restart dialog and restarts on its own after 2 minutes of inactivity. Unset means 1 hour.</li>
+<li>Added <code>sshHostAllowlist</code> (beta): admins can turn on SSH remote sessions in the Code tab by listing the hosts users may connect to (<code>["*"]</code> allows any host). Unset keeps SSH sessions off unless a Claude Code managed-settings file on the device already allows hosts; an explicit <code>[]</code> keeps them off even then when the configuration is admin-delivered (device management or trusted remote delivery), while on a self-configured install the device allowlist still applies. Works with a gateway, Claude API key, or Foundry, and with Bedrock and Vertex when they use token-based credentials; file-based credential kinds are refused at session start with a message naming the kind.</li>
+<li>Added an estimated-cost view to the Usage page chart: when the organization has turned on cost estimates, the chart can switch between tokens and estimated cost per day (per week at 90 days), and days with turns that have no estimate show as gaps rather than $0.</li>
+<li>Added an in-app warning when the organization's configuration uses a deprecated field: each user sees a dismissible notice from September 10, 2026 and once more in the 24 hours before the field stops being accepted, with a Details dialog naming each field, its replacement, the cut-off date and what changes then, plus a Copy report button that puts a plain-text summary for administrators on the clipboard. The new <code>disableConfigDeprecationWarnings</code> key hides the first showing; the final 24-hour reminder still appears. The warning also appears on standard deployments whose device-management profile uses one of these fields.</li>
+<li>Added Anthropic's Cowork and Claude Code plugin marketplaces as prefilled entries in the Setup window's <code>allowedPluginMarketplaces</code> Add menu.</li>
+<li>(breaking) Deprecated a set of older managed-configuration spellings, each accepted until October 7, 2026, 12:00 PM Pacific Time, with an in-app warning from September 10, 2026: <code>inferenceGatewayHeaders</code> (use <code>inferenceCustomHeaders</code>), <code>trustBootstrapLocalExec</code> (use <code>trustBootstrapDelivery</code>), <code>enduserAttribution</code> (use <code>endUserAttribution</code>), <code>inferenceGatewayAuthScheme</code> values <code>sso</code> (use <code>inferenceCredentialKind: "interactive"</code>) and <code>auto</code> (remove the key; <code>bearer</code> is the default), <code>isDxtEnabled</code> (use <code>isDesktopExtensionEnabled</code>) and <code>isDxtSignatureRequired</code> (use <code>isDesktopExtensionSignatureRequired</code>), header maps written as strings or lists in <code>inferenceCustomHeaders</code>, <code>otlpHeaders</code>, <code>otlpResourceAttributes</code> and <code>bootstrapHeaders</code> (use a JSON object), the <code>orgPluginSettings</code> record form (use the array form), the <code>ask-session</code> tool-permission value in <code>builtinToolPolicy</code>, <code>managedMcpServers[].toolPolicy</code> and <code>orgPluginSettings[].tools[].permission</code> (use <code>ask</code>), and in <code>managedMcpServers</code> entries the <code>scopes</code> list (use <code>scope</code>), <code>transport: "builtin"</code> (remove it), <code>authorityHost</code> (use <code>azureCloud: "us-gov-high"</code> for a GCC High tenant), <code>source</code> (remove it), <code>oauth</code> written as a number or string (use <code>true</code> or an <code>oauth</code> object), <code>oauth.scopes</code> or a list-valued <code>oauth.scope</code> (use <code>oauth.scope</code> as one space-separated string), and entries other than a built-in server with no <code>transport</code> (add <code>transport: "http"</code>, <code>"sse"</code> or <code>"stdio"</code>; a built-in Microsoft 365 or GitHub entry takes no <code>transport</code>). After the cut-off a renamed key's old name falls back to its fail-closed value or default, and an invalid <code>managedMcpServers</code> or <code>orgPluginSettings</code> entry makes that connector or tool policy unavailable until it is rewritten.</li>
+<li>Changed <code>inferenceVertexProjectId</code> and <code>inferenceVertexWorkforceUserProject</code>: a value delivered by a bootstrap URL the user configured themselves (in Settings or a local configuration file) now asks that user to approve it before it takes effect, and declining quits the app. Because the project ID is required, each such Vertex install prompts once after updating. Values delivered through device management, or by a bootstrap URL that device management set or that <code>trustBootstrapDelivery: true</code> covers, are unchanged and never prompt. Both keys must now match the Google Cloud project format.</li>
+<li>Changed <code>toolSearchEnabled</code> on gateway deployments to enable tool search alone; other experimental Claude Code betas stay suppressed.</li>
+<li>Changed how a managed-configuration value the app cannot read is handled: it now engages the restriction it belongs to instead of being ignored. Restriction keys such as <code>disabledBuiltinTools</code>, <code>builtinToolPolicy</code>, <code>coworkTabEnabled</code> and <code>disableBundledSkills</code> fall back to their restrictive value, an unreadable <code>managedMcpServers</code> keeps Code sessions restricted to managed MCP servers, an unreadable <code>isDesktopExtensionEnabled</code> or <code>isDesktopExtensionSignatureRequired</code> disables extensions or requires signed extensions, and a tool-permission value the app does not recognize is applied as the most restrictive setting (<code>ask</code> for a built-in tool, <code>blocked</code> for a plugin-delivered tool) and reported as a configuration error. <code>allowedPluginMarketplaces</code>, the built-in GitHub MCP preset and <code>otlpTracesEnabled</code> are no longer marked Beta.</li>
+<li>Changed the Setup window's configuration exports and the published bootstrap JSON schema to write <code>orgPluginSettings</code> in its array form; the app still accepts the older record form until October 7, 2026. Desktop versions before 1.15200.0 read only the record form and do not enforce plugin tool locks given the array, so update the fleet past 1.15200.0 before deploying an exported configuration that uses it.</li>
+<li>Changed the Vertex AI credential kind for Google sign-in to <code>inferenceCredentialKind: "interactive"</code>, matching other providers; <code>oauth</code> keeps working until October 7, 2026 (12:00 PM Pacific Time). If you deliver configuration as nested JSON (a self-hosted bootstrap server or a Setup JSON export), keep <code>oauth</code> until the whole fleet is on this release or later, because an older desktop drops the Google client ID from a nested <code>interactive</code> credential and Vertex sign-in stops working; flat MDM keys, .mobileconfig and .reg files are unaffected. Until October 7, 2026 a Vertex configuration that sets <code>interactive</code> together with <code>inferenceVertexWorkforceAudience</code> and no <code>inferenceVertexOAuthClientId</code> is still read as Workforce Identity; after that it means Google sign-in, so set <code>workforce</code> explicitly if that is the intent.</li>
+<li>Improved Cowork reliability when the workspace is slow to start or has been idle, and made switching back to a recently opened Code tab session faster.</li>
+<li>Fixed importing sessions from a previous Claude Desktop install: imported Cowork sessions keep their Project and its <code>~/Claude/Projects/&#x3C;Name></code> folder instead of getting a new empty one, an interrupted import now appears in Import history and its sessions are no longer imported twice on the next run, and the import wizard no longer re-creates a Project you had deleted (an imported Project that duplicates an existing name gets a "(1)" suffix).</li>
+<li>Fixed the Code tab's plugin directory and Customize > Plugins not listing plugins from marketplaces configured with <code>allowedPluginMarketplaces</code>; an admin-configured marketplace is now managed as the organization's in both tabs.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.37937.3]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-37937-3</link>
             <guid isPermaLink="false">eaf003c031c30830</guid>
@@ -485,29 +535,6 @@
 <li>Fixed tasks failing with "Couldn't start this task" for the rest of the session when the app launched while the network or the sign-in credential was unavailable.</li>
 <li>Fixed the app losing administrator-enabled features, such as the Chat tab, for the rest of the session when the organization's configuration server was unreachable at launch. It now retries in the background and recovers.</li>
 <li>Fixed the home composer and sidebar still offering Cowork when an administrator has turned the Cowork tab off; Cowork is now hidden instead of greyed out, while Chat and Projects remain available.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.24012.11]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-24012-11</link>
-            <guid isPermaLink="false">33df2d47ff76a20b</guid>
-            <pubDate>Mon, 03 Aug 2026 18:54:43 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Fixed sessions started while configured MCP servers were still connecting having no connector tools until a new conversation was started.</li>
-<li>Fixed the Microsoft 365 connector not appearing after first-time sign-in until the app was restarted.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.44121.2]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-44121-2</link>
+            <guid isPermaLink="false">cbc42841dfbee34d</guid>
+            <pubDate>Wed, 02 Sep 2026 20:39:19 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed sessions on Windows being unable to run commands or fetch web pages. This reverts the 1.44121.1 fix for sessions failing to start on Windows for accounts with many saved artifacts, scheduled tasks, or connected folders.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.44121.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-44121-1</link>
             <guid isPermaLink="false">22ab5c09988bcfa9</guid>
@@ -482,46 +504,6 @@
 <li>Fixed a single malformed <code>allowedPluginMarketplaces</code> (beta) entry disabling every configured marketplace; the entry is now skipped and reported.</li>
 <li>Fixed sending messages failing when a bootstrap server turned Cowork off (<code>coworkTabEnabled</code> set to <code>false</code>); the home screen now opens directly into Chat.</li>
 <li>Fixed OpenTelemetry exports being rejected when the configured gateway also serves as the telemetry collector endpoint.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.28929.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-28929-0</link>
-            <guid isPermaLink="false">3bb34cb7de63b742</guid>
-            <pubDate>Tue, 11 Aug 2026 23:49:54 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Added the standard macOS full-screen keyboard shortcut, with an Enter Full Screen and Exit Full Screen item in the View menu.</li>
-<li>Fixed a startup error on some Linux systems, most often repackaged or containerized installs, that left the app without a tray icon and recurred on every system theme change.</li>
-<li>Fixed commands in the built-in terminal failing with error -1743 when controlling other apps on macOS, instead of showing the Automation permission prompt.</li>
-<li>Fixed sign-in on macOS repeatedly failing with "Failed to login, it may have been cancelled"; Claude now opens the sign-in page in your default browser when the system sign-in sheet is unavailable.</li>
-<li>Fixed some Windows installs (MSIX packages and enterprise-managed roaming profiles) failing to save chat history, settings, and scheduled tasks, and Cowork failing to start with "Download failed" after an app update.</li>
-<li>Fixed the app's memory use growing without bound during long-running sessions.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Removed the ability for scheduled-task runs and other unattended sessions to start dev servers in the Browser preview; other sessions now approve each distinct dev server command once rather than on every start.</li>
-<li>Fixed app settings, and the app's record of session worktrees, being discarded when those files had been re-saved with a UTF-8 byte-order mark by an external editor.</li>
-<li>Fixed forked sessions starting from the original base branch instead of the parent session's current branch.</li>
-<li>Fixed importing Claude Code CLI sessions changing the order of existing sessions in <code>claude --resume</code>.</li>
-<li>Fixed sessions failing to resume, reporting their conversation history as missing, after Claude had moved the session into a worktree.</li>
-<li>Fixed file uploads through Claude in Chrome from a Code session failing with "Invalid arguments for tool file_upload".</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed a follow-up message sent while Claude was still writing a reply sometimes being dropped, with the reply cut off.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added history import. When <code>claudeAiImport.enabled</code> is <code>true</code>, users can bring a Claude.ai data export, Cowork, Code, and Chat sessions from other Claude installs on the same computer or from an app data folder they choose, and terminal Claude Code sessions into the app from Settings > Import. <code>claudeAiImport.bannerBehavior</code> controls an optional banner on new tasks that offers it: <code>off</code> (default), <code>detect</code> (only when earlier sessions are found on the computer), or <code>show</code> (everyone, until dismissed or imported).</li>
-<li>Added <code>modelPrefer1mContext</code>. When <code>true</code>, a user who has not yet chosen a model starts on the 1M-context variant of the default model whenever the deployment marks or reports that model as 1M-capable, including auto-discovered models. Saved selections are never changed. Defaults to <code>false</code>.</li>
-<li>Added the gateway address, <code>inferenceGatewayBaseUrl</code>, to the one-time bootstrap consent prompt. When a bootstrap server delivers it and the bootstrap URL was not set through device management, each user is asked once at launch to allow the address, and again if it later changes; the app does not connect to the gateway until they choose Allow. Existing installs prompt the first time they start this version. Set <code>trustBootstrapDelivery</code> to <code>true</code> in your device-management profile or local configuration file to accept it for everyone in advance.</li>
-<li>Changed the Code tab to be hidden entirely, rather than shown greyed out, when an administrator has disabled Code.</li>
-<li>Fixed a session opened in a new window on Windows having no title bar, window controls, or drag area.</li>
-<li>Fixed stored sign-ins being lost when the system keychain was temporarily locked.</li>
-<li>Fixed the Chat tab ignoring <code>toolSearchEnabled</code>, which sent every connector's tool definitions with each request and could exceed the context window when many connectors were configured; Chat now loads them on demand when the key is <code>true</code>, as Cowork and Code do.</li>
-<li>Fixed the credential-expired notice and the session error banners in Cowork and Code offering no way to sign in again when the credential comes from a helper script (<code>inferenceCredentialHelper</code>); they now show "Sign in again", which re-runs the helper.</li>
-<li>Fixed the model picker reverting to the standard-context variant in new sessions, after relaunch, and when switching between Chat and Cowork once the 1M-context variant had been chosen.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

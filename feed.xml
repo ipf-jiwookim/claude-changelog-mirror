@@ -8,6 +8,31 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.44121.4]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-44121-4</link>
+            <guid isPermaLink="false">5f5273fd027ce19d</guid>
+            <pubDate>Thu, 03 Sep 2026 02:37:50 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added support in Chat for skills from organization-provided plugins, and Chat-only users can now see and manage those plugins under Customize, matching Cowork and Code.</li>
+<li>Fixed advanced file analysis in Chat failing with "Workspace unavailable" for users whose organization enables <code>chatAdvancedFileAnalysisEnabled</code> but turns Cowork off with <code>coworkTabEnabled: false</code>.</li>
+<li>Fixed managed OAuth connectors showing a connection error instead of prompting to sign in when the app starts without a usable sign-in (expired with no refresh token, or never signed in on this machine), including servers added by URL alone, where Connect could fail instead of opening the sign-in page.</li>
+<li>Fixed organization-configured URL plugin marketplaces failing to install or load plugins with "marketplace entry path does not stay inside the marketplace directory".</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.44121.2]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-44121-2</link>
             <guid isPermaLink="false">cbc42841dfbee34d</guid>
@@ -464,46 +489,6 @@
 <p><strong>3P</strong></p>
 <ul>
 <li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.30096.1]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-30096-1</link>
-            <guid isPermaLink="false">1b3fd5d5c73e63a1</guid>
-            <pubDate>Fri, 14 Aug 2026 00:12:26 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed Find (Cmd+F) doing nothing the first time it was pressed after launch.</li>
-<li>Fixed right-to-left text in the composer scrambling around embedded left-to-right words; code blocks stay left-to-right.</li>
-<li>Fixed the Artifacts entry missing from the sidebar on Windows machines that can't run local Cowork; it now opens the Artifacts gallery.</li>
-<li>Fixed macOS asking for notification permission as soon as the app launched, instead of when the first notification is about to appear.</li>
-<li>Fixed the app crashing at launch, or on a system theme change, on some Linux installs (most often repackaged builds); it now falls back to a default tray icon.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added Rewind to cloud sessions (message menu, Esc Esc, or <code>/rewind</code>), and fixed rewound-away messages reappearing when a rewound cloud or Remote Control session was reopened.</li>
-<li>Fixed an interrupted Claude Code download (for example, after a crash or power loss mid-install) leaving Code sessions on that computer unable to start, most often on Windows.</li>
-<li>Fixed an unanswered permission or plan-approval prompt in a cloud session sometimes being treated as approved after the session's environment disconnected.</li>
-<li>Fixed cloud sessions marked as needing input sometimes opening without the question or approval prompt.</li>
-<li>Fixed Remote Control sessions sometimes never connecting when opened while idle, staying off your other devices after a stop or interruption until turned back on by hand, and looking idle instead of reporting that the host computer is offline.</li>
-<li>Fixed copy and paste problems: transcript text pasted into rich-text apps lost the spaces around inline code, bold, and italics and mangled code blocks, and Cmd+C after selecting text in the Plan view copied nothing.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed the earlier conversation being discarded when you chose Go back after a failed task resume, or edited a message right after the app restarted.</li>
-<li>Fixed memory saves failing when the Claude Code <code>managed-settings.json</code> policy sets <code>allowManagedPermissionRulesOnly</code>.</li>
-<li>Fixed Cowork on Windows failing on every launch with "VM service not running" after its background service had stopped; the service is now restarted automatically, and otherwise the error explains that restarting the computer restores it.</li>
-<li>Fixed Cowork sometimes pulling you back to the bottom of a task after you had scrolled up, for example when a sub-agent step finished.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>otlpAuthMode</code> and <code>otlpHeadersHelper</code>, two ways to authenticate telemetry exports without static <code>otlpHeaders</code>: set <code>otlpAuthMode</code> to <code>inference-credential</code> to reuse the signed-in user's inference token, or point <code>otlpHeadersHelper</code> at an executable that prints the collector headers as JSON.</li>
-<li>Added an optional <code>inferenceGatewayOidc.resource</code> subfield that sends an RFC 8707 resource indicator on gateway sign-in and token refresh, for identity providers that audience-restrict access tokens.</li>
-<li>Changed <code>inferenceBedrockBaseUrl</code> and <code>inferenceVertexBaseUrl</code>: only affects users who entered the bootstrap server URL themselves (in Settings or a local config file). Those users are now asked once to allow a Bedrock or Vertex endpoint that server delivers before it takes effect, the same prompt <code>inferenceGatewayBaseUrl</code> already shows. Managed deployments (bootstrap URL set by device management, or <code>trustBootstrapDelivery: true</code>) see no change.</li>
-<li>Changed <code>claudeAiImport</code>: an imported session now asks the user to confirm once (Trust and resume) before Claude continues it for the first time; this also applies to sessions imported before this update.</li>
-<li>Fixed a single malformed <code>allowedPluginMarketplaces</code> (beta) entry disabling every configured marketplace; the entry is now skipped and reported.</li>
-<li>Fixed sending messages failing when a bootstrap server turned Cowork off (<code>coworkTabEnabled</code> set to <code>false</code>); the home screen now opens directly into Chat.</li>
-<li>Fixed OpenTelemetry exports being rejected when the configured gateway also serves as the telemetry collector endpoint.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

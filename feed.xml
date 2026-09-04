@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.46388.2]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-46388-2</link>
+            <guid isPermaLink="false">25547dcf20cbb5c2</guid>
+            <pubDate>Fri, 04 Sep 2026 15:34:10 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed Code sessions started in a git worktree failing to initialize on Windows.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.46388.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-46388-1</link>
             <guid isPermaLink="false">91cce7b2d1dfa5fd</guid>
@@ -473,54 +495,6 @@
 <p><strong>3P</strong></p>
 <ul>
 <li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.32352.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-32352-0</link>
-            <guid isPermaLink="false">e676c43acf1c2db9</guid>
-            <pubDate>Mon, 17 Aug 2026 20:27:43 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Fixed Windows updates sometimes leaving the app half installed, with later updates failing too.</li>
-<li>Fixed the app staying on "Couldn't connect to Claude" when a network proxy blocked its first connection; it now keeps retrying for a few minutes and again when you return to the window.</li>
-<li>Fixed the composer staying disabled after a usage-limit notice when your organization has extra usage turned off or not set up; sending works again once your admin turns it on.</li>
-<li>Fixed settings and connector links in chat doing nothing, or opening your web browser, when clicked in the app; they now open the app's own settings.</li>
-<li>Fixed text typed on the new chat page sometimes disappearing when turning on incognito.</li>
-<li>Fixed the chat showing an error screen instead of the conversation when Claude created or linked a file whose name contains a percent sign.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Changed auto-continue after the 5-hour usage limit to be on by default: sessions left open resume when the limit resets. Uncheck "Auto-continue when limits reset" in the limit banner to turn it off for your account.</li>
-<li>Fixed sessions sometimes hanging after resume, either showing "The session stopped responding" after the first message or never starting when a file system or MCP server stalled.</li>
-<li>Fixed undo (Cmd+Z, or Ctrl+Z on Windows and Linux) in the message composer sometimes failing with an error and then no longer working.</li>
-<li>Fixed a brand-new cloud session losing its first message when you navigated away within a few seconds of sending it.</li>
-<li>Fixed sessions started right after the app opened sometimes running in a more permissive mode than your saved permission mode.</li>
-<li>Fixed Remote Control sessions staying stuck at "connecting" after you completed the sign-in or device-check prompt, and file links not opening when the session was viewed from another computer.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Removed the "Allow all browser actions" option from Claude in Chrome permission cards; allow each website instead. The switch in Settings is unchanged.</li>
-<li>Fixed the workspace startup error suggesting a restart or reinstall when the computer was low on disk space; it now asks you to free up space and retry.</li>
-<li>Fixed a tool call hanging for a full minute when its local MCP server crashed mid-call; it now fails right away.</li>
-<li>Fixed computer use on macOS refusing every click after you had taken a screenshot or while a screen recording was running.</li>
-<li>Fixed the approval mode still showing "Skip all approvals" when your organization's policy had blocked it; switching back to "Manually approve" now asks again before Claude fetches web pages it visited while approvals were off.</li>
-<li>Fixed the activity panel button doing nothing while a file was open beside the chat; it now closes the file and shows the panel.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li><strong>Breaking:</strong> Managed-config URL settings now reject values that embed credentials (<code>https://user:password@host…</code>). Configurations that relied on this fail to load until the credentials are removed; use <code>bootstrapHeaders</code> / <code>bootstrapHeadersHelper</code> (available from 1.32885.1) to send authentication instead.</li>
-<li>Added <code>claudeAiImport.exportEnabled</code>. With it and <code>claudeAiImport.enabled</code> both <code>true</code>, users can export this computer's chats, Cowork tasks, and Code sessions from Settings > Import &#x26; export as a zip that another install can import. Off by default.</li>
-<li>Added a <code>url</code> source for <code>allowedPluginMarketplaces</code> (beta): a hosted <code>marketplace.json</code> that delivers plugins as zip archives over HTTPS, with no git on the device. Set <code>manifestSha256</code> to pin the exact manifest; it is required for automatically installed plugins.</li>
-<li>Added <code>inferenceCredential</code> as a <code>credentialKind</code> for <code>allowedPluginMarketplaces</code> (beta): a <code>url</code> marketplace hosted on your inference gateway is fetched with the same credential the app already uses for inference.</li>
-<li>Changed <code>coworkEgressAllowedHosts</code>: a <code>:port</code> suffix now also applies to shell commands and package installs in Cowork sessions, which previously could not reach a port-scoped host at all.</li>
-<li>Changed settings from a locally configured (not device-managed) bootstrap URL that need user approval to apply all or nothing: nothing takes effect until the user chooses Allow; Quit closes the app and asks again next launch.</li>
-<li>Changed a served configuration with an invalid connection value to report that field by name and keep the organization's other settings in force; a non-Anthropic model entry is now skipped with a warning instead of invalidating the whole configuration.</li>
-<li>Changed admin-configured plugin marketplaces (<code>allowedPluginMarketplaces</code>, beta), including automatically installed and required plugins, to apply to Code sessions as well as Cowork.</li>
-<li>Changed new Cowork sessions to use much shorter folder names on disk so file paths are less likely to exceed Windows path-length limits; existing sessions keep their folders, and tooling that matches the <code>local_</code> prefix should also match the new names.</li>
-<li>Fixed Settings > Import &#x26; export saying import isn't enabled on deployments that provision the sign-in import without setting <code>claudeAiImport.enabled</code>; that key now governs only file and earlier-session import, the import prompt, and session export.</li>
-<li>Fixed the Setup window accepting a mis-typed inference region, Azure AI Foundry resource name, blank Vertex AI project ID, or non-Anthropic model ID that was only rejected later on the device; these are now flagged before saving.</li>
-<li>Fixed imported project instructions arriving as a loose file instead of the project's editable Instructions; they are now shown for review on the project page and apply once you accept them.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

@@ -8,6 +8,60 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.46388.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-46388-1</link>
+            <guid isPermaLink="false">91cce7b2d1dfa5fd</guid>
+            <pubDate>Fri, 04 Sep 2026 02:08:01 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Removed the "Mark as unread" action for chats.</li>
+<li>Fixed links between artifacts and shared-artifact links clicked inside the app opening in the browser or losing their share key; they now open in place, and a teammate without access sees the request-access screen instead of "not available".</li>
+<li>Fixed memory use on macOS growing steadily while working with files, which could end with the system reporting it had run out of application memory.</li>
+<li>Fixed new messages being queued instead of sent after reopening a chat whose last message had no reply yet.</li>
+<li>Fixed removing a file from the message box after stopping or losing a reply sometimes deleting that file from the message you had already sent, which made "Try again" on it fail.</li>
+<li>Fixed side chat, the slash-command picker, usage insights, and other quick actions failing silently on machines where an organization deploys a Claude Code <code>managed-mcp.json</code>.</li>
+<li>Fixed the dictation microphone button disappearing from the chat composer once a message had text, an attached file, or a quoted reply.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added a queue for messages sent while your 5-hour usage limit is reached: they wait above the composer instead of failing, and you can edit, cancel, or send them when you're ready.</li>
+<li>Added keep-awake while Claude works: the computer no longer idle-sleeps while Claude is working in the Code tab, with a "Keep computer awake while Claude works" setting (and a "Keep awake on battery power" option) under Settings > Claude Code, a "Keep computer awake for this session" item in the session menu, and a one-time notice after a long task.</li>
+<li>Removed the Summary transcript view from the session's Transcript view menu; sessions that had it selected open in the Normal view.</li>
+<li>Fixed Extra high and Max effort on Claude Opus 5 quietly running at High when thinking was turned off in your Claude Code settings; those efforts now run with thinking on for the session.</li>
+<li>Fixed organization-managed settings not loading, and Remote Control not connecting automatically, for some users until they signed out and back in.</li>
+<li>Fixed sessions failing to open: a "Couldn't load this" message now recovers on its own instead of needing a manual reload, sessions no longer show "No messages yet" on Windows hosts that use FSLogix or similar profile containers, and a transcript that can't be read shows the reason with a Retry button.</li>
+<li>Fixed SSH sessions being restarted after some reconnects, which could leave duplicate Claude Code processes on the remote machine, and fixed messages held for an unreachable host: they are retried after an app restart, and when the host comes back needing your password or an unlocked SSH agent the app asks you instead of marking the message "needs you".</li>
+<li>Fixed switching models in a session: a switch refused with a "plugin hooks could not be loaded" error now restarts that session's Claude Code on the model you picked, the model picker no longer shows a model Claude Code refused, and Remote Control sessions no longer offer models the connected Claude Code version can't run.</li>
+<li>Fixed switching models staying blocked for the rest of the session when an organization-managed plugin's marketplace or a plugin hook failed to load.</li>
+<li>Fixed the remembered folder sometimes getting mixed up with a remote machine's path, which made every local session launch fail with "working directory no longer exists".</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Added automatic re-runs (after 5, 15, and 30 minutes) for a scheduled task that could not reach the model at all, for example right after the computer wakes behind a VPN.</li>
+<li>Fixed Record a skill opening an unresponsive chooser window on Windows.</li>
+<li>Fixed saving a skill Claude proposes in a conversation: a name that matches one of your skills now offers to update that skill instead of failing with "Try again", and when saving is blocked until you sign in again the Save skill button opens the sign-in prompt instead of a generic error.</li>
+<li>Fixed scheduled tasks and other automatic ways of starting a session choosing a model the installed app version can't run, which made every turn fail.</li>
+<li>Fixed the row under the composer (Add folder, permission mode, model) disappearing after switching a session to automatic approvals.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>blockReadsOutsideWorkingDirectories</code>: restricts Code sessions to reading files inside the session folder and <code>allowedWorkspaceFolders</code>; file tools refuse reads elsewhere, and sandboxed shell commands lose access to the home directory.</li>
+<li>Added <code>configRecheckIntervalMinutes</code>: how often a running app re-checks its managed configuration for changes, from 2 to 30 minutes; unset means 10 minutes, where the app previously checked every 30. A served value applies without a restart, and the key can also be set from device management.</li>
+<li>Added <code>disableBypassPermissionsMode</code>: removes bypass permissions mode from Code sessions and Cowork tasks, so Claude always follows the configured permission policy.</li>
+<li>Added <code>sshClientPath</code> (beta): the absolute path of the OpenSSH program the app runs for SSH sessions; when unset, the app uses the first <code>ssh</code> on the user's PATH.</li>
+<li>Added an Edit button to your most recent message in Cowork and Chat sessions, so you can revise and resend it, and fixed "Restart conversation from here" doing nothing in Chat sessions.</li>
+<li>Added the restart prompt, escalating to a required restart after <code>relaunchEnforcementHours</code>, when device-managed configuration (the managed plist, Windows policy registry, or Linux managed-settings file) changes while the app is running; previously only configuration changes served from a customer bootstrap endpoint prompted one.</li>
+<li>(breaking) Changed <code>relaunchEnforcementHours</code>: in served configuration the key moved from <code>bootstrap.relaunchEnforcementHours</code> to <code>lifecycle.relaunchEnforcementHours</code>; this release no longer reads the old path and earlier versions do not read the new one, so move the value under <code>lifecycle</code> (the flat-format and device-management key name is unchanged); the key can now also be set from device management; and the default window before a required restart is now 24 hours instead of 1. A device-management profile that sets any app-behavior key takes precedence over a served value for this key, so such a profile should set it too.</li>
+<li>(breaking) Changed how unreadable Claude Code managed settings are handled: if a device's <code>managed-settings.json</code> file, a drop-in, the device-management plist, or the Windows policy registry value cannot be parsed, Claude Code now refuses to start and names the source, so sessions on that device will not start until that file or value is fixed or removed; previously they ran without those settings. Check that these sources parse on managed devices before rolling out this version.</li>
+<li>Changed <code>allowedPluginMarketplaces</code> entries set to <code>auto_install</code> or <code>required</code> without a pinned commit SHA (or without <code>manifestSha256</code> for a <code>url</code> source) to show as available with a configuration warning, instead of being removed from the marketplace list.</li>
+<li>Changed Claude Code's <code>allowedMcpServers</code> setting (in its <code>managed-settings.json</code>, not the managed-configuration schema) to govern only servers users add themselves: a server from a <code>managed-mcp.json</code> file that the allowlist used to filter out now loads, and <code>deniedMcpServers</code> is the way to keep it off.</li>
+<li>Fixed chat search returning no results; searching finds chats by title and message content again.</li>
+<li>Fixed deployments without cloud features, or with the Cowork tab turned off, showing controls that could not work there, including Remote Control, automatic pull requests, the Cloud and Slack session filters, Add marketplace, and Cowork slash commands.</li>
+<li>Fixed organization plugins staying installed for users after an administrator removed the plugin's folder from the system <code>org-plugins</code> directory.</li>
+<li>Fixed remote MCP connectors whose <code>headersHelper</code> mints the credential continuing to fail for up to several minutes after the server rejected an expired credential; the helper now re-runs immediately and the rejected request is retried once.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.44121.4]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-44121-4</link>
             <guid isPermaLink="false">5f5273fd027ce19d</guid>
@@ -467,28 +521,6 @@
 <li>Fixed Settings > Import &#x26; export saying import isn't enabled on deployments that provision the sign-in import without setting <code>claudeAiImport.enabled</code>; that key now governs only file and earlier-session import, the import prompt, and session export.</li>
 <li>Fixed the Setup window accepting a mis-typed inference region, Azure AI Foundry resource name, blank Vertex AI project ID, or non-Anthropic model ID that was only rejected later on the device; these are now flagged before saving.</li>
 <li>Fixed imported project instructions arriving as a loose file instead of the project's editable Instructions; they are now shown for review on the project page and apply once you accept them.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.30096.5]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-30096-5</link>
-            <guid isPermaLink="false">53721a2d995c58c3</guid>
-            <pubDate>Fri, 14 Aug 2026 23:42:58 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

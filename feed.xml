@@ -8,6 +8,28 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.46388.4]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-46388-4</link>
+            <guid isPermaLink="false">d7ca95a24a365c93</guid>
+            <pubDate>Sat, 05 Sep 2026 03:00:47 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.46388.3]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-46388-3</link>
             <guid isPermaLink="false">8538240c191a8a2b</guid>
@@ -457,44 +479,6 @@
 <li>Changed gateway device-code sign-in to refresh silently when the gateway also issues a refresh token, instead of prompting you to sign in again each time the access token expires.</li>
 <li>Fixed an ended gateway device-code sign-in going unnoticed while the app was idle; the app now notices at its next periodic configuration check or shortly after the computer wakes from sleep and asks you to sign in again, and the Setup window says "Session expired" instead of "Denied".</li>
 <li>Fixed Cowork file previews showing "Preview unavailable" until the app was restarted once a preview pane had been closed for a few minutes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.32885.1]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-32885-1</link>
-            <guid isPermaLink="false">89f0e0f05b8660c5</guid>
-            <pubDate>Tue, 18 Aug 2026 22:05:15 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Added message queueing during Research: a message sent while a Research run is in progress is queued and sent when the report is ready.</li>
-<li>Fixed 1Password credential requests failing when Claude in Chrome is signed in from more than one browser profile.</li>
-<li>Fixed a crash on Windows when installing an update while a background update check was still running, and fixed update installs repeatedly failing after a newer update replaced one already staged.</li>
-<li>Fixed a message sent immediately after stopping a reply sometimes being put back into the input box instead of sending.</li>
-<li>Fixed reloading or reopening a temporary chat rebuilding the page a moment after it loads, which could discard text typed early.</li>
-<li>Fixed the computer-use permission prompts in Cowork and Claude Code sessions accepting a keyboard shortcut aimed at the message box or another surface, and added a brief delay so a send keystroke that lands just as the prompt appears cannot approve it.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Fixed automatic continuation after a rate limit firing into the imported-session confirmation prompt or a stale sign-in state, and it now waits out the server's limit reset and sends a clearer continuation message.</li>
-<li>Fixed inline bash commands being silently captured as input by a previous command still waiting for a response, such as an interactive login; a stuck command is now noted in the transcript and cleared before the next command runs.</li>
-<li>Fixed messages sent from one session to another sometimes being silently dropped, which left the sending session showing a thinking state for many minutes.</li>
-<li>Fixed slow session starts for people with MCP servers configured in <code>~/.claude.json</code>.</li>
-<li>Fixed the Code tab wrongly asking you to install Git on Macs that have Apple's Command Line Tools but not Xcode.</li>
-<li>Fixed worktree sessions failing with a "path contains control characters" error when a <code>WorktreeCreate</code> hook prints status output before the path.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed an occasional "Something went wrong" error when a session's question card from Claude changed to a new set of questions.</li>
-<li>Fixed Claude sometimes reporting a file as saved when it had been written to a temporary location you could not open.</li>
-<li>Fixed Cowork failing to start on Intel Macs.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>bootstrapHeaders</code> and <code>bootstrapHeadersHelper</code> for authenticating the bootstrap configuration fetch with a service-account credential, the supported replacement for embedding <code>user:password@</code> in <code>bootstrapUrl</code> (rejected since 1.32352.0): <code>bootstrapHeaders</code> is a set of static headers sent on every fetch, and <code>bootstrapHeadersHelper</code> is the absolute path of an executable that prints headers as JSON, for a rotating token; helper output is merged over the static headers. When either is set and no <code>bootstrapOidc</code> provider is configured, the headers count as sufficient authentication for the fetch and no per-user sign-in is required for it; a per-user sign-in bearer, when also present, still wins on <code>Authorization</code>. Header values are masked in diagnostics, and both keys are accepted only from device management or a local configuration file.</li>
-<li>Added the option to sign in to claude.ai directly from the import wizard to fetch your data export, with no manual zip download needed.</li>
-<li>Changed new Cowork sessions to store Claude Code transcripts under a short fixed folder name, now that the bundled Claude Code (2.1.234) supports it, further shortening file paths on Windows; existing sessions are unchanged.</li>
-<li>Changed organization plugin delivery: when the organization plugins endpoint is removed from your configuration, the plugins it had installed are removed from members' devices, as already happens for a removed plugin marketplace.</li>
-<li>Fixed admin-configured plugin marketplaces and organization plugins not re-syncing until the next periodic refresh after signing in or after a delayed configuration fetch applied.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

@@ -23,6 +23,21 @@ jobs:
             | sed '/<lastBuildDate>/d' > feed.xml
           grep -q '<item>' feed.xml   # 빈 응답/에러 페이지를 커밋하지 않도록 검증
 
+      # 전 항목이 "No user-facing changes."인 <item>(내부 빌드)은 미러에서 제거한다.
+      # routine 프롬프트에도 같은 규칙이 있지만 LLM 판단이라 100%가 아니다 — 여기서 결정론적으로 거른다.
+      # 한 섹션이라도 실제 항목이 있으면 남긴다. <li>가 하나도 없는 항목도 남긴다(포맷 변경 감지용).
+      # 원문 문구가 바뀌면 필터가 조용히 꺼진다(fail-open) — 릴리스를 놓치지 않고 노이즈만 돌아온다.
+      - name: 내부 빌드 제거
+        run: |
+          python3 - <<'PY'
+          import re
+          s = open('feed.xml').read()
+          def keep(m):
+              lis = [l.strip() for l in re.findall(r'<li>(.*?)</li>', m.group(0), re.S)]
+              return '' if lis and all(l == 'No user-facing changes.' for l in lis) else m.group(0)
+          open('feed.xml', 'w').write(re.sub(r'\s*<item>.*?</item>', keep, s, flags=re.S))
+          PY
+
       - name: 변경 있을 때만 커밋
         run: |
           git config user.name  github-actions

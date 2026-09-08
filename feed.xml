@@ -8,28 +8,6 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
-            <title><![CDATA[v1.46388.4]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-46388-4</link>
-            <guid isPermaLink="false">d7ca95a24a365c93</guid>
-            <pubDate>Sat, 05 Sep 2026 03:00:47 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
             <title><![CDATA[v1.46388.3]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-46388-3</link>
             <guid isPermaLink="false">8538240c191a8a2b</guid>
@@ -302,50 +280,6 @@
 <li>Improved Cowork reliability when the workspace is slow to start or has been idle, and made switching back to a recently opened Code tab session faster.</li>
 <li>Fixed importing sessions from a previous Claude Desktop install: imported Cowork sessions keep their Project and its <code>~/Claude/Projects/&#x3C;Name></code> folder instead of getting a new empty one, an interrupted import now appears in Import history and its sessions are no longer imported twice on the next run, and the import wizard no longer re-creates a Project you had deleted (an imported Project that duplicates an existing name gets a "(1)" suffix).</li>
 <li>Fixed the Code tab's plugin directory and Customize > Plugins not listing plugins from marketplaces configured with <code>allowedPluginMarketplaces</code>; an admin-configured marketplace is now managed as the organization's in both tabs.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.37937.3]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-37937-3</link>
-            <guid isPermaLink="false">eaf003c031c30830</guid>
-            <pubDate>Wed, 26 Aug 2026 22:53:20 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.37937.2]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-37937-2</link>
-            <guid isPermaLink="false">ff554a0583b345c8</guid>
-            <pubDate>Wed, 26 Aug 2026 18:11:49 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
         <item>

@@ -6,6 +6,8 @@ Claude 데스크톱 changelog를 한글로 정리해 Slack에 보내는 파이�
 
 - **`routine/prompt.md`는 사본이다.** 편집·커밋해도 배포되지 않는다. routine은 자체 저장 설정으로
   실행되므로 https://claude.ai/code/routines 에서 직접 붙여넣어야 한다. 순서: 레포 먼저 → routine.
+  Claude Code 세션에서는 `RemoteTrigger` 도구(`action: update`, `trigger_id`는 config.md)로 바로 반영할 수 있다 —
+  `job_config.ccr`를 통째로 보내야 하니 먼저 `get`으로 현재 값을 받아 events[].message.content만 바꿔서 넣는다.
 - **`feed.xml`은 Actions 생성물이다.** 직접 편집하지 말 것 — 다음 실행이 덮어쓴다.
 
 ## 지우면 안 되는 것 (전부 load-bearing)

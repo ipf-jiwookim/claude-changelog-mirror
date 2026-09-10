@@ -8,6 +8,13 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[Known issue: Cowork on Windows]]></title>
+            <link>https://claude.com/docs/cowork/changelog#known-issue-cowork-on-windows</link>
+            <guid isPermaLink="false">cf8874df08f3297a</guid>
+            <pubDate>Thu, 10 Sep 2026 16:00:46 GMT</pubDate>
+            <content:encoded><![CDATA[<p>A Windows update released September 8, 2026 (including KB5124008) stops Cowork from reaching your files when it runs on your Windows PC, so tasks fail or the workspace does not start. This affects Cowork on third-party inference deployments and Cowork sessions that run on your computer rather than in the cloud. Cloud sessions and Claude Code, including the Code tab, are not affected. Chat cloud sessions are not affected, but Chat sessions on third-party inference deployments are affected if using advanced file analysis. The cause is a change in Windows, so restarting or reinstalling Claude does not help. We are investigating and working to resolve this as quickly as possible.</p>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.49585.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-49585-0</link>
             <guid isPermaLink="false">2f63faea0439e914</guid>
@@ -398,28 +405,6 @@
 <li>Fixed the built-in Microsoft 365 connector publishing an invalid schema for updating a calendar event's end time.</li>
 <li>Fixed the Microsoft 365 local connector on Windows failing for users with more than one Microsoft work account on the PC. The Reconnect card now opens the Windows account picker and the chosen account is remembered; users of this connector will be asked to reconnect once after this update.</li>
 <li>Fixed the model picker showing a duplicate, mislabeled 1M-context row when <code>inferenceModels</code> lists a model both with and without the <code>[1m]</code> suffix.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.34493.1]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-34493-1</link>
-            <guid isPermaLink="false">cc63ce94dd8bff3c</guid>
-            <pubDate>Fri, 21 Aug 2026 04:29:13 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Fixed prompt caching not being applied in sessions that use an inference gateway or custom endpoint.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

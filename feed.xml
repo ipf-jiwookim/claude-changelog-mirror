@@ -8,6 +8,29 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.52386.3]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-52386-3</link>
+            <guid isPermaLink="false">6506e4159a682521</guid>
+            <pubDate>Fri, 11 Sep 2026 19:34:52 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Changed the automatic move of scheduled tasks to the cloud, for accounts where it has started: the app now waits about a minute after the computer wakes, and while offline checks again each minute, instead of trying at once and then waiting hours after a failed try.</li>
+<li>Fixed two problems with local projects that are moving to claude.ai, for accounts where that move has started: a project could refuse new tasks for hours while part of its memory copy waited on the server (it now accepts new tasks and the copy finishes in the background), and memory files shown in a moved project's earlier tasks would not open.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.52386.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-52386-0</link>
             <guid isPermaLink="false">cb1f5ab94d303f08</guid>
@@ -371,29 +394,6 @@
 <li>Improved Cowork reliability when the workspace is slow to start or has been idle, and made switching back to a recently opened Code tab session faster.</li>
 <li>Fixed importing sessions from a previous Claude Desktop install: imported Cowork sessions keep their Project and its <code>~/Claude/Projects/&#x3C;Name></code> folder instead of getting a new empty one, an interrupted import now appears in Import history and its sessions are no longer imported twice on the next run, and the import wizard no longer re-creates a Project you had deleted (an imported Project that duplicates an existing name gets a "(1)" suffix).</li>
 <li>Fixed the Code tab's plugin directory and Customize > Plugins not listing plugins from marketplaces configured with <code>allowedPluginMarketplaces</code>; an admin-configured marketplace is now managed as the organization's in both tabs.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.37937.1]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-37937-1</link>
-            <guid isPermaLink="false">8d685c356d9653bb</guid>
-            <pubDate>Wed, 26 Aug 2026 01:16:31 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Updated the bundled Claude Code CLI to version 2.1.246.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Fixed remote MCP servers never recovering after a dropped connection; they now reconnect automatically or report as failed.</li>
-<li>Fixed signing in to some MCP servers, such as Linear, failing with an "Invalid redirect URI" error.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added support for the <code>inferenceModelPricing</code> rates and the <code>inferenceModelPricingMultiplier</code> discount in the Usage page's cost estimate; in 1.37937.0 the estimate always used Anthropic list price.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

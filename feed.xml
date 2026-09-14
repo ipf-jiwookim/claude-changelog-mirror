@@ -8,6 +8,13 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[Resolved: Cowork on Windows]]></title>
+            <link>https://claude.com/docs/cowork/changelog#resolved-cowork-on-windows</link>
+            <guid isPermaLink="false">3662e57e36f08dcb</guid>
+            <pubDate>Mon, 14 Sep 2026 19:31:16 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Microsoft has released a Windows update that fixes the issue where Cowork could not reach your files on Windows PCs. Install the latest Windows update and restart your PC. On Windows 11 24H2 and 25H2 the fix is <a href="https://support.microsoft.com/en-us/servicing/os/windows-11/2026/09/kb5129195-windows-11-24h2-25h2-security-update">KB5129195</a>. No Claude Desktop update is needed.</p>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.52386.6]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-52386-6</link>
             <guid isPermaLink="false">96f10fce70f30e41</guid>
@@ -100,9 +107,10 @@
         <item>
             <title><![CDATA[Known issue: Cowork on Windows]]></title>
             <link>https://claude.com/docs/cowork/changelog#known-issue-cowork-on-windows</link>
-            <guid isPermaLink="false">cf8874df08f3297a</guid>
-            <pubDate>Thu, 10 Sep 2026 16:00:46 GMT</pubDate>
-            <content:encoded><![CDATA[<p>A Windows update released September 8, 2026 (including KB5124008) stops Cowork from reaching your files when it runs on your Windows PC, so tasks fail or the workspace does not start. This affects Cowork on third-party inference deployments and Cowork sessions that run on your computer rather than in the cloud. Cloud sessions and Claude Code, including the Code tab, are not affected. Chat cloud sessions are not affected, but Chat sessions on third-party inference deployments are affected if using advanced file analysis. The cause is a change in Windows, so restarting or reinstalling Claude does not help. We are investigating and working to resolve this as quickly as possible.</p>]]></content:encoded>
+            <guid isPermaLink="false">7acc34139817438d</guid>
+            <pubDate>Mon, 14 Sep 2026 19:31:16 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>Resolved September 14, 2026.</strong> Microsoft has released a Windows update that fixes this issue. Install the latest Windows update and restart your PC.</p>
+<p>A Windows update released September 8, 2026 (including KB5124008) stops Cowork from reaching your files when it runs on your Windows PC, so tasks fail or the workspace does not start. This affects Cowork on third-party inference deployments and Cowork sessions that run on your computer rather than in the cloud. Cloud sessions and Claude Code, including the Code tab, are not affected. Chat cloud sessions are not affected, but Chat sessions on third-party inference deployments are affected if using advanced file analysis. The cause is a change in Windows, so restarting or reinstalling Claude does not help.</p>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[v1.49585.0]]></title>

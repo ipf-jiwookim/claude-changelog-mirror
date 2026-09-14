@@ -8,6 +8,30 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v1.52386.6]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v1-52386-6</link>
+            <guid isPermaLink="false">96f10fce70f30e41</guid>
+            <pubDate>Mon, 14 Sep 2026 00:12:55 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>General</strong></p>
+<ul>
+<li>Updated the bundled Claude Code CLI to version 2.1.270.</li>
+<li>Fixed organization plugins enabled through Claude Code's managed settings not loading; they load from the next session.</li>
+<li>Fixed sessions with a very large prompt getting permanently stuck on a "Prompt is too long" error.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed users sometimes being told a model they have access to is restricted, and a running session silently switching to the organization's default model.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v1.52386.3]]></title>
             <link>https://claude.com/docs/cowork/changelog#v1-52386-3</link>
             <guid isPermaLink="false">6506e4159a682521</guid>

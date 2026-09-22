@@ -8,6 +8,32 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.2553.13]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-2553-13</link>
+            <guid isPermaLink="false">0ba603b76022a67e</guid>
+            <pubDate>Tue, 22 Sep 2026 16:56:41 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.280.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added support for Claude Opus 5.5.</li>
+<li>Fixed sessions that could hang with no response after an internal error; the error is now shown.</li>
+<li>Fixed some conversations failing on every message with a "text content blocks must be non-empty" error, including after resuming.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added <code>AGENTS.md</code> support: in a folder with no <code>CLAUDE.md</code>, Claude reads <code>AGENTS.md</code> for project instructions (not yet in third-party deployments).</li>
+<li>Fixed Claude being unable to read the output of its own background commands in sessions restricted by an administrator's allowed workspace folders.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.2553.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-2553-1</link>
             <guid isPermaLink="false">20c4d7d173b6caa9</guid>
@@ -399,28 +425,6 @@
 <li>Fixed advanced file analysis in Chat failing with "Workspace unavailable" for users whose organization enables <code>chatAdvancedFileAnalysisEnabled</code> but turns Cowork off with <code>coworkTabEnabled: false</code>.</li>
 <li>Fixed managed OAuth connectors showing a connection error instead of prompting to sign in when the app starts without a usable sign-in (expired with no refresh token, or never signed in on this machine), including servers added by URL alone, where Connect could fail instead of opening the sign-in page.</li>
 <li>Fixed organization-configured URL plugin marketplaces failing to install or load plugins with "marketplace entry path does not stay inside the marketplace directory".</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.44121.2]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-44121-2</link>
-            <guid isPermaLink="false">cbc42841dfbee34d</guid>
-            <pubDate>Wed, 02 Sep 2026 20:39:19 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed sessions on Windows being unable to run commands or fetch web pages. This reverts the 1.44121.1 fix for sessions failing to start on Windows for accounts with many saved artifacts, scheduled tasks, or connected folders.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

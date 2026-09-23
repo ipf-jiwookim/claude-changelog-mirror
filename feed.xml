@@ -8,6 +8,55 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.7032.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-7032-0</link>
+            <guid isPermaLink="false">0ef6e4e4de17b05c</guid>
+            <pubDate>Wed, 23 Sep 2026 00:34:21 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.280.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Fixed a chat message sent with no network connection appearing to send for about a minute before failing; it now fails within a few seconds and says you went offline, and a connection that has gone quiet after your computer wakes or your network changes reconnects right away.</li>
+<li>Fixed a message sent while Claude is still working sometimes being ignored, and sometimes landing out of order in the transcript with the step before it looking unfinished.</li>
+<li>Fixed Claude becoming the default app for files such as .md and .docx, and Windows asking which app to use for files that already have a default app. Claude also no longer appears in the macOS "Open with" menu for Excel and PowerPoint files; "Other…" in that menu still opens them in Claude.</li>
+<li>Fixed editing a message while another reply is still running losing your edited text when the server refuses the edit; the editor now reopens with your words.</li>
+<li>Fixed the app freezing for a few seconds after launch or reload on some machines, most often on Windows.</li>
+<li>Fixed the whole window being replaced by a "Couldn't finish loading" screen when a chat's side panel failed to download; the chat now stays open and the panel's button shows the problem with a Retry button.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed SSH sessions on the new connection engine (the computer's own OpenSSH, the default on macOS and Linux) to run the MCP servers from your desktop settings under Claude Code on the remote machine, so their tools keep working while the app is closed; the session's MCP list says when one isn't installed there or the host already has its own.</li>
+<li>Fixed Claude asking for approval before every terminal command while Remote Control was on, even when you were typing at your computer; it now asks only when the work was started or steered from another device, and that card can turn Remote Control off for the session.</li>
+<li>Fixed long delays in large repositories when starting a new worktree session and when archiving or deleting a session, including the app freezing for up to half a minute on macOS when the repository has a very large <code>node_modules</code> folder.</li>
+<li>Fixed resuming a session failing with "this session's branch is checked out somewhere else" when only the session's own worktree, in the app's worktrees folder, had the branch checked out.</li>
+<li>Fixed sessions starting slowly, and already-open sessions briefly stalling, when many sessions are open.</li>
+<li>Fixed sessions that were waiting on your reply being auto-archived shortly after the app restarted, and the sidebar losing their needs-input marker on restart.</li>
+<li>Fixed SSH connections on some Windows computers failing with "spawn EPERM" or never asking for a password, and connections failing over a private key file that other accounts could read; the app now falls back to its built-in SSH engine, or makes the key file private, and connects.</li>
+<li>Fixed two causes of repeated requests to sign in again: a brief network interruption no longer signs the Code tab out while Chat stays signed in, and a sign-in renewal is no longer thrown away when the server's answer arrives just after a 30-second limit.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Added the health-data consent dialog and the Microsoft 365 work-account notice before a connector is added from a chat suggestion or the suggested-connectors card.</li>
+<li>Fixed "Couldn't delete this task" on Windows when deleting a task that was running or had just finished.</li>
+<li>Fixed built-in and account skills loading without the Skill tool; they load through it again, as plugin skills do, so references to a skill's own folder resolve.</li>
+<li>Fixed connector suggestions in chat offering Connect for a connector your organization has not enabled, which then failed with a permissions message; the suggestion now offers Request where your organization accepts connector requests, and otherwise says to ask an organization owner.</li>
+<li>Fixed messages that start with a file path or file name, such as <code>/tmp/notes.txt</code>, being refused with an "Unknown skill" error instead of being sent.</li>
+<li>Fixed workspace setup failing on every launch after a corrupted download, including with the offline installer.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>inferenceCredentialKind: "external-idp"</code> on the gateway and Bedrock providers: users sign in through your organization's OpenID Connect identity provider, configured with the shared <code>inferenceIdpOidc</code> and <code>inferenceIdpAuthFlow</code> keys (system browser by default, or the OS Microsoft Entra broker), and the user's token is sent as the Bearer credential on every inference request; on Bedrock it goes to a proxy that validates the token, so <code>inferenceBedrockBaseUrl</code> is required and the models must be listed in <code>inferenceModels</code> (no model discovery). The gateway-only spellings (<code>inferenceCredentialKind: "interactive"</code> with <code>inferenceGatewayOidc</code> and <code>inferenceGatewayOidcAuthFlow</code>) are deprecated with no end date and keep working.</li>
+<li>Added <code>keepAwakeEnabled</code>: set it to <code>false</code> so Claude never keeps the computer awake; the keep-awake switches in Settings, the Scheduled page and the Code tab are hidden. Scheduled tasks themselves stay on.</li>
+<li>Added <code>mcpScheduledTaskApprovalLifetimeDays</code>: limits how many days a scheduled task in Cowork or the Code tab may reuse a lasting MCP-tool approval before it asks again. The lasting option is offered even while persistent tool approvals are turned off, and <code>0</code> removes it.</li>
+<li>Changed performance timing telemetry (part of essential telemetry) to go to <code>claude.ai</code> first instead of straight to Datadog, so essential telemetry now also needs <code>claude.ai</code>: most configurations already have that host on their network requirements list under auto-updates or nonessential telemetry, and one that sets <code>updateViaUpdatesHost</code> or <code>disableAutoUpdates</code> together with <code>disableNonessentialTelemetry</code> now lists it under essential telemetry. Datadog's intake hosts stay on the list as the fallback route.</li>
+<li>Removed a temporary vendor-specific exception from custom connector validation: OAuth authorization server metadata that declares an issuer not matching the metadata URL now fails validation again.</li>
+<li>Fixed a crash on Windows that could close the app while the Microsoft 365 connector or another Microsoft Entra sign-in was talking to the Windows account broker.</li>
+<li>Fixed managed connectors configured with their own OAuth client connecting without credentials, instead of prompting for sign-in, when the server accepts unauthenticated connections.</li>
+<li>Fixed Microsoft 365 connector sign-in through Company Portal or the Windows account broker requesting only <code>offline_access</code> instead of the permissions in the connector's <code>scope</code> setting. Affected members may be asked to reconnect, and in tenants whose Entra admin consent doesn't cover every permission in <code>scope</code> they may see Microsoft's consent or admin-approval page until the missing permissions are consented.</li>
+<li>Fixed organization sign-in with Microsoft Entra ID asking users to sign in again after a restart when <code>bootstrapOidc.scopes</code> uses <code>/.default</code>.</li>
+<li>Fixed pop-out windows doing nothing: "Open in new window" and ⌘-click (or Ctrl+click on Windows and Linux) for Code tab sessions, side panes, the side chat, and Pop out on Cowork live artifacts.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.2553.13]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-2553-13</link>
             <guid isPermaLink="false">0ba603b76022a67e</guid>
@@ -400,31 +449,6 @@
 <li>Fixed deployments without cloud features, or with the Cowork tab turned off, showing controls that could not work there, including Remote Control, automatic pull requests, the Cloud and Slack session filters, Add marketplace, and Cowork slash commands.</li>
 <li>Fixed organization plugins staying installed for users after an administrator removed the plugin's folder from the system <code>org-plugins</code> directory.</li>
 <li>Fixed remote MCP connectors whose <code>headersHelper</code> mints the credential continuing to fail for up to several minutes after the server rejected an expired credential; the helper now re-runs immediately and the rejected request is retried once.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.44121.4]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-44121-4</link>
-            <guid isPermaLink="false">5f5273fd027ce19d</guid>
-            <pubDate>Thu, 03 Sep 2026 02:37:50 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added support in Chat for skills from organization-provided plugins, and Chat-only users can now see and manage those plugins under Customize, matching Cowork and Code.</li>
-<li>Fixed advanced file analysis in Chat failing with "Workspace unavailable" for users whose organization enables <code>chatAdvancedFileAnalysisEnabled</code> but turns Cowork off with <code>coworkTabEnabled: false</code>.</li>
-<li>Fixed managed OAuth connectors showing a connection error instead of prompting to sign in when the app starts without a usable sign-in (expired with no refresh token, or never signed in on this machine), including servers added by URL alone, where Connect could fail instead of opening the sign-in page.</li>
-<li>Fixed organization-configured URL plugin marketplaces failing to install or load plugins with "marketplace entry path does not stay inside the marketplace directory".</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

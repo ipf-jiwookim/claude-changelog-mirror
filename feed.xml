@@ -8,6 +8,30 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.9939.4]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-9939-4</link>
+            <guid isPermaLink="false">7b04eca5f2d7d897</guid>
+            <pubDate>Mon, 28 Sep 2026 20:19:13 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.284.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added support for Claude Sonnet 5.5.</li>
+<li>Fixed sessions failing on every message with an API error caused by certain web search results or earlier extended thinking in the conversation's history.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed the warning about a changed organization not appearing in sessions.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.9939.2]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-9939-2</link>
             <guid isPermaLink="false">2ee5ac86983857fe</guid>
@@ -425,28 +449,6 @@
 <p><strong>Cowork</strong></p>
 <ul>
 <li>Added support for attaching your home folder, Windows Documents, AppData, the macOS Library folder, and whole drives; Claude's own configuration and session data inside them stay off-limits, as do certain credential and shell-startup locations (for example SSH keys, AWS and Google Cloud credentials, and bash, zsh and PowerShell profile files).</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.46388.2]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-46388-2</link>
-            <guid isPermaLink="false">25547dcf20cbb5c2</guid>
-            <pubDate>Fri, 04 Sep 2026 15:34:10 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Fixed Code sessions started in a git worktree failing to initialize on Windows.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>
 <p><strong>3P</strong></p>
 <ul>

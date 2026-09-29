@@ -8,6 +8,55 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.16120.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-16120-0</link>
+            <guid isPermaLink="false">21db9f3f6c36a494</guid>
+            <pubDate>Tue, 29 Sep 2026 19:49:56 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.284.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added creating a Google Doc, Sheet or Slides deck from the new chat's Output picker with a connected Google Drive, and fixed the Google pane showing "Owner unknown".</li>
+<li>Fixed a failed message reappearing over newer typing, dictated text dropped when a queued message sent, the first message after a voice conversation replying to an earlier response, and a new chat from the command palette sending into an open incognito chat or being lost.</li>
+<li>Fixed editing a sent message starting from text missing parts of what you sent, attached files disappearing when you typed a reply to Claude's question card, a removed text file still being kept among the chat's files, and large documents from a connected app blocking sending.</li>
+<li>Fixed problems while a chat was open in its own window: the conversation could jump during streaming when the main window was minimized, usage and credits buttons in the main window could stop working, and the browser, artifact, and file preview panes could go blank.</li>
+<li>Fixed Quick Entry: prompts sent while the app was still loading could be lost, files sent to an existing chat lost their names (leaving text, code, and Office documents unreadable to Claude), and using it right after an app update could crash the app.</li>
+<li>Fixed the whole chat being replaced by an error screen when one of Claude's cards (such as a weather or map card) failed to draw; the card's place now says "Couldn't load this." and the rest of the conversation stays open.</li>
+<li>Fixed <code>/docx</code>, <code>/pdf</code>, <code>/pptx</code> and <code>/xlsx</code> being rejected as unknown skills and missing from the Cowork slash menu, and removed Cowork-only skills from the Code tab slash menu, where they could not run.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed Max effort to apply to the current session only, as in the Claude Code CLI, so new sessions no longer start at Max, and fixed changing the effort level in an open session also changing which model new sessions start on.</li>
+<li>Changed worktree cleanup: a session's worktree is kept until the session is archived, however long it sits idle, and worktrees you or the CLI create under <code>.claude/worktrees</code> are never removed by the app.</li>
+<li>Fixed archiving a session deleting uncommitted work in a worktree created before the worktree location was changed, on macOS and Linux.</li>
+<li>Fixed Code sessions in a worktree being refused with "This workspace isn't trusted" and never showing the trust dialog, and forked sessions being stopped by a workspace-trust check on their own worktree after an app restart.</li>
+<li>Fixed SSH sessions reopening idle instead of continuing the interrupted task when Claude Code on the remote host had stopped while the app was closed, and SSH connections on Linux not using the ssh-agent from your shell startup files.</li>
+<li>Fixed the main window being replaced by an error screen when a popped-out session's chat hit an error; the chat now shows Try again instead.</li>
+<li>Changed worktree sessions on Claude Code 2.1.275 or later to read project settings, hooks and MCP servers from the project folder you opened instead of the worktree's checked-out branch, with that folder's <code>.claude</code> config and <code>.mcp.json</code> read-only where the session runs outside it; now also on Windows SSH hosts.</li>
+<li>Fixed a conversation staying on an out-of-date Claude Code after an app update; when the API refuses it, sending again now resumes the same conversation on the current version.</li>
+<li>Fixed SSH sessions being restarted, and their running turns killed, when the remote server was slow to answer the first contact after a reconnect.</li>
+<li>Fixed worktree sessions on Windows sometimes being refused in repositories with a folder named <code>claude</code> in their path.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Changed organization tool policies in tasks on your computer: a connector tool set to "Restrict to Ask" now asks for your approval, including in "Skip all approvals" mode (newly started tasks only), and an ask policy on a file tool shows an approval prompt instead of refusing the call.</li>
+<li>Fixed "Failed to start Claude's workspace" on Windows when Claude is installed on a drive other than the system drive.</li>
+<li>Fixed a message sent from another window or device being stopped or lost when you restarted from or edited an earlier message at the same time.</li>
+<li>Fixed Office file previews that kept failing until the app was restarted when Claude's workspace got stuck; the preview now says what failed (workspace not responding, no permission to the folder, file gone) and, on third-party deployments, can restart the workspace in place.</li>
+<li>Fixed skills that Claude proposes or writes in a conversation being saveable from the chat cards with no instructions, which saved an empty skill or emptied the one it updated; the cards now say why.</li>
+<li>Fixed the Cowork data export keeping hidden characters in file names.</li>
+<li>Added inline playback for video outputs in the file pane, with thumbnails in the chat.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>deniedPluginMcpServers</code>: URL patterns for remote servers that plugins may not connect in Cowork, Chat and Code sessions (in Code sessions, matching servers from Claude Code's configuration files too). A match stays blocked even when <code>allowedPluginMcpServers</code> admits it; unset or empty blocks none.</li>
+<li>Changed <code>userPluginMarketplacesEnabled</code>: when set to <code>false</code>, plugin marketplaces the organization did not provision are hidden, installs and updates from them are refused, and Code and Cowork sessions are told not to load their plugins; previously only adding marketplaces was blocked.</li>
+<li>Removed <code>a-cdn.anthropic.com</code> and <code>a-api.anthropic.com</code> from the network requirements list under nonessential telemetry; the app has not contacted them since 2.110.0, so firewall allowlists may drop them, and leaving them in place is harmless.</li>
+<li>Updated the Code tab's composer to the redesigned card, with the + menu first in the row under the box, ahead of permission mode and model.</li>
+<li>Fixed the diagnostic report's network reachability check and the Setup window's connectivity test reporting a server on a non-default port as unreachable, and the firewall allowlist omitting that port.</li>
+<li>Fixed two model picker descriptions showing in English when the app is set to another language.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.9939.4]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-9939-4</link>
             <guid isPermaLink="false">7b04eca5f2d7d897</guid>
@@ -431,28 +480,6 @@
 <li>Fixed Google Cloud (Vertex AI) sessions sometimes running under the computer's own Google login instead of the credential your organization configured, and the app not asking you to sign in again after your Google session expired.</li>
 <li>Fixed the app refreshing the sign-in token about once a second when an inference gateway answers 403 to the model list request.</li>
 <li>Fixed the built-in Microsoft 365 connector showing Connected before anyone had signed in; its first request in a conversation now offers the sign-in, and a cancelled sign-in no longer hides its tools; the bundled connector also gains a tool that reads Teams channel messages.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.46388.3]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-46388-3</link>
-            <guid isPermaLink="false">8538240c191a8a2b</guid>
-            <pubDate>Fri, 04 Sep 2026 16:40:21 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added support for attaching your home folder, Windows Documents, AppData, the macOS Library folder, and whole drives; Claude's own configuration and session data inside them stay off-limits, as do certain credential and shell-startup locations (for example SSH keys, AWS and Google Cloud credentials, and bash, zsh and PowerShell profile files).</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

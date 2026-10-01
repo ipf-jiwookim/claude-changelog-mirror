@@ -8,6 +8,45 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.19675.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-19675-0</link>
+            <guid isPermaLink="false">09e6e4d690b4c7cd</guid>
+            <pubDate>Thu, 01 Oct 2026 19:48:06 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.286.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Fixed a crash when opening a tool step whose details list a word such as "constructor".</li>
+<li>Fixed a message that failed to send sometimes looking sent, with Claude still working, or disappearing if you had already started typing the next one; a message that cannot be sent now offers Retry.</li>
+<li>Fixed conversations failing with a request error on every later message after a connector, tool or hook returned an unusually shaped result.</li>
+<li>Fixed Quick Entry on macOS discarding your message when an attached file had been moved, deleted, or could not be read before you sent it; the message is now sent without that file and a notice says so.</li>
+<li>Fixed the Windows app failing to start when the Google or Chrome folder under <code>LocalAppData</code> is a junction.</li>
+<li>Removed computer use on macOS 13 and earlier, where its screenshots could never be taken; it requires macOS 14 or later. The Computer use section in Settings now stays visible and explains why when computer use is unavailable.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added comments on lines of an open file in the Files pane: click the + beside a line, or select text and choose Add comment, and the comment is sent with your next message.</li>
+<li>Fixed a finished session showing as working again after a model switch, a built-in slash command such as <code>/plan</code>, or a <code>!</code> command Claude did not answer, which could hide the usage-limit notice, make Try again send an extra message, or count a resumed turn's time from the wrong point.</li>
+<li>Fixed a session preset's permission mode not being applied when the preset also changed the model.</li>
+<li>Fixed Claude not being able to run commands in the Terminal panel on Windows.</li>
+<li>Fixed new sessions in organizations with Claude Code zero data retention keeping their first few words as their name; they now get a generated title a few seconds after they start.</li>
+<li>Fixed Claude Code failing to start on some Macs right after a desktop update.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed a reply still showing as waiting on you after its sign-in request had expired.</li>
+<li>Fixed a tool request that was restored without its details being approvable before the details arrived; its card now waits for them and offers only Deny.</li>
+<li>Fixed Claude clicking the wrong item, missing an open menu, or bringing the app to the front in apps such as Slack while working in the background.</li>
+<li>Fixed network requests failing on corporate networks where the proxy is set by a one-word host name, and the sandbox being left without a proxy until the app restarted when the proxy auto-config (PAC) file failed to download, such as right after a VPN switch.</li>
+<li>Changed scheduled tasks that Claude creates for you to use "Automatically approve" by default where your organization allows it, so their runs use tools without asking first and pause only when something looks unsafe.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added Excel, Word and PowerPoint previews in the Code tab when Claude's workspace isn't running yet: Excel opens in the document viewer, and opening a Word or PowerPoint file starts the workspace.</li>
+<li>Added the Linux spellcheck dictionary download to the Egress Requirements list; on Linux, <code>disableNonessentialServices</code> now also skips that download and turns spellcheck off.</li>
+<li>Changed the default context window for Opus 4.7 and later, Sonnet 5 and later, and Fable 5 and later to 1M tokens behind a gateway or custom base URL; previously 200K unless the "1M context" option was picked.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.16120.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-16120-0</link>
             <guid isPermaLink="false">21db9f3f6c36a494</guid>

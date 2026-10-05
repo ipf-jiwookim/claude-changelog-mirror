@@ -8,6 +8,31 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.19675.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-19675-1</link>
+            <guid isPermaLink="false">56d5c4dbae761bf6</guid>
+            <pubDate>Mon, 05 Oct 2026 17:57:58 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.288.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added read-only access in Chat to folders you add to a project after this update; to use a folder added earlier, add it to the project again and start a new chat.</li>
+<li>Fixed skills uploaded as a <code>.zip</code> or <code>.skill</code> file keeping only their <code>SKILL.md</code>; the archive's other files are now saved, and renaming a skill keeps them.</li>
+<li>Fixed skills with names in other scripts or with punctuation not being found by Cowork and Code sessions, and skill uploads being refused when the zip holds very compressible files or keeps <code>SKILL.md</code> deep inside a repository download.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.19675.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-19675-0</link>
             <guid isPermaLink="false">09e6e4d690b4c7cd</guid>
@@ -479,47 +504,6 @@
             <pubDate>Mon, 14 Sep 2026 19:31:16 GMT</pubDate>
             <content:encoded><![CDATA[<p><strong>Resolved September 14, 2026.</strong> Microsoft has released a Windows update that fixes this issue. Install the latest Windows update and restart your PC.</p>
 <p>A Windows update released September 8, 2026 (including KB5124008) stops Cowork from reaching your files when it runs on your Windows PC, so tasks fail or the workspace does not start. This affects Cowork on third-party inference deployments and Cowork sessions that run on your computer rather than in the cloud. Cloud sessions and Claude Code, including the Code tab, are not affected. Chat cloud sessions are not affected, but Chat sessions on third-party inference deployments are affected if using advanced file analysis. The cause is a change in Windows, so restarting or reinstalling Claude does not help.</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v1.49585.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v1-49585-0</link>
-            <guid isPermaLink="false">2f63faea0439e914</guid>
-            <pubDate>Tue, 08 Sep 2026 17:32:14 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>General</strong></p>
-<ul>
-<li>Changed an invalid "Required organization" device-policy value to block sign-in with a configuration error, shown in the diagnostic report, instead of being ignored.</li>
-<li>Updated the app runtime to Electron 44 (Chromium 152); macOS 13 Ventura or later is now required.</li>
-<li>Fixed chats started from the menu bar or Quick Entry panel opening as an empty page for up to a minute before the reply appeared, and ignoring your instructions from Settings > Instructions for Claude.</li>
-<li>Fixed macOS sometimes showing repeated "bash would like to access data from other apps" prompts after quitting the app with sessions open.</li>
-<li>Fixed scheduled tasks around Mac sleep: a task that ran while the Mac was asleep was sometimes stopped as unresponsive when it woke, tasks missed during sleep sometimes started during a brief background wake and failed (they now start once the Mac is fully awake), and a one-time task occasionally started many sessions at once after wake.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Improved terminal tabs: they now show when a command is still running and ask before closing one that is, and a tab whose shell crashed or was killed stays open with a Restart option instead of closing silently with its output.</li>
-<li>Removed the Git requirement for local sessions that don't use a worktree; on Windows, Git for Windows (Git Bash) is no longer needed to start a session.</li>
-<li>Fixed the Files pane discarding unsaved edits without asking when you closed the pane, expanded another pane, or opened it in a new window; fixed the editor joining lines in files that mix Windows and Unix line endings; and a failed save now says the file couldn't be saved and offers Try again instead of claiming the file changed on disk.</li>
-<li>Fixed the selected model reverting or being refused when you switched models while a session was starting, restarting, or still answering; the session now uses the model you chose, and model changes in SSH and WSL sessions no longer fail with "plugin hooks could not be loaded".</li>
-<li>Added automatic sending for messages held after you hit your 5-hour limit: they now send when the limit resets, and you can still edit, cancel, or send them early.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed a conversation started from an artifact, or from an artifact comment's Send to Claude, not using your selected model.</li>
-<li>Fixed a task disappearing from the app while its files stayed on disk when one of them was in use during delete; the task is now kept so the delete can be retried.</li>
-<li>Fixed an issue where the app could quit at launch with a very large number of Cowork tasks.</li>
-<li>Fixed the "Can't reach the Claude API" warning staying on screen until the app was restarted even after the connection had recovered; it now clears on its own.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>continuousAccessEvaluation</code> to the Microsoft 365 entry in <code>managedMcpServers</code>: the bundled connector's sign-ins, through the OS sign-in broker as well as the browser, request Continuous Access Evaluation tokens from Microsoft, which can live up to about 28 hours but are revoked within minutes when an administrator revokes sessions or a tenant network policy no longer allows them; set it to <code>disabled</code> to keep standard one-hour tokens on every sign-in path. Defaults to <code>enabled</code>.</li>
-<li>Added each model's description from the gateway to the model picker for deployments that discover models from the gateway.</li>
-<li>Changed <code>microsoftAuthBroker</code>: a new <code>required</code> option makes Microsoft 365 sign-in fail when the OS sign-in broker is unavailable instead of falling back to the browser, so the refresh token always stays held by the broker, and removes the token cache an earlier browser sign-in left on disk. Earlier versions treat <code>required</code> as <code>disabled</code> (browser sign-in only), so set it once every device is on this version or later.</li>
-<li>Changed Claude API, Google Vertex AI, Amazon Bedrock, and Bedrock Mantle deployments that set no custom base URL to no longer suppress Claude Code's experimental features, so tool search is on by default there (on Vertex AI with Claude 4.5 and newer models) and <code>toolSearchEnabled</code> is no longer needed to turn it on; gateway and Foundry deployments, and those providers behind a custom base URL, are unchanged.</li>
-<li>Fixed Amazon Bedrock sessions that use IAM Identity Center sign-in showing an internal error or a bare "operation was aborted" message when AWS sign-in could not be reached at session start; the app now says whether IAM Identity Center was unreachable, temporarily unavailable, refused the account or role, or returned an unreadable response, and what to do next.</li>
-<li>Fixed find in page (⌘F) missing matches in messages scrolled out of view.</li>
-<li>Fixed Google Cloud (Vertex AI) sessions sometimes running under the computer's own Google login instead of the credential your organization configured, and the app not asking you to sign in again after your Google session expired.</li>
-<li>Fixed the app refreshing the sign-in token about once a second when an inference gateway answers 403 to the model list request.</li>
-<li>Fixed the built-in Microsoft 365 connector showing Connected before anyone had signed in; its first request in a conversation now offers the sign-in, and a cancelled sign-in no longer hides its tools; the bundled connector also gains a tool that reads Teams channel messages.</li>
-</ul>]]></content:encoded>
         </item>
     </channel>
 </rss>

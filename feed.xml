@@ -8,6 +8,53 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.26454.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-26454-0</link>
+            <guid isPermaLink="false">ec917fc2fc39ccea</guid>
+            <pubDate>Tue, 06 Oct 2026 19:04:28 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.289.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Fixed a reply or tool step that fails to draw taking the whole chat down with it; the reply now shows as plain text, the step reads “Couldn’t load this.”, and the rest of the chat stays.</li>
+<li>Fixed editing a message spoken in voice mode, which could cut the conversation back to its first message; the edit now shows a notice and keeps your words instead.</li>
+<li>Fixed image and document attachments failing to load on Ubuntu 22.04, Debian 12 and other older Linux distributions.</li>
+<li>Fixed installed plugins disappearing after a plugin was uploaded at a moment when the app could not read its list of installed plugins.</li>
+<li>Fixed the app crashing shortly after launch for people with a very large number of Cowork tasks.</li>
+<li>Fixed the whole app closing when a built-in browser tab whose page had crashed was resized, reloaded, or switched to a device size.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed a new session quietly switching to Local, and running the prompt on this computer, when the picked Remote Control computer or cloud environment went away while you were typing.</li>
+<li>Fixed Cmd+Q, the Quit menu item and the tray Quit skipping the “Claude is still working” prompt and stopping running sessions without asking.</li>
+<li>Fixed file edits being skipped in SSH sessions on Linux hosts that use a worktree while the app is closed or the computer is asleep.</li>
+<li>Fixed new sessions where Claude couldn’t take actions in the app, such as changing settings, opening files in your editor, or keeping your computer awake.</li>
+<li>Fixed SSH sessions stopping with no message, or sitting idle instead of picking up where they left off, after Claude Code restarted on the remote host; the session now shows an error with Try again and resumes when reopened.</li>
+<li>Fixed typed messages, pasted images and attached files being lost when a message failed to send, or when a new session failed to start or was stopped while starting.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Changed computer use on macOS to no longer edit or save hidden files and folders in your home folder, such as <code>~/.vimrc</code> or <code>~/.aws</code>.</li>
+<li>Fixed a scheduled task that was moved to the cloud showing up as a separate paused task on this computer when cloud tasks failed to load, where turning it on could run the task twice.</li>
+<li>Fixed Claude being unable to use document menu commands, such as New Slide or Undo in Keynote, or to click and drag on some canvases while the app stays in the background.</li>
+<li>Fixed Cowork tasks failing to start in a second copy of the app running on the same Windows account.</li>
+<li>Fixed the app freezing when a second message was sent to a new task before the task had finished starting.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>claudeAiImport.allowedOrganizationUuids</code>: the Claude.ai organizations users may import chat history from. When set, users can import only by signing in to Claude.ai, and only from an organization on the list; importing from a file is turned off.</li>
+<li>Added <code>microsoftAuthDefaultAccount</code>: when set to <code>enabled</code>, Connect on the Microsoft 365 connector on Windows signs in with the work account already signed in to Windows, with no account picker. Defaults to <code>disabled</code>.</li>
+<li>Added a “Use a different account” button and a line showing the signed-in account to the Microsoft 365 connector.</li>
+<li>Added an event sent to your OTLP collector when an SSH host isn’t running the sandbox your configuration asks for.</li>
+<li>Added the <code>desktop_claude_ai_import</code> event to the desktop OpenTelemetry export at log level <code>info</code>: it is logged for each Claude.ai history import made by sign-in or from a file, and for an import by the built-in Claude.ai sign-in it names the organization the history came from.</li>
+<li>Changed <code>inferenceGatewayAuthScheme: "sso"</code> to have no end date in this release and later: if <code>inferenceCredentialKind</code> is not set, they keep reading <code>sso</code> as <code>inferenceCredentialKind: "interactive"</code> after October 7, 2026. Earlier releases still stop accepting it on that date.</li>
+<li>Changed connectors on a computer login that several people share: each person now keeps their own built-in and OAuth connector sign-ins. A different person who signs in starts with their connectors disconnected, and the earlier person’s sign-ins are kept for when they sign in again.</li>
+<li>Changed Teams chat search in the Microsoft 365 connector to need the <code>ChannelMessage.Read.All</code> permission; without it, searches return a message with a consent link. Grant Entra admin consent, then set Access (<code>scope</code>) to the permissions the connector already uses plus this one, and have users reconnect.</li>
+<li>Fixed organization plugins a user installed disappearing after the admin’s plugin folder was redeployed.</li>
+<li>Fixed saving a skill with a very long description causing every skill kept on this computer to be removed. A description over 1,024 characters is now refused with the reason.</li>
+<li>Fixed the Microsoft 365 connector’s Access setting replacing the default permissions (mail, calendar, files) with a single permission when an administrator added one. Access now shows the defaults as selected, so adding one keeps the rest, and a custom list can be reset to the default.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.19675.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-19675-1</link>
             <guid isPermaLink="false">56d5c4dbae761bf6</guid>
@@ -496,14 +543,6 @@
 <li>Fixed Claude Code's own settings on the device (a user's or project's settings file, or a <code>managed-settings.json</code>) being able to turn OpenTelemetry trace export back on after an administrator configured a collector with traces off; with <code>otlpEndpoint</code> set, Cowork and Code sessions now export traces only when <code>otlpTracesEnabled</code> is <code>true</code>.</li>
 <li>Fixed Amazon Bedrock and Google Vertex AI sessions retrying a failed request for several minutes when the AWS or Google Cloud credential on the machine had expired; the request now stops after one retry so the credential can be refreshed.</li>
 </ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[Known issue: Cowork on Windows]]></title>
-            <link>https://claude.com/docs/cowork/changelog#known-issue-cowork-on-windows</link>
-            <guid isPermaLink="false">7acc34139817438d</guid>
-            <pubDate>Mon, 14 Sep 2026 19:31:16 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>Resolved September 14, 2026.</strong> Microsoft has released a Windows update that fixes this issue. Install the latest Windows update and restart your PC.</p>
-<p>A Windows update released September 8, 2026 (including KB5124008) stops Cowork from reaching your files when it runs on your Windows PC, so tasks fail or the workspace does not start. This affects Cowork on third-party inference deployments and Cowork sessions that run on your computer rather than in the cloud. Cloud sessions and Claude Code, including the Code tab, are not affected. Chat cloud sessions are not affected, but Chat sessions on third-party inference deployments are affected if using advanced file analysis. The cause is a change in Windows, so restarting or reinstalling Claude does not help.</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

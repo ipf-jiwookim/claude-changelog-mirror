@@ -8,6 +8,71 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v2.37337.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v2-37337-1</link>
+            <guid isPermaLink="false">8f117f98c06638a5</guid>
+            <pubDate>Tue, 13 Oct 2026 18:23:17 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.295.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added "Open in new window" for chats, so a conversation can stay open in its own window beside the main window.</li>
+<li>(breaking) Removed the former managed-configuration key names <code>isDxtEnabled</code>, <code>isDxtSignatureRequired</code>, and <code>isDxtDirectoryEnabled</code>. In a profile that still uses one, the name is now an unrecognized key: its setting no longer applies and the deprecation notice no longer appears, so unsigned extensions load and, on standard deployments, extensions are allowed and the extension directory shows. Set <code>isDesktopExtensionEnabled</code>, <code>isDesktopExtensionSignatureRequired</code>, and <code>isDesktopExtensionDirectoryEnabled</code> to the same values. This differs from earlier notes for third-party deployments, which said extensions would be disabled and only signed extensions would load. A macOS profile or Windows user policy that holds only former names is no longer read as managed configuration, so the device becomes unmanaged. A Windows machine policy or Linux managed settings file that holds only former names is reported as a configuration error, and local settings stay disabled.</li>
+<li>Changed the certificate that signs the Windows app and its installer to a renewed one from the same publisher. Rules that allow Claude by publisher are unaffected; rules that pin the certificate itself need the new certificate added beside the old one.</li>
+<li>Fixed a message that failed to send being lost when the page reloaded; it now stays in the chat with its Retry.</li>
+<li>Fixed chats losing access to this computer's files and apps when registering the computer took more than a few seconds.</li>
+<li>Fixed computer use in the background taking your keyboard: a dropdown menu that a click or key opens in a background app is now closed again at once instead of swallowing what you type.</li>
+<li>Fixed MCP servers and preview dev servers launched through npx or npm failing to start on Windows when Node is installed under Program Files or an argument contains a space.</li>
+<li>Fixed new Cowork tasks and Code sessions still connecting through the previous proxy after a proxy auto-config (PAC) file's answer changed, which failed with connection errors until the app was restarted.</li>
+<li>Fixed plugins loading without their skills and tools, scheduled tasks failing to load, folder reads, and "Open with Claude" failing when the Windows profile lives in an FSLogix or similar profile container.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added Auto save to the Files pane editor, with an option in the pane menu to turn it off.</li>
+<li>Changed SSH on Windows to use only an <code>ssh.exe</code> found on <code>PATH</code>. A <code>.bat</code>, <code>.cmd</code> or <code>.ps1</code> wrapper named <code>ssh</code> is no longer run.</li>
+<li>Fixed Code sessions with hundreds of added folders failing to start on Windows.</li>
+<li>Fixed file edits being skipped in SSH sessions on Mac hosts that use a worktree while the app is closed or the computer is asleep.</li>
+<li>Fixed messages Claude wrote before a tool call disappearing into a collapsed group of tool calls.</li>
+<li>Fixed sessions failing to start when many sessions that each use a worktree of a large repository start at the same time.</li>
+<li>Fixed sessions that hold a very large prompt sometimes showing an error in place of the conversation.</li>
+<li>Fixed sessions with background agents not continuing on their own after the 5-hour usage limit resets.</li>
+<li>Fixed some Claude Code crashes on Windows that cut off a response showing "Session was interrupted" instead of the crash message with Try again.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Improved the "workspace disk full" prompt so cleaning up frees enough space to keep working.</li>
+<li>Fixed charts, tables, and diagrams in artifacts staying blank when offline or when the network blocked the site their libraries came from. The libraries now come with the app.</li>
+<li>Fixed Cowork tasks on a computer whose administrator turned off the local VM trying to start on that computer instead of in the cloud.</li>
+<li>Fixed messages that could not be sent sometimes appearing as sent, with no error shown.</li>
+<li>Fixed scheduled tasks on your computer that could not be edited after their first run ("Failed to update scheduled task").</li>
+<li>Fixed the first message of a new task being lost when the app reloaded while the task was starting.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>developerModeEnabled</code>, which lets admins turn off Developer Mode and block installing extensions from a folder. It also applies on standard deployments.</li>
+<li>Added a "Not set" or "Allow none" choice to the empty <code>coworkEgressAllowedHosts</code> and <code>sshHostAllowlist</code> (beta) lists in the Setup window. "Allow none" saves and exports an empty list.</li>
+<li>Added a configuration warning for a <code>disabledBuiltinTools</code> entry spelled with underscores or hyphens, such as <code>web_fetch</code>; the warning gives the correct name, <code>WebFetch</code>.</li>
+<li>(breaking) Removed the deprecation notices for the spellings that stopped being accepted on October 7, 2026: header maps written as a string or list, <code>inferenceGatewayAuthScheme: "auto"</code>, the <code>ask-session</code> permission value, older <code>managedMcpServers</code> entry forms, and the <code>orgPluginSettings</code> record form. Such a value is now reported like any other invalid value; the replacements are listed under v1.40609.0.</li>
+<li>(breaking) Removed the former key names <code>enduserAttribution</code>, <code>trustBootstrapLocalExec</code>, and <code>inferenceGatewayHeaders</code>. In a configuration that still uses one, the name is now an unrecognized key: its setting no longer applies and the deprecation notice no longer appears. End-user attribution is then on, except in the Windows registry, where names ignore case and <code>enduserAttribution</code> still reads as <code>endUserAttribution</code>. A <code>bootstrapUrl</code> set by device management (on Windows, machine policy only) is trusted without asking each user. No custom inference headers are sent. Use <code>endUserAttribution</code>, <code>trustBootstrapDelivery</code>, and <code>inferenceCustomHeaders</code> instead. The former extension key names are under General.</li>
+<li>Changed <code>disabledBuiltinTools</code>: a <code>WebFetch</code> or bare <code>Bash</code> entry added by device management now also applies to Cowork and Chat conversations already open.</li>
+<li>Changed <code>disableNonessentialServices</code> so that it no longer turns off Chart.js, Grid.js, and Mermaid in artifacts, which now come with the app.</li>
+<li>Changed <code>managedMcpServers</code>: an entry whose <code>toolPolicy</code> is malformed is no longer dropped. It is kept with that tool, or every tool, blocked, and a configuration error is reported.</li>
+<li>Changed <code>sshTransport</code> (beta) on every platform: a value that cannot be read, such as a misspelling, now counts as <code>builtin</code> instead of the default engine.</li>
+<li>Changed OAuth-protected MCP connectors to ask you to sign in again once after this update, and again whenever a connector's URL changes.</li>
+<li>Changed the Setup window's <code>.reg</code> export to write machine policy (<code>HKEY_LOCAL_MACHINE</code>) instead of user policy (<code>HKEY_CURRENT_USER</code>); importing the file now needs administrator rights, and deploying it as user policy means replacing <code>HKEY_LOCAL_MACHINE</code> with <code>HKEY_CURRENT_USER</code> first.</li>
+<li>Changed which hosts the agent's tools reach automatically: your inference provider's, gateway's, and OTLP collector's hosts and <code>api.anthropic.com</code> are no longer added to <code>coworkEgressAllowedHosts</code> for you. List them if your agents' shell commands, web fetches, or http hooks call them.</li>
+<li>Fixed "Save image" and "Copy image" failing in the Code tab.</li>
+<li>Fixed a connection delay when Claude started before the configuration server was reachable; Claude now retries when you wake or unlock the computer, or return to the app.</li>
+<li>Fixed Auto permission mode being greyed out as "Not available for the selected model" in the Code tab for the Claude Haiku model that supports it, which caused new Code sessions to start in Accept edits.</li>
+<li>Fixed conversations disappearing from the sidebar and not opening when <code>coworkTabEnabled</code> is <code>false</code>. This affected Cowork tasks, including conversations started from the home screen while Unified Claude (beta) was on. They now stay listed and open read-only until Cowork is re-enabled.</li>
+<li>Fixed Cowork not starting a task when the organization's model list had not loaded. Cowork now waits a short time for the list, then starts the task or shows why it cannot.</li>
+<li>Fixed file edits in an SSH worktree session on a Linux host sometimes landing in the main checkout or another session's worktree.</li>
+<li>Fixed MCP connector sign-in failing through explicit OAuth endpoints for identity providers whose issuer has a path.</li>
+<li>Fixed model pickers showing no Effort control for newer models when <code>modelCatalogEnabled</code> is <code>false</code>; picker names, descriptions, and recommended effort levels now follow the catalog bundled with the app.</li>
+<li>Fixed scheduled Cowork tasks that never started on a computer where Claude's workspace fails to start; due tasks now start without the workspace after about ten minutes, with commands that need the workspace failing in those runs.</li>
+<li>Fixed the "Strict sandbox mode" switch under Settings › Claude Code, and the /status card's Sandbox row, showing strict mode as off when your organization's configuration already enforces it.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v2.31226.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-31226-1</link>
             <guid isPermaLink="false">a16f14c9ee800181</guid>
@@ -522,13 +587,6 @@
 <li>Fixed the model picker listing the same model name many times when a gateway returns several models under one display name; the extras now appear under More models, labelled by the part of the model ID that differs.</li>
 <li>Fixed scheduled tasks silently not running after the provider sign-in (such as AWS IAM Identity Center) had expired; they now wait and run once you sign in again, and the "Scheduled task failed" notification now appears when a task could not start.</li>
 </ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[Resolved: Cowork on Windows]]></title>
-            <link>https://claude.com/docs/cowork/changelog#resolved-cowork-on-windows</link>
-            <guid isPermaLink="false">1b470029ec17ceda</guid>
-            <pubDate>Wed, 07 Oct 2026 18:16:21 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Microsoft has released a Windows update that fixes the issue where Cowork could not reach your files on Windows PCs. Install the latest Windows update and restart your PC. On Windows 11 24H2 and 25H2 the fix is <a href="https://support.microsoft.com/en-us/servicing/os/windows-11/2026/09/kb5129195-windows-11-24h2-25h2-security-update">KB5129195</a>. On Windows 11 23H2 the fix is <a href="https://support.microsoft.com/en-us/servicing/os/windows-11/2026/09/kb5129242-windows-11-23h2-update">KB5129242</a>. On Windows 10 21H2 and 22H2 the fix is <a href="https://support.microsoft.com/en-us/servicing/os/windows-10/2026/09/kb5129236-windows-10-21h2-22h2-update">KB5129236</a>. No Claude Desktop update is needed.</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

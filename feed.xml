@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[v2.42304.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v2-42304-0</link>
-            <guid isPermaLink="false">3033896fc9e120fe</guid>
+            <guid isPermaLink="false">1037220ab31fec58</guid>
             <pubDate>Thu, 15 Oct 2026 15:33:15 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.299.</p>
 <p><strong>General</strong></p>
@@ -31,8 +31,8 @@
 <li>Added environments: save a folder, SSH host, cloud environment, or Remote Control machine, with a worktree and branch setting for each folder, and pick one when you start a session. "Save as environment" at the top of a session saves where it started (not yet in third-party deployments).</li>
 <li>Added nested sessions in local and SSH sessions: Claude can start a task in a separate session, which appears under the original session in the sidebar and reports back to it. In Settings > Claude Code, choose what happens when you ask for an unrelated task (not yet in third-party deployments).</li>
 <li>Added a box at the end of the conversation in local and SSH sessions that shows Claude's plan while it works. When a turn ends, the box can show a short recap with buttons for what to do next (not yet in third-party deployments).</li>
+<li>Added Environment to the sidebar's Group by menu. It groups sessions by their saved local or SSH environment, or by folder or repository when they have none. Custom groups are now called sections (not yet in third-party deployments).</li>
 <li>Changed the New session page: choose where Claude runs and which folder to use in the row under the message box, or pick a recent environment from the card on the page. For a Git folder, Branch and Worktree are at the bottom of the folder menu (not yet in third-party deployments).</li>
-<li>Changed the sidebar to group sessions by environment, or by folder or repository when there is no saved environment. Custom groups are now called sections (not yet in third-party deployments).</li>
 <li>Changed the sidebar's Filter button to Group and sort, which appears when you hover a group heading. Use it to change grouping or sorting, show routines or empty groups, or open View all for archived sessions (not yet in third-party deployments).</li>
 <li>Changed pull request controls to appear in the Changes card on the session rail, instead of in a bar above the message box. Each open pull request's menu has Auto-fix, Merge when ready, and auto-archive options (not yet in third-party deployments).</li>
 <li>Changed the folder and repository menu to appear in the Environment card on the session rail, next to the branch and Remote Control, instead of in the session's title bar (not yet in third-party deployments).</li>

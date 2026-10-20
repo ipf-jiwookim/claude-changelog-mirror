@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[v3.1623.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v3-1623-0</link>
-            <guid isPermaLink="false">871860b5336ceb71</guid>
+            <guid isPermaLink="false">4dabfe1b4baf5273</guid>
             <pubDate>Tue, 20 Oct 2026 17:20:10 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.304.</p>
 <p><strong>General</strong></p>
@@ -31,7 +31,6 @@
 <li>(breaking) Changed local sessions where claude.ai admin settings apply: the local-session ban (<code>disableDesktopLocalSessions</code>) in the computer's own Claude Code managed settings now applies too, so Code sessions on that computer no longer start or resume; sessions already running continue.</li>
 <li>(breaking) Changed saved SSH passwords where claude.ai admin settings apply: the saved-password ban (<code>disableSshSavedPasswords</code>) in the computer's own Claude Code managed settings now applies too; passwords already saved are kept but are not offered or used.</li>
 <li>(breaking) Changed SSH sessions on macOS and Linux hosts to not start when the host can't report the real location of one of the session's folders. The error says to start a new session from paths with no symbolic links.</li>
-<li>(breaking) Changed SSH sessions that start through your organization's corporate launcher: if the launcher reads standard input before it starts Claude Code, for example to ask for a password, the session no longer starts, and an error says what to change in the launcher.</li>
 <li>(breaking) Changed SSH sessions to stop starting the MCP servers from your desktop settings on a remote host whose administrator uses Claude Code's <code>managed-mcp.json</code> to allow only their own servers.</li>
 <li>(breaking) Changed SSH where claude.ai admin settings apply: hosts missing from <code>sshHostAllowlist</code> in the computer's own Claude Code managed settings are refused, whatever admin settings allow. An empty or malformed list turns SSH off; with no list there, only the admin settings list applies.</li>
 <li>(breaking) Changed the Browser pane in SSH sessions to keep sign-ins separate for each session and only until you quit the app, to open localhost (your computer) and private-network addresses only when you type them, and to no longer open intranet sites at public-looking names, even when typed.</li>

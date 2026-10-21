@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[v3.1623.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v3-1623-0</link>
-            <guid isPermaLink="false">4dabfe1b4baf5273</guid>
+            <guid isPermaLink="false">89aa150e235941da</guid>
             <pubDate>Tue, 20 Oct 2026 17:20:10 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.304.</p>
 <p><strong>General</strong></p>
@@ -55,6 +55,7 @@
 <li>Added <code>quickEntryDefaultShortcut</code>, which sets the Quick Entry shortcut, or <code>off</code> for none, for users who have not chosen their own in Settings.</li>
 <li>Added <code>releaseChannel</code>. Set it to <code>staggered</code> to have devices update to releases that Anthropic marks after they have fully rolled out on <code>stable</code>; those devices skip the releases in between, and fixes reach them later.</li>
 <li>Added an optional <code>icon</code> to remote and local <code>managedMcpServers</code> entries, a PNG or JPEG image as a base64 <code>data:</code> URI of up to 4,096 characters, shown so users can tell connectors apart.</li>
+<li>Added nested sessions to local and SSH sessions in the Code tab: Claude can start a task in a separate session, which appears under the original session in the sidebar and reports back to it. Each nested session sends its own requests to your inference provider.</li>
 <li>Added the new Code tab: the New session page with saved environments (folders and SSH hosts), the session rail, sidebar grouping by environment, and the pickers under the message box. Anthropic-hosted cloud environments, Remote Control, voice input and worktrees for extra folders remain unavailable.</li>
 <li>Added to Code tab sessions Claude's plan and a next-step box at the end of a turn, suggested next actions, <code>/btw</code> side chats in a pane, and permission requests, questions and suggested tasks shown in the conversation.</li>
 <li>(breaking) Changed <code>sshHostAllowlist</code> (beta) to also cover a session's jump hosts: each <code>ProxyJump</code> host, and the host in a <code>ProxyCommand</code> written <code>ssh -W %h:%p host</code>, must be on the list by its <code>HostName</code>. The error on a refused session names the host to add.</li>
@@ -558,32 +559,6 @@
 <li>Fixed Microsoft 365 connector sign-in through Company Portal or the Windows account broker requesting only <code>offline_access</code> instead of the permissions in the connector's <code>scope</code> setting. Affected members may be asked to reconnect, and in tenants whose Entra admin consent doesn't cover every permission in <code>scope</code> they may see Microsoft's consent or admin-approval page until the missing permissions are consented.</li>
 <li>Fixed organization sign-in with Microsoft Entra ID asking users to sign in again after a restart when <code>bootstrapOidc.scopes</code> uses <code>/.default</code>.</li>
 <li>Fixed pop-out windows doing nothing: "Open in new window" and ⌘-click (or Ctrl+click on Windows and Linux) for Code tab sessions, side panes, the side chat, and Pop out on Cowork live artifacts.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v2.2553.13]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-2553-13</link>
-            <guid isPermaLink="false">0ba603b76022a67e</guid>
-            <pubDate>Tue, 22 Sep 2026 16:56:41 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.280.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>Added support for Claude Opus 5.5.</li>
-<li>Fixed sessions that could hang with no response after an internal error; the error is now shown.</li>
-<li>Fixed some conversations failing on every message with a "text content blocks must be non-empty" error, including after resuming.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added <code>AGENTS.md</code> support: in a folder with no <code>CLAUDE.md</code>, Claude reads <code>AGENTS.md</code> for project instructions (not yet in third-party deployments).</li>
-<li>Fixed Claude being unable to read the output of its own background commands in sessions restricted by an administrator's allowed workspace folders.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>No user-facing changes.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

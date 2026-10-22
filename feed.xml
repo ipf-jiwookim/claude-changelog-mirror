@@ -8,6 +8,88 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v3.6556.1]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v3-6556-1</link>
+            <guid isPermaLink="false">4b6d3aa3302323a7</guid>
+            <pubDate>Thu, 22 Oct 2026 16:24:21 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.308.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Changed read-only <code>allowedWorkspaceFolders</code> entries with an unset or unsupported <code>%VAR%</code> (any on SSH hosts): the folder holding it turns read-only (<code>~/Work</code> for <code>~/Work/%X%/a</code>), or every allowed folder if it starts the entry. Another system’s variable (<code>%APPDATA%</code> on macOS or SSH) is still ignored.</li>
+<li>Fixed chats from an interrupted bulk delete coming back with no notice; the next launch now lists them.</li>
+<li>Fixed dictation problems: keyboard focus being lost or jumping behind an open dialog when a recording starts or ends, a click or Enter meant to finish a dictation sending your message when the recording had just failed, and an empty recording moving the cursor to the start of your draft.</li>
+<li>Fixed editing a new chat’s first message while it was still sending, which sent the edit to a chat that did not exist and lost it. Edit now appears once Claude starts to reply.</li>
+<li>Fixed renaming an open artifact from its title menu reloading it and clearing anything you had typed or selected in it.</li>
+<li>Fixed Reset App Data on Windows sometimes deleting files outside Claude’s data folder.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Added SSH connections in the macOS and Linux apps that get their host from your own command: add an entry with an <code>id</code>, <code>name</code> and <code>command</code> under <code>sshHostCommands</code> in your Claude Code settings, then choose "Create" with its name in the environment menu. Not in third-party deployments.</li>
+<li>Added the ability for Claude to press keys such as Return, Delete and the arrows, rotate the simulator, and show or hide the on-screen keyboard in the iOS Simulator.</li>
+<li>Changed <code>allowedWorkspaceFolders</code> on SSH hosts: an entry is left out, and allows nothing, unless it is a full path for that host (<code>~/work</code>, not <code>work</code>; on Windows <code>C:\work</code>, not <code>\work</code>) with no <code>..</code>. A symbolic link listed inside another listed folder is left out too: list the folder it points to.</li>
+<li>Changed a folder’s permission mode to be saved separately for this computer, each SSH host, and each WSL distribution. Folders set to Bypass permissions start in their default mode until you pick it again and confirm; on SSH and WSL, earlier picks more permissive than their default no longer apply.</li>
+<li>Fixed deleting a session right after opening it, which left its transcript on this computer.</li>
+<li>Fixed SSH sessions being ended or auto-archived while their task was still running, messages sent during a connection loss never being delivered, sessions opening with only part of their history, and refused sign-ins being retried in the background, which could count toward the host’s lock-out.</li>
+<li>Fixed the cloud environment editor losing, changing or reordering environment variables, and adding backslashes, when a value mixes quotes and backslashes or contains both kinds of quote.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Changed MCP tools that their server marks as needing a person to ask only on the in-app card, so their notifications have no Allow button and scheduled tasks go on without those calls.</li>
+<li>Removed <code>/schedule</code> from the slash menu; typing it now fills in a request to schedule the task, like the Schedule button.</li>
+<li>Fixed Claude not finding your plugins and skills in scheduled tasks and other tasks not open on screen, except in third-party deployments.</li>
+<li>Fixed earlier tasks missing from the list on some Windows computers where an older version of the app had started blank and signed out. They come back the next time the app starts.</li>
+<li>Fixed screen readers saying only “Claude wants to use:” when focus moves to a request to use your computer, without naming the apps or access it asks for.</li>
+<li>Fixed the notice for a failed workspace start sometimes not appearing, and tasks started from a plugin’s setup card, a connector’s suggested prompts or an onboarding suggestion being silently dropped after Claude’s workspace failed to start.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>headersHelperArgs</code> and <code>envHelperArgs</code> to <code>managedMcpServers</code> entries: arguments for the entry’s <code>headersHelper</code> or <code>envHelper</code>, so one helper script can serve several servers.</li>
+<li>Added <code>installedUpdateEnforcementEnabled</code> and <code>installedUpdateEnforcementHours</code>. With <code>disableAutoUpdates</code> and the first <code>true</code>, Claude restarts into a version installed while open after the second’s hours (1 to 72; unset: 72, then once idle). On Windows (MSIX) it may stay closed until reopened.</li>
+<li>Added <code>quickEntryScreenshotsEnabled</code> and <code>quickEntryFileSharingEnabled</code> on macOS. Set to <code>false</code>, they turn off screenshots (and the Screen Recording request) and attaching the file open in another app (and the Accessibility request), in Quick Entry and in @-mentions of an app’s window.</li>
+<li>Added a “Relaunch to update” notice on macOS, Linux and Windows (MSIX installs) when a newer version is installed while the app is open on a device with <code>disableAutoUpdates</code> set.</li>
+<li>Added cached token counts, read and written, to each tab on Settings > Usage, so that the tokens behind the estimated cost can be seen.</li>
+<li>Added Storage to Settings > This computer > System: it shows the disk space Claude uses, lets you free up space by deleting inactive chats and Cowork tasks and cleaning up inactive Code sessions, and opens from the new low-disk-space warning or with <code>/storage</code> in Chat, Cowork and Code.</li>
+<li>Changed <code>sshClientPath</code> (beta) on Windows to accept Git for Windows’ <code>ssh.exe</code> or another OpenSSH 8.5 or newer under Program Files. Device management, or the bootstrap server it names, must set the key and also set <code>sshTransport</code> to <code>system-openssh</code>.</li>
+<li>Changed the approval prompt for <code>managedMcpServers</code> from a bootstrap server: for a remote connector with a helper script, it now shows where the helper’s output is sent and asks again when that address changes. People who approved such a connector are asked once more after updating.</li>
+<li>Changed the built-in GitHub connector to ask before every call of <code>issue_write</code>, <code>sub_issue_write</code>, <code>pull_request_review_write</code>, <code>add_reply_to_pull_request_comment</code> and five write tools that <code>toolsets</code> can enable. An exact <code>toolPolicy</code> key, or <code>"*"</code>, can still allow them.</li>
+<li>Changed the built-in GitHub connector’s <code>actions_run_trigger</code> tool to ask before every call whatever <code>toolPolicy</code> says. <code>toolPolicy</code> can still block it.</li>
+<li>Changed the built-in Microsoft 365 connector’s tool for reading files, messages and folders to ask for approval once more in Chat and Cowork after this update, where “Always allow” had been chosen.</li>
+<li>Changed the Setup window’s firewall allowlist to list <code>hcaptcha.com</code> and <code>*.hcaptcha.com</code> for sign-ins on Anthropic’s pages (Claude Console, admin console, Claude.ai import) and the hosts of MCP servers and plugin marketplaces that a bootstrap server or the admin console delivers. Export it again.</li>
+<li>Changed update checks to use <code>releases.claude.com</code> when <code>bootstrapUrl</code> is on <code>config.claude.com</code> and <code>bootstrapEnabled</code> is not off, even with <code>updateViaUpdatesHost</code> off.</li>
+<li>Improved how quickly Cowork lists recent tasks and chats at launch when many sessions are saved: recent ones appear first, with a placeholder row at the end of the list while older ones load.</li>
+<li>Fixed Cowork and Code showing empty session, project and scheduled-task lists when the app starts while the bootstrap server is unreachable, on devices that fetched their configuration before and whose profile sets no <code>inferenceProvider</code>. Scheduled tasks now wait until the connection is restored.</li>
+<li>Fixed Cowork’s live list of steps and progress notes showing only when a reply began with steps. It now follows whichever steps Claude is working on, also after text or an answered question.</li>
+<li>Fixed gateway sessions quietly running a newer Opus when Opus 4 or 4.1 was picked. The picked model is now requested. If your gateway, or the provider behind it, no longer serves it, sessions and scheduled tasks on it now fail: remove it from your model list and move those tasks to another model.</li>
+<li>Fixed plugins being uninstalled when an admin moves an <code>allowedPluginMarketplaces</code> entry to a new source: in the same change, set the new entry’s <code>expectedName</code> to the old marketplace’s name. Plugins that the marketplace takes from another repository are still uninstalled.</li>
+<li>Fixed plugins installed from a marketplace folder on this computer having no Settings tab on their page in Customize, so Code tab sessions ran them without the values they ask for. Values entered earlier in a terminal must be entered again in that tab.</li>
+<li>Fixed Quick Entry not starting anything; a Quick Entry prompt now starts a session.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[v3.1623.4]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v3-1623-4</link>
+            <guid isPermaLink="false">f70e20ea8d9b6809</guid>
+            <pubDate>Thu, 22 Oct 2026 16:24:21 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.308.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Changed plugins that the app loads to ask before using the tools they pre-approve when your organization's Claude Code managed settings, such as <code>managed-settings.json</code>, set <code>allowManagedPermissionRulesOnly</code>.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Fixed GitHub's MCP server write tools showing a form that closed without creating anything.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Changed which servers in Claude Code's <code>managed-mcp.json</code> are stopped by <code>isLocalDevMcpEnabled</code> set to <code>false</code> or by <code>allowedPluginMcpServers</code>: a local MCP server that uses <code>${VAR}</code> only in its <code>env</code> values now runs. One with a variable in its command or arguments is still stopped.</li>
+<li>Fixed every request failing when a gateway or cloud provider rejects tool search; the request is now sent again without it.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v3.1623.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v3-1623-0</link>
             <guid isPermaLink="false">89aa150e235941da</guid>
@@ -454,111 +536,6 @@
 <p><strong>3P</strong></p>
 <ul>
 <li>No user-facing changes.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v2.9939.2]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-9939-2</link>
-            <guid isPermaLink="false">2ee5ac86983857fe</guid>
-            <pubDate>Thu, 24 Sep 2026 21:30:26 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.281.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>Removed the Cmd+. (Ctrl+. on Windows and Linux) shortcut for showing and hiding the sidebar; Cmd+B (Ctrl+B) still does it.</li>
-<li>Fixed 1Password autofill filling the wrong browser tab when Claude works across several tabs.</li>
-<li>Fixed a message typed into a new chat or task being lost when you are asked to sign in again before sending.</li>
-<li>Fixed Arabic and Hebrew messages drawing quote bars and list bullets on the wrong side, and mirroring code and math.</li>
-<li>Fixed Code tab and Cowork sessions failing to start on some Macs that had updated to version 2.9939.1.</li>
-<li>Fixed copying part of a reply that contains math pasting scrambled text instead of the formula.</li>
-<li>Fixed plugins that contain a <code>.zip</code> file never installing in the app after being enabled on claude.ai.</li>
-<li>Fixed the app failing to start on some Windows machines after updating, with the error "Cannot create a stable subkey under a volatile parent key".</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Changed session deletion to also remove the session's Claude Code transcript and related files from your computer, so <code>claude --resume</code> can no longer reopen it.</li>
-<li>Fixed a new session's first message failing with "does not support this model" right after an app update, while the Claude Code version its model needs was still downloading; the message now waits for the download.</li>
-<li>Fixed Auto mode sometimes denying a request you had just typed as if you had not asked for it.</li>
-<li>Fixed earlier messages sometimes not loading when you scroll up in a long session.</li>
-<li>Fixed SSH connections failing with "no route to host" to machines on your local network from a Mac where a Homebrew or other non-Apple <code>ssh</code> is first on <code>PATH</code>, and with "SSH master exited before the connection was established" from a Windows computer using the new connection engine to a Windows host whose login shell is <code>cmd.exe</code>.</li>
-<li>Fixed the app using a full CPU core on Windows after archived sessions' worktrees were cleaned up.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed Download in the chat's file pane failing for a document Claude saved to your project.</li>
-<li>Fixed scheduled tasks with an empty description showing no prompt, with Run now disabled, edits failing, and Move to cloud blocked.</li>
-<li>Fixed sessions failing to start on Windows for accounts with many connected folders, on standard deployments; third-party deployments are covered only where Auto mode is offered in Cowork and no model's effort is capped.</li>
-<li>Fixed sessions failing to start with a "Claude Code crashed" error on some Windows MSIX (enterprise-packaged) installs.</li>
-<li>Fixed the new-task screen still offering a model an organization admin had turned off, which made the new task fail.</li>
-<li>Fixed the workspace on Windows failing to start with "VM service not running" until the computer was restarted, after its background service had stopped; the app now starts the service again itself.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added the extended-thinking switch beside the effort control in the Cowork message box.</li>
-<li>Changed <code>allowedPluginMarketplaces</code>: a <code>url</code> marketplace's <code>credentialHelper</code> can print a JSON object of HTTP headers (the form a managed MCP server's <code>headersHelper</code> prints), which are sent on every request to that marketplace, in addition to the existing token and credential-line forms.</li>
-<li>Changed <code>autoModeEnabled</code>: unless it is <code>false</code>, new Code tab sessions now start in Auto mode where the selected model supports it, and when the key is not set the Code tab now offers Auto mode (previously only when it was <code>true</code>). Cowork and Chat are unchanged: only <code>true</code> offers it in Cowork, where sessions still start by asking before each action. Set the key to <code>false</code>, or <code>disableAutoMode</code> to <code>"disable"</code> in Claude Code's <code>managed-settings.json</code>, to keep Auto mode off.</li>
-<li>Changed <code>deploymentDisplayName</code> to also stand in for your organization's name in dialogs and messages that otherwise show the inference provider's name.</li>
-<li>Changed <code>inferenceIdpOidc.resource</code> (and <code>inferenceGatewayOidc.resource</code> in existing gateway configurations) to also accept an identifier with a scheme of its own that is not a web address, such as an AD FS relying-party identifier (<code>urn:…</code>), which is sent exactly as written; URLs and values without a scheme behave as before.</li>
-<li>Changed Code and Cowork sessions on a gateway configured with <code>inferenceGatewayAuthScheme: "x-api-key"</code> to send no nonessential Claude Code traffic (usage telemetry, error reports, release-note and registry fetches) to <code>api.anthropic.com</code>, as when <code>disableNonessentialTelemetry</code> is <code>true</code>.</li>
-<li>Changed Code and Cowork sessions to start Claude Code with fast mode turned off; <code>/fast</code> now reports that fast mode is not available.</li>
-<li>Changed Code tab sessions to ignore every Claude Code provider-selection environment variable set in the user's own environment or in the app's Settings (most were already ignored); the managed configuration alone selects the inference provider.</li>
-<li>Changed connectors on a computer login that several people share: when a different person signs in to the app, the built-in and OAuth connectors now start disconnected and have to be connected again; signing out and back in as the same person keeps them connected.</li>
-<li>Changed managed MCP server connections (<code>managedMcpServers</code> and MCP servers from organization plugins) to no longer follow HTTP redirects: a server whose URL redirects now reports a configuration error, so give the server's final address.</li>
-<li>Changed the built-in browser under the default <code>builtinBrowserDefaultDomainPolicy: "allow"</code>: Claude now asks before each of its actions on a site that Anthropic's site-safety list flags for confirmation. Only a site listed in <code>builtinBrowserAllowedDomains</code>, which applies under <code>"block"</code>, skips that confirmation; sites the site-safety list blocks stay blocked under either policy.</li>
-<li>Fixed Code tab sessions on Windows computers without Git for Windows refusing every shell command with "Enterprise policy requires sandboxing".</li>
-<li>Fixed Cowork cost and token usage metrics sent to <code>otlpEndpoint</code> being dropped by some OpenTelemetry backends as too frequent; Cowork sessions now export once a minute, Claude Code's default, as the Code tab does.</li>
-<li>Fixed gateway and Bedrock <code>external-idp</code> sign-ins through your organization's identity provider running out with no warning when the provider issues no refresh token; the "Your session expires in …" notice now appears ahead of time.</li>
-<li>Fixed read-only tools from managed and built-in MCP servers showing the approval warning meant for tools that can modify data; they now offer "Always allow" unless <code>mcpPersistentAlwaysAllowEnabled</code> is <code>false</code>.</li>
-<li>Fixed republished plugins from a pinned organization marketplace reaching users only after a restart: a configuration change that only moves <code>manifestSha256</code> or a commit <code>ref</code> on existing <code>allowedPluginMarketplaces</code> entries now applies to the running app.</li>
-<li>Fixed the app's own OpenTelemetry events being rejected with a "401 missing_token" error by a gateway that users sign in to directly and that is also the <code>otlpEndpoint</code>.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v2.7032.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-7032-0</link>
-            <guid isPermaLink="false">0ef6e4e4de17b05c</guid>
-            <pubDate>Wed, 23 Sep 2026 00:34:21 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.280.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>Fixed a chat message sent with no network connection appearing to send for about a minute before failing; it now fails within a few seconds and says you went offline, and a connection that has gone quiet after your computer wakes or your network changes reconnects right away.</li>
-<li>Fixed a message sent while Claude is still working sometimes being ignored, and sometimes landing out of order in the transcript with the step before it looking unfinished.</li>
-<li>Fixed Claude becoming the default app for files such as .md and .docx, and Windows asking which app to use for files that already have a default app. Claude also no longer appears in the macOS "Open with" menu for Excel and PowerPoint files; "Other…" in that menu still opens them in Claude.</li>
-<li>Fixed editing a message while another reply is still running losing your edited text when the server refuses the edit; the editor now reopens with your words.</li>
-<li>Fixed the app freezing for a few seconds after launch or reload on some machines, most often on Windows.</li>
-<li>Fixed the whole window being replaced by a "Couldn't finish loading" screen when a chat's side panel failed to download; the chat now stays open and the panel's button shows the problem with a Retry button.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Changed SSH sessions on the new connection engine (the computer's own OpenSSH, the default on macOS and Linux) to run the MCP servers from your desktop settings under Claude Code on the remote machine, so their tools keep working while the app is closed; the session's MCP list says when one isn't installed there or the host already has its own.</li>
-<li>Fixed Claude asking for approval before every terminal command while Remote Control was on, even when you were typing at your computer; it now asks only when the work was started or steered from another device, and that card can turn Remote Control off for the session.</li>
-<li>Fixed long delays in large repositories when starting a new worktree session and when archiving or deleting a session, including the app freezing for up to half a minute on macOS when the repository has a very large <code>node_modules</code> folder.</li>
-<li>Fixed resuming a session failing with "this session's branch is checked out somewhere else" when only the session's own worktree, in the app's worktrees folder, had the branch checked out.</li>
-<li>Fixed sessions starting slowly, and already-open sessions briefly stalling, when many sessions are open.</li>
-<li>Fixed sessions that were waiting on your reply being auto-archived shortly after the app restarted, and the sidebar losing their needs-input marker on restart.</li>
-<li>Fixed SSH connections on some Windows computers failing with "spawn EPERM" or never asking for a password, and connections failing over a private key file that other accounts could read; the app now falls back to its built-in SSH engine, or makes the key file private, and connects.</li>
-<li>Fixed two causes of repeated requests to sign in again: a brief network interruption no longer signs the Code tab out while Chat stays signed in, and a sign-in renewal is no longer thrown away when the server's answer arrives just after a 30-second limit.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Added the health-data consent dialog and the Microsoft 365 work-account notice before a connector is added from a chat suggestion or the suggested-connectors card.</li>
-<li>Fixed "Couldn't delete this task" on Windows when deleting a task that was running or had just finished.</li>
-<li>Fixed built-in and account skills loading without the Skill tool; they load through it again, as plugin skills do, so references to a skill's own folder resolve.</li>
-<li>Fixed connector suggestions in chat offering Connect for a connector your organization has not enabled, which then failed with a permissions message; the suggestion now offers Request where your organization accepts connector requests, and otherwise says to ask an organization owner.</li>
-<li>Fixed messages that start with a file path or file name, such as <code>/tmp/notes.txt</code>, being refused with an "Unknown skill" error instead of being sent.</li>
-<li>Fixed workspace setup failing on every launch after a corrupted download, including with the offline installer.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>inferenceCredentialKind: "external-idp"</code> on the gateway and Bedrock providers: users sign in through your organization's OpenID Connect identity provider, configured with the shared <code>inferenceIdpOidc</code> and <code>inferenceIdpAuthFlow</code> keys (system browser by default, or the OS Microsoft Entra broker), and the user's token is sent as the Bearer credential on every inference request; on Bedrock it goes to a proxy that validates the token, so <code>inferenceBedrockBaseUrl</code> is required and the models must be listed in <code>inferenceModels</code> (no model discovery). The gateway-only spellings (<code>inferenceCredentialKind: "interactive"</code> with <code>inferenceGatewayOidc</code> and <code>inferenceGatewayOidcAuthFlow</code>) are deprecated with no end date and keep working.</li>
-<li>Added <code>keepAwakeEnabled</code>: set it to <code>false</code> so Claude never keeps the computer awake; the keep-awake switches in Settings, the Scheduled page and the Code tab are hidden. Scheduled tasks themselves stay on.</li>
-<li>Added <code>mcpScheduledTaskApprovalLifetimeDays</code>: limits how many days a scheduled task in Cowork or the Code tab may reuse a lasting MCP-tool approval before it asks again. The lasting option is offered even while persistent tool approvals are turned off, and <code>0</code> removes it.</li>
-<li>Changed performance timing telemetry (part of essential telemetry) to go to <code>claude.ai</code> first instead of straight to Datadog, so essential telemetry now also needs <code>claude.ai</code>: most configurations already have that host on their network requirements list under auto-updates or nonessential telemetry, and one that sets <code>updateViaUpdatesHost</code> or <code>disableAutoUpdates</code> together with <code>disableNonessentialTelemetry</code> now lists it under essential telemetry. Datadog's intake hosts stay on the list as the fallback route.</li>
-<li>Removed a temporary vendor-specific exception from custom connector validation: OAuth authorization server metadata that declares an issuer not matching the metadata URL now fails validation again.</li>
-<li>Fixed a crash on Windows that could close the app while the Microsoft 365 connector or another Microsoft Entra sign-in was talking to the Windows account broker.</li>
-<li>Fixed managed connectors configured with their own OAuth client connecting without credentials, instead of prompting for sign-in, when the server accepts unauthenticated connections.</li>
-<li>Fixed Microsoft 365 connector sign-in through Company Portal or the Windows account broker requesting only <code>offline_access</code> instead of the permissions in the connector's <code>scope</code> setting. Affected members may be asked to reconnect, and in tenants whose Entra admin consent doesn't cover every permission in <code>scope</code> they may see Microsoft's consent or admin-approval page until the missing permissions are consented.</li>
-<li>Fixed organization sign-in with Microsoft Entra ID asking users to sign in again after a restart when <code>bootstrapOidc.scopes</code> uses <code>/.default</code>.</li>
-<li>Fixed pop-out windows doing nothing: "Open in new window" and ⌘-click (or Ctrl+click on Windows and Linux) for Code tab sessions, side panes, the side chat, and Pop out on Cowork live artifacts.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

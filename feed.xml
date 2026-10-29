@@ -8,9 +8,62 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v4.4212.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v4-4212-0</link>
+            <guid isPermaLink="false">2b8a9fadc48f9cbe</guid>
+            <pubDate>Thu, 29 Oct 2026 17:38:47 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.309.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added a per-site "Local network access" setting to the built-in browser's menu, with a question the first time a site tries, for sign-in pages that check a desktop agent such as Okta Verify and for sites that talk to devices on your network.</li>
+<li>Added Cowork's notes to the import from Claude (third-party): where device management turned it on and no HIPAA restriction applies, Settings > Import shows the notes Cowork kept there and can add them to your Claude memory, where memory import is available.</li>
+<li>Added Send to options for partner apps, such as Canva, in the Share menu when a Claude Doc is open on its own page.</li>
+<li>Changed <code>disableBrowserExternalNavigation</code> and <code>browserExternalPageTools</code> in a device's Claude Code managed settings (<code>managed-settings.json</code>, or its MDM or HKLM policy) to apply even when the claude.ai admin console also has managed settings.</li>
+<li>Removed opening the application menu by pressing Alt on its own on GNOME, so that switching keyboard layouts with Alt+Shift no longer opens it. F10 still opens the menu.</li>
+<li>Fixed a reply with two or more cards, such as weather or message drafts, showing only one of them, or showing a card with the wrong pictures or places.</li>
+<li>Fixed background computer use treating a window that had been closed as still open on another desktop, which made Claude click into nothing or ask for full-screen control.</li>
+<li>Fixed the message box sometimes opening without its saved draft, and not keeping what you typed as a draft, when two windows loaded at the same time, for example right after signing in.</li>
+<li>Fixed the side panel opening on its own over the conversation in a narrow window when a reply created an artifact or shared a file, which hid the reply and the message box, including from screen readers.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed <code>remoteControlAtStartup: false</code> in a device's Claude Code managed settings (<code>managed-settings.json</code>, or its MDM or HKLM policy) to apply even when the claude.ai admin console also has managed settings.</li>
+<li>Changed SSH connections through a proxy command or jump host on Mac and Linux, where your SSH config sets no ConnectTimeout, to get a longer second try so a slow route has time to come up; the sign-in dialog for a jump host (ProxyJump) no longer closes after 30 seconds.</li>
+<li>Fixed a message to a new or just-cleared SSH session being refused while the host was unreachable: it now waits and is sent when the host is back, and messages waiting for an unreachable host no longer send by themselves before your organization's settings have loaded.</li>
+<li>Fixed Rewind on the first message shown in a very large session clearing the whole conversation.</li>
+<li>Fixed sessions on an SSH machine losing their connection when an <code>sshHostCommands</code> command makes a new one; "Replace …'s host" is now "Create another …", available a minute after the last machine is made.</li>
+<li>Fixed SSH set-up failing at once when Anthropic's download server is busy, and sessions showing only "Reconnecting" when Claude Code couldn't be set up on the host: the app now tries again, names the cause, and offers Retry now.</li>
+<li>Fixed the first message after an SSH session starts or reconnects sometimes silently running without your MCP servers.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Fixed a generic error banner sometimes appearing beside the Paused card after safeguards flagged a message.</li>
+<li>Fixed a stopped tool call showing a message written for Claude as a failure.</li>
+<li>Fixed Cmd+Shift+S and Cmd+Shift+B answering on their QWERTY keys under Dvorak and other remapped keyboard layouts.</li>
+<li>Fixed dismissed notices under a reply, such as crisis support or election information, coming back after leaving a chat and returning to it.</li>
+<li>Fixed furigana (readings above Japanese text) in replies showing as raw HTML tags, and Find counting the hidden tag text and missing words under two readings.</li>
+<li>Fixed Return in a background Mac app's text field adding a line break to the field instead of submitting it.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added <code>projectsEnabled</code>. Set it to <code>false</code> to hide projects in Chat and Cowork. Projects are not deleted, and they come back when the setting is turned on again.</li>
+<li>Added <code>sessionStatusLine</code> to show one line of text above the message box in Cowork, Chat and Code, printed by a program that the app runs. On macOS and Linux the program and every folder above it must be writable only by root, and on Windows it must be in Program Files on the system drive.</li>
+<li>Added <code>skillScanningEnabled</code> (beta): run a security scan on each skill a user creates or uploads before it can be used. Skills that fail the security scan are blocked.</li>
+<li>Added a per-site "Local network access" setting to the built-in browser (<code>builtinBrowserEnabled</code>). When an https site first tries to reach an app on this computer or a device on your network, the user is asked whether to allow it. <code>builtinBrowserBlockedDomains</code> can block devices, not local apps.</li>
+<li>Added Escape to close a side pane of a chat or Cowork task, such as a file or connector pane, when focus is in the pane, and return focus to what opened it. While Claude is replying, Escape in a pane closes the pane, and a second Escape stops the reply.</li>
+<li>(breaking) Changed an unset <code>desktopHome</code> to read as <code>standard</code> at launches after 12:00 PM PT on November 10, 2026: Unified Claude opens with Cowork on, even where <code>coworkTabEnabled</code> is <code>false</code>.</li>
+<li>Changed <code>sshClientPath</code> (beta) on Windows to accept a path starting with <code>%LOCALAPPDATA%\</code> when machine-wide policy (HKLM) sets it, with <code>sshTransport: system-openssh</code>, and Claude does not run as administrator. Whoever replaces a program there can see SSH passwords and get around <code>sshHostAllowlist</code>.</li>
+<li>Changed Code sessions to ask for approval before starting a dev server from <code>launch.json</code> in Auto and Bypass permissions modes, where Claude Code's sandbox (the default on macOS, Linux and WSL) or deny or ask rules in managed settings limit shell commands.</li>
+<li>Changed Cowork to show "Billing issue", with no Try again button, in place of "Something went wrong" when your inference provider or gateway refuses a request with HTTP 402.</li>
+<li>Changed provider API keys saved in Setup to be encrypted where the computer has secure storage. Keys saved earlier are encrypted at the next launch. Versions below 4.29 cannot read them, so after a rollback below 4.29, or a move of the app's data to another computer or account, enter the key again.</li>
+<li>Fixed Settings > Usage and the token limit set with <code>inferenceMaxTokensPerWindow</code> leaving out requests that the app makes itself, such as naming a session. These now count toward the limit, and once it is reached the app stops making them, except its connection check.</li>
+<li>Fixed the connection banner's Details and "Copy report for IT" not mentioning managed settings that were not fully applied. Each one is now listed as a warning, and when the connection works, apps configured from a local file also show the "Configuration may need attention" banner.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v4.29.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v4-29-0</link>
-            <guid isPermaLink="false">03929534944731b0</guid>
+            <guid isPermaLink="false">2e39858504361774</guid>
             <pubDate>Tue, 27 Oct 2026 23:45:27 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.309.</p>
 <p><strong>General</strong></p>
@@ -50,8 +103,8 @@
 <li>Added a warning in Cowork, Chat and Code once a person has used 75% of the token limit set with <code>inferenceMaxTokensPerWindow</code> and <code>inferenceTokenWindowHours</code>. Set <code>inferenceTokenWarningPercent</code> (1 to 100) to change the percent. At the limit it reads “Token limit reached” and cannot be closed.</li>
 <li>Changed <code>managedMcpServers</code> entries with <code>server: "github"</code> so that <code>pull_request_review_write</code> asks before every call, comment-only reviews and thread resolves included, even when <code>toolPolicy</code> allows it. Where no prompt can be shown, the call is refused. <code>toolPolicy</code> can still block it.</li>
 <li>Changed a failed <code>PreToolUse</code> or <code>PermissionRequest</code> hook with <code>"shell": "powershell"</code> to block the call on PCs without Git for Windows unless it sets <code>args</code> or <code>"onFailure": "continue"</code>. If written for Bash: remove <code>shell</code>, add <code>"onFailure": "block"</code> to keep blocking, install Git, reopen Claude.</li>
-<li>Changed an unset <code>desktopHome</code> to open Unified Claude at launches after 12:00 PM PT on November 10, 2026. Where <code>coworkTabEnabled</code> is <code>false</code>, no feature turns on or off. With Cowork on, a set <code>chatSessionRetentionDays</code> without an equal <code>coworkSessionRetentionDays</code> keeps the current view.</li>
-<li>Changed an unset <code>desktopHome</code> with Cowork on to also turn on Chat and Advanced file analysis when it starts to open Unified Claude (November 10, 2026), even if <code>chatTabEnabled</code> or <code>chatAdvancedFileAnalysisEnabled</code> is <code>false</code>.</li>
+<li>Changed an unset <code>desktopHome</code> to open Unified Claude at launches after 12:00 PM PT on November 10, 2026. With Cowork on, a set <code>chatSessionRetentionDays</code> without an equal <code>coworkSessionRetentionDays</code> keeps the current view.</li>
+<li>Changed <code>chatTabEnabled</code> and <code>chatAdvancedFileAnalysisEnabled</code> to have no effect where an unset <code>desktopHome</code> with Cowork on starts to open Unified Claude (November 10, 2026).</li>
 <li>Changed Chat, Cowork and Code sessions to no longer start while Claude’s provider connection settings are missing, invalid or not yet fetched from your organization’s server. Claude says so at once.</li>
 <li>Changed the Microsoft 365 connector to keep each saved sign-in per <code>tenantId</code>, <code>clientId</code>, <code>azureCloud</code> and <code>continuousAccessEvaluation</code>. Connected users sign in again once after this update. Where <code>microsoftAuthDefaultAccount</code> is <code>enabled</code> on Windows, they get the account picker from then on.</li>
 <li>Improved the “Configuration sync issue” banner for a fetched configuration with no connection settings that Claude can use. It now says to contact your administrator and adds “Copy report for IT”.</li>
@@ -479,45 +532,6 @@
 <li>Added read-only access in Chat to folders you add to a project after this update; to use a folder added earlier, add it to the project again and start a new chat.</li>
 <li>Fixed skills uploaded as a <code>.zip</code> or <code>.skill</code> file keeping only their <code>SKILL.md</code>; the archive's other files are now saved, and renaming a skill keeps them.</li>
 <li>Fixed skills with names in other scripts or with punctuation not being found by Cowork and Code sessions, and skill uploads being refused when the zip holds very compressible files or keeps <code>SKILL.md</code> deep inside a repository download.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v2.19675.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-19675-0</link>
-            <guid isPermaLink="false">09e6e4d690b4c7cd</guid>
-            <pubDate>Thu, 01 Oct 2026 19:48:06 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.286.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>Fixed a crash when opening a tool step whose details list a word such as "constructor".</li>
-<li>Fixed a message that failed to send sometimes looking sent, with Claude still working, or disappearing if you had already started typing the next one; a message that cannot be sent now offers Retry.</li>
-<li>Fixed conversations failing with a request error on every later message after a connector, tool or hook returned an unusually shaped result.</li>
-<li>Fixed Quick Entry on macOS discarding your message when an attached file had been moved, deleted, or could not be read before you sent it; the message is now sent without that file and a notice says so.</li>
-<li>Fixed the Windows app failing to start when the Google or Chrome folder under <code>LocalAppData</code> is a junction.</li>
-<li>Removed computer use on macOS 13 and earlier, where its screenshots could never be taken; it requires macOS 14 or later. The Computer use section in Settings now stays visible and explains why when computer use is unavailable.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Added comments on lines of an open file in the Files pane: click the + beside a line, or select text and choose Add comment, and the comment is sent with your next message.</li>
-<li>Fixed a finished session showing as working again after a model switch, a built-in slash command such as <code>/plan</code>, or a <code>!</code> command Claude did not answer, which could hide the usage-limit notice, make Try again send an extra message, or count a resumed turn's time from the wrong point.</li>
-<li>Fixed a session preset's permission mode not being applied when the preset also changed the model.</li>
-<li>Fixed Claude not being able to run commands in the Terminal panel on Windows.</li>
-<li>Fixed new sessions in organizations with Claude Code zero data retention keeping their first few words as their name; they now get a generated title a few seconds after they start.</li>
-<li>Fixed Claude Code failing to start on some Macs right after a desktop update.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Fixed a reply still showing as waiting on you after its sign-in request had expired.</li>
-<li>Fixed a tool request that was restored without its details being approvable before the details arrived; its card now waits for them and offers only Deny.</li>
-<li>Fixed Claude clicking the wrong item, missing an open menu, or bringing the app to the front in apps such as Slack while working in the background.</li>
-<li>Fixed network requests failing on corporate networks where the proxy is set by a one-word host name, and the sandbox being left without a proxy until the app restarted when the proxy auto-config (PAC) file failed to download, such as right after a VPN switch.</li>
-<li>Changed scheduled tasks that Claude creates for you to use "Automatically approve" by default where your organization allows it, so their runs use tools without asking first and pause only when something looks unsafe.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added Excel, Word and PowerPoint previews in the Code tab when Claude's workspace isn't running yet: Excel opens in the document viewer, and opening a Word or PowerPoint file starts the workspace.</li>
-<li>Added the Linux spellcheck dictionary download to the Egress Requirements list; on Linux, <code>disableNonessentialServices</code> now also skips that download and turns spellcheck off.</li>
-<li>Changed the default context window for Opus 4.7 and later, Sonnet 5 and later, and Fable 5 and later to 1M tokens behind a gateway or custom base URL; previously 200K unless the "1M context" option was picked.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

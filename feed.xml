@@ -8,6 +8,84 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v5.1231.0]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v5-1231-0</link>
+            <guid isPermaLink="false">189bddfd9b3070be</guid>
+            <pubDate>Tue, 10 Nov 2026 21:15:12 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.321.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>Added run status to scheduled tasks that run on your computer, in Cowork and Code. A task's card can now say "Last run failed", "Last run failed, will try again", "Needs input" or "Didn't run", or why a run that is due hasn't started, such as "Waiting for its previous run to finish".</li>
+<li>Changed Claude on Windows so that it can stop at launch with the message "Claude could not start" when another program keeps using a file that Claude needs. When Windows starts Claude at sign-in, it stops with no message. Close other programs or restart the computer, then open Claude again.</li>
+<li>Changed Claude on Windows to keep its data in <code>%LOCALAPPDATA%\Claude-Data</code>: new installs start there (Windows 10 21H2 or later and Windows Server 2022, as on Windows 11), and existing data moves there on Windows 10 21H2 or later. The Microsoft Store version and third-party deployments are unchanged.</li>
+<li>Changed computer use on Windows to need the "Use system shortcuts" permission before it presses the Windows key with Tab, a number key or a symbol key.</li>
+<li>Changed file opening to refuse Windows file types that install or apply something at a double click (.msix, .appx, their bundles and encrypted forms, .msu, .ppkg, .xbap, .gadget, .sct, themes, styles and troubleshooter packs).</li>
+<li>Fixed a file sometimes being lost on Windows when two files with the same name were saved to Downloads at the same moment.</li>
+<li>Fixed an artifact in the side panel reloading when reopened within a few minutes of using Refresh on it, which could lose unsaved edits.</li>
+<li>Fixed an occasional crash on Linux when typing after the built-in browser was hidden.</li>
+<li>Fixed Claude being unable to read or act on pages in the built-in browser for some signed-in accounts until they signed out and in again.</li>
+<li>Fixed Claude Setup refusing to install with "Trusted app installs must be enabled" on Windows 11 24H2 and later where Windows itself allows the install. When Windows blocks apps from outside the Microsoft Store, the message now also gives the address of the Windows deployment guide.</li>
+<li>Fixed emailed sign-in links doing nothing when clicked again after a failed sign-in attempt.</li>
+<li>Fixed Run on startup not starting Claude at sign-in on Windows (Microsoft Store and other MSIX installs).</li>
+<li>Fixed scheduled task notifications saying "Scheduled task completed" when the run went on without a step. They now say "Scheduled task skipped a step" when the step needed your approval and nobody was there to give it, or "A safety check blocked a step" in Auto mode.</li>
+<li>Fixed the first "Sign in again" after a launch not renewing the Code tab's and Cowork's saved credentials.</li>
+<li>Fixed the saved sign-in being lost when a proxy answered its renewal with a "200 OK" of its own, and sessions failing to start while still signed in when a proxy or Wi-Fi portal answered a sign-in renewal with a web page.</li>
+<li>Fixed the window staying blank for a long time after a page stopped responding, on Windows and macOS.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed MCP servers added in the desktop app, desktop extensions included, to follow the MCP allow list, deny list and plugins-only setting in an administrator's Claude Code managed settings, in Code sessions on this computer. The session's MCP list says which servers are kept out.</li>
+<li>Changed SSH sessions on Mac and Linux behind several jump hosts: once a jump host has asked you for a password or code in this version, a dropped session no longer redials it over and over. It retries rarely and tells you to sign in.</li>
+<li>Changed the app on third-party deployments to stop updating your checked-out base branch in the background after it makes a worktree for a session. Use <code>git pull</code> to update that branch.</li>
+<li>Changed worktree sessions on SSH and WSL hosts: a folder whose <code>.git</code> Git can't use is now refused in most cases, and the card says why. Such a session used to start without a worktree.</li>
+<li>Fixed an SSH session that could miss a new sign-in made while the app was re-attaching to it, and stop later with an authentication error.</li>
+<li>Fixed deleting a session leaving files on disk: the oldest of over 1,700 earlier conversations, saved command output and temporary files after Claude moved to another folder mid-session, and on Windows the conversation file after the app had moved its data to a new folder by copying it.</li>
+<li>Fixed file edits on network paths (UNC shares, WSL folders, <code>/net</code> mounts) that could change only the first of several matches, replace a whole file, or delete or overwrite a notebook's first cell.</li>
+<li>Fixed pull request status, checks, and auto-fix failing with "HTTP 401" for GitHub Enterprise Server hosts behind an authenticating proxy that the GitHub CLI can pass.</li>
+<li>Fixed running sessions staying in Auto mode after a device policy turned it off, and added a notice when Claude Code takes a session out of auto mode on its own, saying if an admin's policy did it, or that the app couldn't check why.</li>
+<li>Fixed the automatic local cleanup on Windows not removing older sessions' records and unsent messages from folders that an earlier move of the app's data left behind, for organizations with the Claude Code + Cowork HIPAA configuration.</li>
+<li>Fixed the Code tab freezing when many sessions are open.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>Changed Cowork so that edits Claude makes to a session's CLAUDE.md no longer update your global instructions. To change them, use Settings.</li>
+<li>Fixed a comment you were typing on a file being lost when Claude sent an updated version of that file.</li>
+<li>Fixed a crash when many pending approval requests closed at once.</li>
+<li>Fixed an earlier Cowork task not opening, with no message, on a computer that can't run Cowork. The task now opens read-only and says why.</li>
+<li>Fixed Automatically approve not switching on in a Cowork task right after you pick a model that can run Auto. The switch now works at once, without sending a message first.</li>
+<li>Fixed prompts in imported sessions: "Go back" on the first-message prompt showed your message as sent instead of returning it to the message box, and "Continue" or "Trust and resume" could send an earlier message a second time if the prompt was left unanswered and the session reopened.</li>
+<li>Fixed the automatic local cleanup on Windows not removing older tasks, uploads and cached project copies from folders that an earlier move of the app's data left behind, for organizations with the Claude Code + Cowork HIPAA configuration.</li>
+<li>Fixed your own message losing characters such as underscores and asterisks when copied with its Copy button and pasted back into an empty message box.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Added "Allow for 30 days" to the prompt shown before a scheduled Cowork task deletes files in one of its own folders. Later runs can then delete there without asking. <code>mcpScheduledTaskApprovalLifetimeDays</code> sets the number of days, and <code>0</code> turns the option off.</li>
+<li>Added <code>organizationAnnouncement</code>: a message from your organization that each person can close, shown as a card on the start screen or as a dialog. It shows again when you change its <code>id</code>, or its text if it has no <code>id</code>. Update all devices before you put it in a device profile.</li>
+<li>Added a warning when other Claude Code managed settings on a computer override this app's policy there. The diagnostic report shows it with the fix, local Code sessions show a notice, and your OTLP collector gets an event.</li>
+<li>Changed <code>autoModeEnabled</code> set to <code>false</code> through device management to take effect without a restart. At the app's next configuration check (every 10 minutes by default), running Cowork tasks and Code sessions, except WSL sessions, leave Auto mode and say so.</li>
+<li>Changed <code>claudeAiImport.automatic3pImport</code> to keep Cowork projects' descriptions and folders, and Cowork sessions' folders. The folders are connected again without asking the person, so Cowork can read and change their files as before the move. Copies made by earlier versions don't get them back.</li>
+<li>Changed <code>managedMcpServers</code>: a local server can leave out its own <code>command</code> if <code>platformOverrides</code> names only <code>win32</code>, <code>darwin</code> or <code>linux</code>, each with a <code>command</code>. It runs only on those systems. Update all devices first: older versions drop it, and block plugins' MCP tools if that empties the list.</li>
+<li>Changed Code sessions on Windows under an organization's configuration to ask before starting a project's dev server in the Auto and Bypass permission modes, as on macOS and Linux.</li>
+<li>Changed Cowork tasks in Auto mode to wait for Auto mode's check before each shell command, usually one more request to your provider. A command that the check blocks, or cannot check, does not run.</li>
+<li>Changed each model ID in <code>inferenceModels</code> to allow only the version it names, so <code>claude-opus-5</code> no longer also allows <code>claude-opus-5-5</code>. On the Claude API, a list of only retired Opus 4 or 4.1 models no longer starts sessions. List a current model.</li>
+<li>Changed scheduled tasks to retry a run that fails on a server error from your provider or gateway, such as 500 or 529, before Claude responds. Retries end six hours after the first failure. One refused token renewal no longer ends a sign-in through your gateway or identity provider.</li>
+<li>Changed sessions and scheduled tasks saved on a model that <code>inferenceModels</code> doesn't list to run on the default model, which is the first model in the list.</li>
+<li>Changed Sign in with Google on Vertex AI: hooks, MCP servers on the computer and commands in the Code tab that call Google Cloud now need the person's own Google Cloud credentials on that computer, for example from <code>gcloud auth application-default login</code>.</li>
+<li>Changed the credential, client-secret, headers and environment helpers set in managed configuration to start in <code>/</code> on macOS and Linux and in <code>System32</code> on Windows. A helper that reads or writes a file by a relative path must now use its full path.</li>
+<li>Changed what an unset <code>desktopHome</code> does where only Code is on. Versions 4.4212.0 to 4.23118.1 turn on Unified Claude there from 12:00 PM PT on November 10. This version waits until 12:00 PM PT on December 17, 2026. To keep only Code, set <code>desktopHome</code> to <code>off</code> wherever your settings come from.</li>
+<li>Removed the "Open external link" confirmation for most links to other websites, on third-party deployments too. It still shows for some links, such as private IP addresses, names ending in .local or .internal, punycode (xn--) host names, and email or phone links. No setting brings it back.</li>
+<li>Removed the Chat, Cowork and Advanced file analysis switches from the Setup window, starting 12:00 PM PT on November 10, 2026. The Unified Claude switch, which sets <code>desktopHome</code>, takes their place.</li>
+<li>Fixed <code>claudeAiImport.automatic3pImport</code> dropping project pins, sidebar groups and artifacts' earlier versions, and copying nothing when the computer had no earlier sessions. Computers moved by an earlier version get these once, at their next launch. Scheduled tasks copied then run if they were on.</li>
+<li>Fixed a saved provider API key on macOS not being read at launch when the first of two keychain prompts was closed and the second was answered, or when a device management tool opened Claude with the root account's home folder.</li>
+<li>Fixed Auto mode blocking every action it checks in sessions on a Fable or Mythos model when the model list has no Sonnet 5 and no Opus entry tagged with <code>anthropicFamilyTier</code>. The check now uses a listed Opus 4.5 or newer.</li>
+<li>Fixed connector tools set to <code>ask</code> in <code>toolPolicy</code> not showing an approval prompt in Auto mode on devices with their own Claude Code managed settings. They now ask, so unattended scheduled runs stop at them.</li>
+<li>Fixed connectors losing their sign-in when the sign-in server was slow to answer a token renewal or did not answer it. The Connectors page could also stay loading in that case.</li>
+<li>Fixed Cowork tasks and chats showing "Claude Code crashed" when your organization's managed settings for Claude Code, such as a minimum version, stop it from starting. They now show "Claude Code couldn't start" and the reason.</li>
+<li>Fixed new Code sessions starting on the model and effort of the folder's last session when <code>alwaysStartWithDefaultModel</code> is on. They now start on the default model and effort.</li>
+<li>Fixed the token limit set with <code>inferenceMaxTokensPerWindow</code> not counting the tokens that subagents and conversation compaction use. People now reach the limit sooner, most of all in tasks that use subagents.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v4.23118.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v4-23118-1</link>
             <guid isPermaLink="false">bbb71f8affdf9f9e</guid>
@@ -587,58 +665,6 @@
 <ul>
 <li>Changed MSIX installs on Windows so that programs started through Git Bash in a session end when the app updates instead of staying open.</li>
 <li>Fixed every request failing on a 1M-context model when the inference gateway or cloud provider refuses the 1M-context capability; the request is now resent without it.</li>
-</ul>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[v2.31226.0]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-31226-0</link>
-            <guid isPermaLink="false">01d1bd046ef30da7</guid>
-            <pubDate>Fri, 09 Oct 2026 03:11:47 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.293.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>Added skills and local MCP servers to Settings > Import where importing this computer’s third-party history is on: skills saved in Claude (third-party) upload to your own skills automatically, and local MCP servers can be added and started after you confirm the command and settings each one runs with.</li>
-<li>Fixed chats showing "Page not found" when they could not be loaded because of a server or connection problem; the page now says the chat could not be loaded and offers a retry.</li>
-<li>Fixed dictation continuing to record after you let go of the microphone button, when holding it was the first microphone use since the app started.</li>
-<li>Fixed messages being sent under a different organization after the page switched organizations: a message held up by a sign-in prompt is no longer sent, one reported as not sent returns to the message box instead of sending later, and a stopped button or reply send now says why.</li>
-<li>Fixed programs that a session started, such as MCP servers, and the helper processes of local MCP servers staying running on Linux after the app crashed or was force-quit.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>Changed environment variables to live on your saved environments: "This computer" starts clean, existing machine-wide variables are copied into the environments created for you, and the session’s Environment card shows the saved environment you started from.</li>
-<li>Changed SSH sessions to stop continuing an interrupted task on their own: select the session in the sidebar to resume it, a stopped task shows a message with Try again instead of nothing to press, and a task dropped when the host’s sign-in expired while the app was closed now says so.</li>
-<li>Fixed closing the window with the menu-bar icon turned off (Windows and Linux) stopping running sessions without the "Claude is still working" prompt.</li>
-<li>Fixed group delete of Code sessions: when uncommitted changes turn up partway through in a worktree folder the confirmation had not listed, that session is now kept with a notice.</li>
-<li>Fixed SSH sessions dropping their connection while idle or loading a large file, failing on hosts that print a notice before file transfer, staying at "Setting up plugins...", asking you to sign in when retrying was enough, and losing earlier messages on Windows hosts using cmd.exe or PowerShell.</li>
-<li>Fixed the Files pane losing unsaved edits: leaving the session with Auto save off now prompts first, and a file deleted, moved or changed on disk no longer discards your edits or mishandles the next key press.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>Improved computer use on macOS: it no longer saves into hidden folders or types into an app that is not responding, menu commands are no longer reported as disabled after an app was briefly busy, screenshots show under the right step, and text is no longer reported as typed when nothing was.</li>
-<li>Fixed a scheduled task created while the task list was still loading overwriting the prompt of an existing task of the same name.</li>
-<li>Fixed Claude asking for access to a folder the session already had, which left scheduled runs waiting on an approval nobody was there to give.</li>
-<li>Fixed plugin installs, updates and marketplace refreshes sometimes failing or leaving a plugin missing from the list when started right after another, and a removed marketplace leaving an entry behind that could block adding another marketplace with the same name.</li>
-<li>Fixed scheduled tasks skipping a tool that an organization’s approval policy marks "ask": the run now shows the approval prompt and waits, and a newer run of the same task retires an earlier run’s unanswered prompt.</li>
-<li>Fixed the "Scheduled task failed" notification not appearing when a scheduled task’s sandbox could not start.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Added <code>desktopHome</code> for Unified Claude (beta), which combines Chat and Cowork into one experience, with Cowork’s agentic capabilities: set it to <code>standard</code> to turn Unified Claude on, to <code>off</code> to turn Chat and Cowork off entirely (Code is not affected), or leave it out of your configuration to stay on the current Chat and Cowork split until November 10, when Unified Claude goes on for all orgs. While the key is set, <code>chatTabEnabled</code>, <code>chatAdvancedFileAnalysisEnabled</code> and <code>coworkTabEnabled</code> have no effect. A value the app does not recognize, such as <code>Standard</code>, reads as <code>off</code>.</li>
-<li>Added <code>otlpAttrMaxChars</code>, which sets the length at which Cowork tasks and Code sessions cut captured content, such as a raw API body, in the OpenTelemetry export (256 to 15,000,000 characters; 61,440 when unset).</li>
-<li>Added more to what <code>claudeAiImport.automatic3pImport</code> brings to a computer’s new organization: Cowork artifacts, projects, memory and global instructions, scheduled tasks from Cowork and Code, uploaded plugins, saved skills, and the optional plugins a user had on from the organization’s plugins directory or a marketplace served from its gateway’s or bootstrap server’s own address.</li>
-<li>Added two switches for <code>desktopHome</code> to the Setup window’s Allowed surfaces section: "Opt into the new Chat and Cowork unified view" and "Chat and Cowork unified view". While the key is set, Allow Chat, Allow Cowork and Advanced file analysis are hidden (their values are kept), and one "Chat and Cowork unified retention period" sets both retention periods.</li>
-<li>Changed <code>allowedWorkspaceFolders</code>: in SSH sessions Claude’s file tools can no longer modify a folder marked <code>ro</code>, as in a local Code session. Not enforced on Windows hosts, or on a host with Claude Code managed settings of its own; the key’s help text lists the other limits.</li>
-<li>Changed <code>inferenceModels[].prefer1m</code> and <code>modelPrefer1mContext</code>: each model that offers 1M and has the preference now shows as one model picker entry, with no standard entry beside it. New sessions on it use the 1M context window, also for people who had picked the standard entry; sessions already started keep theirs. Before, the preference only moved the starting selection, and only for the first model.</li>
-<li>Changed what <code>claudeAiImport.automatic3pImport</code> does without asking: the Cowork memory and global instructions it now brings over are used at once, and the scheduled tasks, plugins and skills arrive on or off as they were; only a brought-over project’s instructions wait for the user to accept them before new tasks use them. This can also reach computers that moved under an earlier release, at their first launch on this version.</li>
-<li>Removed the "Send to cloud" option from the Code tab’s suggested-task cards, which third-party deployments cannot use.</li>
-<li>Fixed a skill switched off in Customize still being offered to Claude and still running when asked for by name, and a skill deleted there still being offered in a Code session that was already running.</li>
-<li>Fixed Claude’s file edits in a worktree session sometimes landing in the main checkout or in another session’s worktree, except in SSH sessions on a Linux host over OpenSSH.</li>
-<li>Fixed Cowork tasks failing to start on Linux when the memory index is very long.</li>
-<li>Fixed the "Can’t reach" connection warning appearing when the inference provider is reachable but slow to respond.</li>
-<li>Fixed the command palette’s first row ("New chat" or "New session") not starting a conversation.</li>
-<li>Fixed the model picker showing identical rows when the model catalog or an administrator’s model list gives several model ids one name: each such row now shows the part of its id that differs, and its full id on hover.</li>
-<li>Fixed the OpenTelemetry export counting sessions nobody opened: background reads of the Code tab’s slash command and agent lists no longer send records or add to <code>claude_code.session.count</code>.</li>
-<li>Fixed tool calls to an OAuth-authenticated server in <code>managedMcpServers</code> failing until the next scheduled token refresh when the server rejected the token early, sometimes with a blank error, and failing for up to 30 minutes after the device came back online from a long offline period.</li>
 </ul>]]></content:encoded>
         </item>
     </channel>

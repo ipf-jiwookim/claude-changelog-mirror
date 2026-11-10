@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[v4.23118.1]]></title>
             <link>https://claude.com/docs/cowork/changelog#v4-23118-1</link>
-            <guid isPermaLink="false">50d4f16f77533d75</guid>
+            <guid isPermaLink="false">bbb71f8affdf9f9e</guid>
             <pubDate>Mon, 09 Nov 2026 19:03:51 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.321.</p>
 <p><strong>General</strong></p>
@@ -31,6 +31,7 @@
 </ul>
 <p><strong>3P</strong></p>
 <ul>
+<li>Changed <code>fable</code> in <code>inferenceModels</code> to request the newest Fable model, unless your gateway's <code>/v1/models</code> has an ID <code>fable</code> or a model tagged Fable. Requests can fail if that model isn't served. To pick one, keep <code>fable</code> and add an entry with its exact ID and <code>anthropicFamilyTier</code> set to <code>fable</code>.</li>
 <li>Changed tool calls made by a plugin's own code (a mod), rather than by Claude, to never show an approval card. They now run where only the user's approval or Auto mode would have stopped them, including connector tools with no <code>toolPolicy</code> entry. Such calls to a tool set to <code>ask</code> are refused.</li>
 <li>Fixed Cowork's Progress panel not ticking steps that a subagent marked done.</li>
 </ul>]]></content:encoded>

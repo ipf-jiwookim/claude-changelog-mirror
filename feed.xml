@@ -643,29 +643,5 @@
 <li>Fixed the "Strict sandbox mode" switch under Settings › Claude Code, and the /status card's Sandbox row, showing strict mode as off when your organization's configuration already enforces it.</li>
 </ul>]]></content:encoded>
         </item>
-        <item>
-            <title><![CDATA[v2.31226.1]]></title>
-            <link>https://claude.com/docs/cowork/changelog#v2-31226-1</link>
-            <guid isPermaLink="false">a16f14c9ee800181</guid>
-            <pubDate>Fri, 09 Oct 2026 19:25:44 GMT</pubDate>
-            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.295.</p>
-<p><strong>General</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Code</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>Cowork</strong></p>
-<ul>
-<li>No user-facing changes.</li>
-</ul>
-<p><strong>3P</strong></p>
-<ul>
-<li>Changed MSIX installs on Windows so that programs started through Git Bash in a session end when the app updates instead of staying open.</li>
-<li>Fixed every request failing on a 1M-context model when the inference gateway or cloud provider refuses the 1M-context capability; the request is now resent without it.</li>
-</ul>]]></content:encoded>
-        </item>
     </channel>
 </rss>

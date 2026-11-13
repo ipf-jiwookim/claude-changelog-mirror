@@ -8,6 +8,37 @@
         <copyright><![CDATA[Claude.ai Documentation]]></copyright>
         <docs>https://claude.com/docs</docs>
         <item>
+            <title><![CDATA[v5.11492.5]]></title>
+            <link>https://claude.com/docs/cowork/changelog#v5-11492-5</link>
+            <guid isPermaLink="false">447d00cb2f9ca156</guid>
+            <pubDate>Fri, 13 Nov 2026 23:22:08 GMT</pubDate>
+            <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.325.</p>
+<p>For administrators of SSH hosts: SSH helper version 87375cc7c944eb9d45c8d9267edc70a4b4827961.</p>
+<p><strong>General</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>Code</strong></p>
+<ul>
+<li>Changed sandboxed shell commands on macOS and Linux: most ask first in Manual and Accept edits, and Auto mode checks many of them. A routine can stop at a prompt. To undo this, add <code>"autoAllowBashIfSandboxed": true</code> to the <code>sandbox</code> block of <code>~/.claude/settings.json</code>, creating it if needed.</li>
+<li>Changed sandboxed shell commands so that <code>git worktree add</code>, <code>move</code> and <code>remove</code> fail, as does a commit in a worktree the session was not started in or given.</li>
+<li>Changed some shell allow rules that name a variable, such as <code>Bash(NODE_ENV*)</code>, to stop matching, so those commands ask for approval.</li>
+<li>Changed workflows in local sessions to pause at your Claude plan's usage limit and continue after it resets, if the reset is within a day and Auto-continue when limits reset is on.</li>
+<li>Fixed a session staying busy after another of your sessions sent it the same message twice or many messages at once.</li>
+</ul>
+<p><strong>Cowork</strong></p>
+<ul>
+<li>No user-facing changes.</li>
+</ul>
+<p><strong>3P</strong></p>
+<ul>
+<li>Changed certificate checks: under a company CA that limits DNS names, a certificate with IP addresses but no DNS name is refused if its common name is an IP address or a domain the CA does not allow. Turns to such a gateway fail until its certificate lists an allowed DNS name.</li>
+<li>Changed most shell commands in Claude Code's sandbox (default on managed macOS and Linux) to ask first (see Code). To undo, add <code>"autoAllowBashIfSandboxed": true</code> to the <code>sandbox</code> block of its <code>managed-settings.json</code> (SSH: on the host). A new file needs top-level <code>"parentSettingsBehavior": "merge"</code>.</li>
+<li>Fixed sessions failing to start on Windows when the organization's managed settings are very long, for example a long model list or many allowed hosts.</li>
+<li>Fixed turns failing when a gateway answers with 403 for an expired token from a credential helper, or for a sign-in past its stated expiry. Claude now gets a fresh token and retries.</li>
+</ul>]]></content:encoded>
+        </item>
+        <item>
             <title><![CDATA[v5.11492.0]]></title>
             <link>https://claude.com/docs/cowork/changelog#v5-11492-0</link>
             <guid isPermaLink="false">f1198e4fed494301</guid>

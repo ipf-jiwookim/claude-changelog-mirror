@@ -93,7 +93,7 @@
         <item>
             <title><![CDATA[v5.11492.5]]></title>
             <link>https://claude.com/docs/cowork/changelog#v5-11492-5</link>
-            <guid isPermaLink="false">447d00cb2f9ca156</guid>
+            <guid isPermaLink="false">f2ce45e0fa6ebdbb</guid>
             <pubDate>Fri, 13 Nov 2026 23:22:08 GMT</pubDate>
             <content:encoded><![CDATA[<p>Bundled Claude Code version: 2.1.325.</p>
 <p>For administrators of SSH hosts: SSH helper version 87375cc7c944eb9d45c8d9267edc70a4b4827961.</p>
@@ -117,6 +117,7 @@
 <ul>
 <li>Changed certificate checks: under a company CA that limits DNS names, a certificate with IP addresses but no DNS name is refused if its common name is an IP address or a domain the CA does not allow. Turns to such a gateway fail until its certificate lists an allowed DNS name.</li>
 <li>Changed most shell commands in Claude Code's sandbox (default on managed macOS and Linux) to ask first (see Code). To undo, add <code>"autoAllowBashIfSandboxed": true</code> to the <code>sandbox</code> block of its <code>managed-settings.json</code> (SSH: on the host). A new file needs top-level <code>"parentSettingsBehavior": "merge"</code>.</li>
+<li>Changed nothing about shell prompts in a deployment that runs every session on a server (not an SSH host) and none on the device: that server runs its own Claude Code, not the app's. Keep <code>autoAllowBashIfSandboxed</code> out of that server's managed settings, or it refuses to start sessions.</li>
 <li>Fixed sessions failing to start on Windows when the organization's managed settings are very long, for example a long model list or many allowed hosts.</li>
 <li>Fixed turns failing when a gateway answers with 403 for an expired token from a credential helper, or for a sign-in past its stated expiry. Claude now gets a fresh token and retries.</li>
 </ul>]]></content:encoded>
